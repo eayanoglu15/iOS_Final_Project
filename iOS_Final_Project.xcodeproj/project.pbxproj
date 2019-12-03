@@ -16,6 +16,8 @@
 		855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69423959E7D003A28EA /* BaseScrollViewController.swift */; };
 		855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */; };
 		855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69B2396803C003A28EA /* InfoViewController.swift */; };
+		857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */; };
+		857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		855BB69423959E7D003A28EA /* BaseScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScrollViewController.swift; sourceTree = "<group>"; };
 		855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		855BB69B2396803C003A28EA /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountViewController.swift; sourceTree = "<group>"; };
+		857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				855BB692239575F0003A28EA /* LoginViewController.swift */,
 				855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */,
 				855BB69B2396803C003A28EA /* InfoViewController.swift */,
+				857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */,
+				857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -164,11 +170,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
+				857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */,
 				855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */,
 				855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */,
 				855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */,
 				855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */,
 				855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */,
+				857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
