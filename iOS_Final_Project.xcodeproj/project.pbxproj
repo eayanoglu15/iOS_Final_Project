@@ -14,6 +14,8 @@
 		855BB68B239574E0003A28EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 855BB689239574E0003A28EA /* LaunchScreen.storyboard */; };
 		855BB693239575F0003A28EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB692239575F0003A28EA /* LoginViewController.swift */; };
 		855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69423959E7D003A28EA /* BaseScrollViewController.swift */; };
+		855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */; };
+		855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69B2396803C003A28EA /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		855BB68C239574E0003A28EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		855BB692239575F0003A28EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		855BB69423959E7D003A28EA /* BaseScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScrollViewController.swift; sourceTree = "<group>"; };
+		855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
+		855BB69B2396803C003A28EA /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +62,34 @@
 		855BB67D239574DF003A28EA /* iOS_Final_Project */ = {
 			isa = PBXGroup;
 			children = (
+				855BB69723967ADA003A28EA /* Base */,
+				855BB69823967AE2003A28EA /* ViewController */,
 				855BB67E239574DF003A28EA /* AppDelegate.swift */,
 				855BB680239574DF003A28EA /* SceneDelegate.swift */,
 				855BB684239574DF003A28EA /* Main.storyboard */,
 				855BB687239574E0003A28EA /* Assets.xcassets */,
 				855BB689239574E0003A28EA /* LaunchScreen.storyboard */,
 				855BB68C239574E0003A28EA /* Info.plist */,
-				855BB692239575F0003A28EA /* LoginViewController.swift */,
-				855BB69423959E7D003A28EA /* BaseScrollViewController.swift */,
 			);
 			path = iOS_Final_Project;
+			sourceTree = "<group>";
+		};
+		855BB69723967ADA003A28EA /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				855BB69423959E7D003A28EA /* BaseScrollViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		855BB69823967AE2003A28EA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				855BB692239575F0003A28EA /* LoginViewController.swift */,
+				855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */,
+				855BB69B2396803C003A28EA /* InfoViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +165,9 @@
 			files = (
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
 				855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */,
+				855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */,
 				855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */,
+				855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */,
 				855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
