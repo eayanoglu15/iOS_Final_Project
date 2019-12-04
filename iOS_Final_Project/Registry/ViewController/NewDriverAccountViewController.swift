@@ -20,6 +20,8 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     @IBOutlet weak var carModelTextField: UITextField!
     @IBOutlet weak var plaqueTextField: UITextField!
     
+    let newDriverAccountHelper = NewDriverAccountHelper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Create Driver Account"
@@ -55,6 +57,33 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
+        guard let username = usernameTextField.text, !username.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty,
+            let name = nameTextField.text, !name.isEmpty,
+            let surname = surnameTextField.text, !surname.isEmpty,
+            let email = emailTextField.text, !email.isEmpty,
+            let phone = phoneNumberTextField.text, !phone.isEmpty,
+            let age = ageTextField.text, !age.isEmpty,
+            let carModel = carModelTextField.text, !carModel.isEmpty,
+            let plaque = plaqueTextField.text, !plaque.isEmpty else {
+                showAlert(title: "Missing Information", message: "Please fill all fields of the form")
+                return
+        }
+        print(username)
+        // guard let ile username - password check ekle ve message ver
+        guard let userAge = Int(age) else {
+            showAlert(title: "Invalid Age", message: "Please enter your age as a number")
+            return
+        }
+        newDriverAccountHelper.addNewDriver(username: username, password: password, name: name, surname: surname, email: email,
+        phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque)
+        // feed e yolla
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
     /*

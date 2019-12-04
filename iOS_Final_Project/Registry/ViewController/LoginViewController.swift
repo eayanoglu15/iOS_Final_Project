@@ -17,6 +17,7 @@ class LoginViewController: BaseScrollViewController {
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         title = "Welcome"
+        passwordTextField.isSecureTextEntry = true
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {

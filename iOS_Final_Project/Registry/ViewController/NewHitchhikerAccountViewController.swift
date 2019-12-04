@@ -18,6 +18,8 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     
+    let newHitchhikerAccountHelper = NewHitchhikerAccountHelper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Create Hitchhiker Account"
@@ -50,19 +52,43 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
+        guard let username = usernameTextField.text, !username.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty,
+            let name = nameTextField.text, !name.isEmpty,
+            let surname = surnameTextField.text, !surname.isEmpty,
+            let email = emailTextField.text, !email.isEmpty,
+            let phone = phoneNumberTextField.text, !phone.isEmpty,
+            let age = ageTextField.text, !age.isEmpty else {
+                showAlert(title: "Missing Information", message: "Please fill all fields of the form")
+                return
+        }
+        print(username)
+        // guard let ile username - password check ekle ve message ver
+        guard let userAge = Int(age) else {
+            showAlert(title: "Invalid Age", message: "Please enter your age as a number")
+            return
+        }
+        newHitchhikerAccountHelper.addNewHitchihiker(username: username, password: password, name: name, surname: surname, email: email,
+        phonenumber: phone, age: userAge)
+        // feed e yolla
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
-    */
-
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 //MARK: - UITextFieldDelegate
@@ -79,11 +105,11 @@ extension NewHitchhikerAccountViewController: UITextFieldDelegate {
     @objc
     func textFieldDidChange(textField: UITextField) {
         /*
-        if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
-            loginButton.isEnabled = true
-        } else {
-            loginButton.isEnabled = false
-        }
-        */
+         if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
+         loginButton.isEnabled = true
+         } else {
+         loginButton.isEnabled = false
+         }
+         */
     }
 }

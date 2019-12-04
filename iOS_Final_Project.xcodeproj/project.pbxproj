@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		854A44DD2397C3CC00AFC20D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44DC2397C3CC00AFC20D /* User.swift */; };
+		854A44E12397C65F00AFC20D /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44E02397C65E00AFC20D /* UserDataSource.swift */; };
+		854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44E62397C8AC00AFC20D /* String+Additions.swift */; };
+		854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44EA2397D66D00AFC20D /* LoginHelper.swift */; };
+		854A44ED2397D69500AFC20D /* NewHitchhikerAccountHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */; };
 		855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB67E239574DF003A28EA /* AppDelegate.swift */; };
 		855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB680239574DF003A28EA /* SceneDelegate.swift */; };
 		855BB686239574DF003A28EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 855BB684239574DF003A28EA /* Main.storyboard */; };
@@ -18,9 +23,15 @@
 		855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69B2396803C003A28EA /* InfoViewController.swift */; };
 		857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */; };
 		857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */; };
+		859B01862397E70400DE9EEC /* NewDriverAccountHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		854A44DC2397C3CC00AFC20D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		854A44E02397C65E00AFC20D /* UserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
+		854A44E62397C8AC00AFC20D /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
+		854A44EA2397D66D00AFC20D /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
+		854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountHelper.swift; sourceTree = "<group>"; };
 		855BB67B239574DF003A28EA /* iOS_Final_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Final_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		855BB67E239574DF003A28EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		855BB680239574DF003A28EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +45,7 @@
 		855BB69B2396803C003A28EA /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountViewController.swift; sourceTree = "<group>"; };
 		857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountViewController.swift; sourceTree = "<group>"; };
+		859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		854A44DA2397C38600AFC20D /* Registry */ = {
+			isa = PBXGroup;
+			children = (
+				854A44DB2397C3A200AFC20D /* Model */,
+				855BB69823967AE2003A28EA /* ViewController */,
+				855BB684239574DF003A28EA /* Main.storyboard */,
+			);
+			path = Registry;
+			sourceTree = "<group>";
+		};
+		854A44DB2397C3A200AFC20D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				854A44DC2397C3CC00AFC20D /* User.swift */,
+				854A44E02397C65E00AFC20D /* UserDataSource.swift */,
+				854A44EA2397D66D00AFC20D /* LoginHelper.swift */,
+				854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */,
+				859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		854A44E42397C72D00AFC20D /* Reusables */ = {
+			isa = PBXGroup;
+			children = (
+				854A44E52397C73800AFC20D /* Extensions */,
+			);
+			path = Reusables;
+			sourceTree = "<group>";
+		};
+		854A44E52397C73800AFC20D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				854A44E62397C8AC00AFC20D /* String+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		855BB672239574DF003A28EA = {
 			isa = PBXGroup;
 			children = (
@@ -66,11 +116,11 @@
 		855BB67D239574DF003A28EA /* iOS_Final_Project */ = {
 			isa = PBXGroup;
 			children = (
+				854A44E42397C72D00AFC20D /* Reusables */,
 				855BB69723967ADA003A28EA /* Base */,
-				855BB69823967AE2003A28EA /* ViewController */,
+				854A44DA2397C38600AFC20D /* Registry */,
 				855BB67E239574DF003A28EA /* AppDelegate.swift */,
 				855BB680239574DF003A28EA /* SceneDelegate.swift */,
-				855BB684239574DF003A28EA /* Main.storyboard */,
 				855BB687239574E0003A28EA /* Assets.xcassets */,
 				855BB689239574E0003A28EA /* LaunchScreen.storyboard */,
 				855BB68C239574E0003A28EA /* Info.plist */,
@@ -171,10 +221,16 @@
 			files = (
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
 				857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */,
+				859B01862397E70400DE9EEC /* NewDriverAccountHelper.swift in Sources */,
 				855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */,
 				855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */,
 				855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */,
+				854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */,
+				854A44DD2397C3CC00AFC20D /* User.swift in Sources */,
 				855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */,
+				854A44E12397C65F00AFC20D /* UserDataSource.swift in Sources */,
+				854A44ED2397D69500AFC20D /* NewHitchhikerAccountHelper.swift in Sources */,
+				854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */,
 				855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */,
 				857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */,
 			);
