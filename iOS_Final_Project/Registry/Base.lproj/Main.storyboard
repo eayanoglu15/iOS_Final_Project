@@ -271,14 +271,26 @@
                         <outlet property="passwordTextField" destination="ig5-wo-MX1" id="GlR-1J-o8J"/>
                         <outlet property="phoneNumberTextField" destination="FeR-Xy-T8Y" id="oLF-Ag-aVf"/>
                         <outlet property="profileImageView" destination="lrY-vq-yu1" id="YOb-vE-Z3O"/>
+                        <outlet property="registerButton" destination="cKk-w3-uMy" id="IHc-0X-SOP"/>
                         <outlet property="scrollView" destination="OzT-fI-Ecg" id="vbG-N5-45S"/>
                         <outlet property="surnameTextField" destination="FhD-qe-hdC" id="pam-di-j5a"/>
                         <outlet property="usernameTextField" destination="D8j-cx-KNR" id="QWj-uU-uKx"/>
+                        <segue destination="iuu-yV-dkQ" kind="show" identifier="toHitchhikerHome" id="ExK-MT-ZeN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vrg-XG-MhZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2609" y="483"/>
+            <point key="canvasLocation" x="2609" y="492"/>
+        </scene>
+        <!--Hitchhiker-->
+        <scene sceneID="0k3-iK-nbm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Hitchhiker" id="iuu-yV-dkQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="YHW-bB-uAf"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bq2-eb-MpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3238" y="453"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="6bY-JJ-I7w">

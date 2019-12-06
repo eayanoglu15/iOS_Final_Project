@@ -24,6 +24,7 @@ class NewHitchhikerAccountHelper {
     */
 
     var user: User?
+    var isFormFilled = false
     
     func addNewHitchihiker(username: String, password: String, name: String,
                            surname: String, email: String, phonenumber: String,

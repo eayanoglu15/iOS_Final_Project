@@ -18,6 +18,8 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     
+    @IBOutlet weak var registerButton: UIButton!
+    
     let newHitchhikerAccountHelper = NewHitchhikerAccountHelper()
     
     override func viewDidLoad() {
@@ -37,6 +39,8 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         emailTextField.delegate = self
         phoneNumberTextField.delegate = self
         ageTextField.delegate = self
+        
+        //registerButton.isEnabled = false
     }
     
     @objc func choosePicture() {
@@ -66,10 +70,12 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         // guard let ile username - password check ekle ve message ver
         guard let userAge = Int(age) else {
             showAlert(title: "Invalid Age", message: "Please enter your age as a number")
+            
             return
         }
         newHitchhikerAccountHelper.addNewHitchihiker(username: username, password: password, name: name, surname: surname, email: email,
         phonenumber: phone, age: userAge)
+        performSegue(withIdentifier: "toHitchhikerHome", sender: nil)
         // feed e yolla
     }
     
@@ -79,15 +85,19 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         self.present(alert, animated: true)
     }
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "toHitchhikerHome" {
+            let destinationVc = segue.destination as! HitchhikerHomeViewController
+            destinationVc.hitchhiker = newHitchhikerAccountHelper.user
+        }
      }
-     */
+    
     
 }
 

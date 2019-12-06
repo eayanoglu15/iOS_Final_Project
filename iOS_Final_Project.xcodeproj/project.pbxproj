@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		853BC578239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BC577239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift */; };
+		853BC57A239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BC579239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift */; };
+		853BC57C239A941400EC84F8 /* HitchhikerFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BC57B239A941400EC84F8 /* HitchhikerFeed.swift */; };
+		853BC580239A978E00EC84F8 /* HitchhikerHomeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BC57F239A978E00EC84F8 /* HitchhikerHomeHelper.swift */; };
+		8546C3612398267200A8317C /* Hitchhiker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8546C3602398267200A8317C /* Hitchhiker.storyboard */; };
 		854A44DD2397C3CC00AFC20D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44DC2397C3CC00AFC20D /* User.swift */; };
 		854A44E12397C65F00AFC20D /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44E02397C65E00AFC20D /* UserDataSource.swift */; };
 		854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44E62397C8AC00AFC20D /* String+Additions.swift */; };
@@ -24,9 +29,15 @@
 		857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */; };
 		857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */; };
 		859B01862397E70400DE9EEC /* NewDriverAccountHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */; };
+		85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		853BC577239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerHomeTableViewCell.swift; sourceTree = "<group>"; };
+		853BC579239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerFeedDataSource.swift; sourceTree = "<group>"; };
+		853BC57B239A941400EC84F8 /* HitchhikerFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerFeed.swift; sourceTree = "<group>"; };
+		853BC57F239A978E00EC84F8 /* HitchhikerHomeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerHomeHelper.swift; sourceTree = "<group>"; };
+		8546C3602398267200A8317C /* Hitchhiker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Hitchhiker.storyboard; sourceTree = "<group>"; };
 		854A44DC2397C3CC00AFC20D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		854A44E02397C65E00AFC20D /* UserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
 		854A44E62397C8AC00AFC20D /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
@@ -46,6 +57,7 @@
 		857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountViewController.swift; sourceTree = "<group>"; };
 		857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountViewController.swift; sourceTree = "<group>"; };
 		859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountHelper.swift; sourceTree = "<group>"; };
+		85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerHomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +71,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		853BC576239A8E0800EC84F8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				853BC577239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8546C35F2398265600A8317C /* Hitchhiker */ = {
+			isa = PBXGroup;
+			children = (
+				85E86C7023990D24009D011F /* ViewController */,
+				8546C362239826B600A8317C /* Model */,
+				8546C3602398267200A8317C /* Hitchhiker.storyboard */,
+			);
+			path = Hitchhiker;
+			sourceTree = "<group>";
+		};
+		8546C362239826B600A8317C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				853BC579239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift */,
+				853BC57B239A941400EC84F8 /* HitchhikerFeed.swift */,
+				853BC57F239A978E00EC84F8 /* HitchhikerHomeHelper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		854A44DA2397C38600AFC20D /* Registry */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +156,8 @@
 		855BB67D239574DF003A28EA /* iOS_Final_Project */ = {
 			isa = PBXGroup;
 			children = (
+				853BC576239A8E0800EC84F8 /* Cells */,
+				8546C35F2398265600A8317C /* Hitchhiker */,
 				854A44E42397C72D00AFC20D /* Reusables */,
 				855BB69723967ADA003A28EA /* Base */,
 				854A44DA2397C38600AFC20D /* Registry */,
@@ -144,6 +186,14 @@
 				855BB69B2396803C003A28EA /* InfoViewController.swift */,
 				857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */,
 				857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		85E86C7023990D24009D011F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -209,6 +259,7 @@
 				855BB68B239574E0003A28EA /* LaunchScreen.storyboard in Resources */,
 				855BB688239574E0003A28EA /* Assets.xcassets in Resources */,
 				855BB686239574DF003A28EA /* Main.storyboard in Resources */,
+				8546C3612398267200A8317C /* Hitchhiker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,10 +271,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
+				853BC578239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift in Sources */,
+				85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */,
 				857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */,
+				853BC57A239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift in Sources */,
 				859B01862397E70400DE9EEC /* NewDriverAccountHelper.swift in Sources */,
 				855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */,
 				855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */,
+				853BC57C239A941400EC84F8 /* HitchhikerFeed.swift in Sources */,
 				855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */,
 				854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */,
 				854A44DD2397C3CC00AFC20D /* User.swift in Sources */,
@@ -233,6 +288,7 @@
 				854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */,
 				855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */,
 				857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */,
+				853BC580239A978E00EC84F8 /* HitchhikerHomeHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
