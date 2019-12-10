@@ -553,10 +553,10 @@
             </objects>
             <point key="canvasLocation" x="173.91304347826087" y="-248.4375"/>
         </scene>
-        <!--View Controller-->
+        <!--Hitchhiker Trip Requests View Controller-->
         <scene sceneID="W7S-tf-wYO">
             <objects>
-                <viewController id="Mkn-BM-CX3" sceneMemberID="viewController">
+                <viewController id="Mkn-BM-CX3" customClass="HitchhikerTripRequestsViewController" customModule="iOS_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ef8-wb-Afg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -565,7 +565,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HitchhikerHomeCell" rowHeight="276" id="EX1-Ng-8sJ" customClass="HitchhikerHomeTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TripRequestCell" rowHeight="276" id="EX1-Ng-8sJ" customClass="HitchhikerTripRequestTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="276"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EX1-Ng-8sJ" id="kfc-3b-7SS">
@@ -723,18 +723,18 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="availableSeatsLabel" destination="ABl-s3-MRl" id="SWV-mM-ggJ"/>
-                                            <outlet property="carModelLabel" destination="SmY-Is-QgC" id="RFG-tS-Bzr"/>
-                                            <outlet property="departureTimeLabel" destination="WhY-cd-kb3" id="1Vj-gI-YK9"/>
-                                            <outlet property="fromLabel" destination="W5j-tu-msT" id="HVk-oY-X3z"/>
-                                            <outlet property="profileImageView" destination="0oY-8c-T0R" id="GmS-eh-OYY"/>
-                                            <outlet property="starFiveImageView" destination="ABl-d2-Wep" id="daY-CH-e3R"/>
-                                            <outlet property="starFourImageView" destination="36r-Ia-cMK" id="KQ5-PK-62e"/>
-                                            <outlet property="starOneImageView" destination="N3d-nc-vek" id="Dos-eG-j6F"/>
-                                            <outlet property="starThreeImageView" destination="8LY-Rt-ykj" id="OU0-xG-Ji2"/>
-                                            <outlet property="starTwoImageView" destination="bpf-Qg-iE0" id="AfW-M6-chE"/>
-                                            <outlet property="toLabel" destination="dJQ-Xd-QMl" id="PnT-aY-ebi"/>
-                                            <outlet property="usernameLabel" destination="x33-MB-BZB" id="9QR-tC-P1U"/>
+                                            <outlet property="carModelLabel" destination="SmY-Is-QgC" id="bcz-Oe-e2Y"/>
+                                            <outlet property="departureTimeLabel" destination="WhY-cd-kb3" id="s86-o2-qOo"/>
+                                            <outlet property="fromLabel" destination="W5j-tu-msT" id="BUB-aZ-M2R"/>
+                                            <outlet property="profileImageView" destination="0oY-8c-T0R" id="urY-KZ-wW0"/>
+                                            <outlet property="starFiveImageView" destination="ABl-d2-Wep" id="NXG-Lv-F1a"/>
+                                            <outlet property="starFourImageView" destination="36r-Ia-cMK" id="XJh-El-a8M"/>
+                                            <outlet property="starOneImageView" destination="N3d-nc-vek" id="pRd-J9-qpF"/>
+                                            <outlet property="starThreeImageView" destination="8LY-Rt-ykj" id="gbx-T0-ZmO"/>
+                                            <outlet property="starTwoImageView" destination="bpf-Qg-iE0" id="NRZ-dg-1gt"/>
+                                            <outlet property="statusLabel" destination="ABl-s3-MRl" id="GP9-t7-6dn"/>
+                                            <outlet property="toLabel" destination="dJQ-Xd-QMl" id="TZn-cK-8hj"/>
+                                            <outlet property="usernameLabel" destination="x33-MB-BZB" id="93L-Hd-YEh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -750,6 +750,9 @@
                         <viewLayoutGuide key="safeArea" id="Nzz-IM-vad"/>
                     </view>
                     <navigationItem key="navigationItem" id="cho-Wp-39g"/>
+                    <connections>
+                        <outlet property="tripRequestTableView" destination="A11-hK-nD2" id="Asb-WT-AJ3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Hs-7f-Fpv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
