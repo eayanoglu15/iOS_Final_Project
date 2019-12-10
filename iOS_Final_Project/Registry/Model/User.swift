@@ -33,6 +33,10 @@ struct User {
     var carModel: String?
     var plaque: String?
     
+    let rating: Double = 0
+    let voteNumber: Int = 0
+    let totalDistance: Int = 0
+    
     init(isDriver: Bool, username: String, password: String, name: String,
          surname: String, email: String, phonenumber: String,
          age: Int, sex: String?) {

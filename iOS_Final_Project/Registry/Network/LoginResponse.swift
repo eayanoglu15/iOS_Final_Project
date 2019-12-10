@@ -16,13 +16,13 @@ struct LoginResponse: Codable {
     let username: String
     let phone: String
     let age: Int
-    let point: Int
-    let numberRevieved: Int
+    let point: Double           //
+    let numberRevieved: Int     //
     let sex: String
     let driver: Bool
     var plaque: String?
     var carModel: String?
-    let totalDistance: Int
-    let id: Int
-    let version: String
+    let totalDistance: Int      //
+    let id: Int                 //
+    let version: String         //
 }

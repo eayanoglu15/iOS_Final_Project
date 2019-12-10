@@ -12,7 +12,7 @@ class DriverHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "Driver Home"
         // Do any additional setup after loading the view.
     }
     

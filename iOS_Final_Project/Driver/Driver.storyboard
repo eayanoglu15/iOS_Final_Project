@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Driver Home View Controller-->
         <scene sceneID="B7E-Xc-Ro2">
             <objects>
-                <viewController id="ZDC-T6-Jfe" sceneMemberID="viewController">
+                <viewController id="ZDC-T6-Jfe" customClass="DriverHomeViewController" customModule="iOS_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L6j-tf-35P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

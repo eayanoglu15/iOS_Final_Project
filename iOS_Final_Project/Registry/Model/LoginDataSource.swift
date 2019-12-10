@@ -13,6 +13,7 @@ protocol LoginDataSourceDelegate {
 }
 
 class LoginDataSource {
+    var user: User?
     var delegate: LoginDataSourceDelegate?
     
     func loginUser(username: String, password: String) {
@@ -47,10 +48,20 @@ class LoginDataSource {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(LoginResponse.self, from: data)
                         print("success: \(response.username)")
+                        
                     }
                 }
             }
             uploadTask.resume()
+        }
+    }
+    
+    func setUser(response: LoginResponse) {
+        let isDriver = response.driver
+        if isDriver {
+            user = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
+        } else {
+            user = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
         }
     }
 }

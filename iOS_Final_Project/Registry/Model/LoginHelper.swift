@@ -16,8 +16,6 @@ class LoginHelper {
         static let userNameMin = 3
     }
     
-    var user: User?
-    
     func isUsernameValid(username: String) -> Bool {
         if Count.userNameMin...Count.userNameMax ~= username.count {
             return username.isAlphanumeric
