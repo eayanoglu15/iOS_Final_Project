@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85069AE2239FF3F30012E3B7 /* Driver.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85069AE1239FF3F30012E3B7 /* Driver.storyboard */; };
+		85069AE7239FF4480012E3B7 /* DriverHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069AE6239FF4480012E3B7 /* DriverHomeViewController.swift */; };
+		85069AE9239FF4540012E3B7 /* DriverHomeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069AE8239FF4540012E3B7 /* DriverHomeHelper.swift */; };
+		85069AEE23A00F760012E3B7 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069AED23A00F760012E3B7 /* LoginRequest.swift */; };
+		85354BCB23A02C3C00A0EE95 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85354BCA23A02C3C00A0EE95 /* LoginResponse.swift */; };
+		85354BCD23A03B4A00A0EE95 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85354BCC23A03B4A00A0EE95 /* LoginDataSource.swift */; };
 		853BC578239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BC577239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift */; };
 		853BC57A239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BC579239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift */; };
 		853BC57C239A941400EC84F8 /* HitchhikerFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853BC57B239A941400EC84F8 /* HitchhikerFeed.swift */; };
@@ -45,6 +51,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		85069AE1239FF3F30012E3B7 /* Driver.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Driver.storyboard; sourceTree = "<group>"; };
+		85069AE6239FF4480012E3B7 /* DriverHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverHomeViewController.swift; sourceTree = "<group>"; };
+		85069AE8239FF4540012E3B7 /* DriverHomeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverHomeHelper.swift; sourceTree = "<group>"; };
+		85069AED23A00F760012E3B7 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		85354BCA23A02C3C00A0EE95 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		85354BCC23A03B4A00A0EE95 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
 		853BC577239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerHomeTableViewCell.swift; sourceTree = "<group>"; };
 		853BC579239A93DC00EC84F8 /* HitchhikerFeedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerFeedDataSource.swift; sourceTree = "<group>"; };
 		853BC57B239A941400EC84F8 /* HitchhikerFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerFeed.swift; sourceTree = "<group>"; };
@@ -95,6 +107,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85069AE0239FF3AB0012E3B7 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				85069AE3239FF4130012E3B7 /* Cell */,
+				85069AE4239FF41C0012E3B7 /* ViewController */,
+				85069AE5239FF4240012E3B7 /* Model */,
+				85069AE1239FF3F30012E3B7 /* Driver.storyboard */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		85069AE3239FF4130012E3B7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		85069AE4239FF41C0012E3B7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				85069AE6239FF4480012E3B7 /* DriverHomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		85069AE5239FF4240012E3B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85069AE8239FF4540012E3B7 /* DriverHomeHelper.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		85069AEA23A00F5B0012E3B7 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				85069AED23A00F760012E3B7 /* LoginRequest.swift */,
+				85354BCA23A02C3C00A0EE95 /* LoginResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		853BC576239A8E0800EC84F8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +190,7 @@
 		854A44DA2397C38600AFC20D /* Registry */ = {
 			isa = PBXGroup;
 			children = (
+				85069AEA23A00F5B0012E3B7 /* Network */,
 				854A44DB2397C3A200AFC20D /* Model */,
 				855BB69823967AE2003A28EA /* ViewController */,
 				855BB684239574DF003A28EA /* Main.storyboard */,
@@ -150,6 +206,7 @@
 				854A44EA2397D66D00AFC20D /* LoginHelper.swift */,
 				854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */,
 				859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */,
+				85354BCC23A03B4A00A0EE95 /* LoginDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,10 +246,11 @@
 		855BB67D239574DF003A28EA /* iOS_Final_Project */ = {
 			isa = PBXGroup;
 			children = (
-				8546C35F2398265600A8317C /* Hitchhiker */,
 				854A44E42397C72D00AFC20D /* Reusables */,
 				855BB69723967ADA003A28EA /* Base */,
 				854A44DA2397C38600AFC20D /* Registry */,
+				8546C35F2398265600A8317C /* Hitchhiker */,
+				85069AE0239FF3AB0012E3B7 /* Driver */,
 				855BB67E239574DF003A28EA /* AppDelegate.swift */,
 				855BB680239574DF003A28EA /* SceneDelegate.swift */,
 				855BB687239574E0003A28EA /* Assets.xcassets */,
@@ -292,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85069AE2239FF3F30012E3B7 /* Driver.storyboard in Resources */,
 				855BB68B239574E0003A28EA /* LaunchScreen.storyboard in Resources */,
 				855BB688239574E0003A28EA /* Assets.xcassets in Resources */,
 				855BB686239574DF003A28EA /* Main.storyboard in Resources */,
@@ -307,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
+				85069AEE23A00F760012E3B7 /* LoginRequest.swift in Sources */,
 				85A860F2239EA428000A72EE /* HitchhikerEditProfileViewController.swift in Sources */,
 				853BC578239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift in Sources */,
 				85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */,
@@ -319,6 +379,7 @@
 				853BC57C239A941400EC84F8 /* HitchhikerFeed.swift in Sources */,
 				8557FEBE239FD333005AB39C /* HitchhikerOtherProfileHelper.swift in Sources */,
 				855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */,
+				85069AE7239FF4480012E3B7 /* DriverHomeViewController.swift in Sources */,
 				854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */,
 				854A44DD2397C3CC00AFC20D /* User.swift in Sources */,
 				8557FEC4239FDB02005AB39C /* HitchhikerTripRequestTableViewCell.swift in Sources */,
@@ -329,14 +390,17 @@
 				8557FEC0239FDAB5005AB39C /* HitchhikerTripRequestsViewController.swift in Sources */,
 				8557FEC2239FDAC2005AB39C /* HitchhikerTripRequestsHelper.swift in Sources */,
 				85A860F4239EAAC7000A72EE /* HitchhikerOtherProfileViewController.swift in Sources */,
+				85069AE9239FF4540012E3B7 /* DriverHomeHelper.swift in Sources */,
 				854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */,
 				85A860F8239EC558000A72EE /* HitchhikerEditProfileHelper.swift in Sources */,
+				85354BCD23A03B4A00A0EE95 /* LoginDataSource.swift in Sources */,
 				855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */,
 				85A860F6239EACC9000A72EE /* HitchhikerProfileHelper.swift in Sources */,
 				85A860F0239E9E49000A72EE /* InfoTableViewCell.swift in Sources */,
 				8557FEC8239FDC40005AB39C /* HitchhikerTripRequest.swift in Sources */,
 				857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */,
 				853BC580239A978E00EC84F8 /* HitchhikerHomeHelper.swift in Sources */,
+				85354BCB23A02C3C00A0EE95 /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

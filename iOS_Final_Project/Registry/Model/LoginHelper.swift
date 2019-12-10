@@ -9,12 +9,13 @@
 import Foundation
 
 class LoginHelper {
+    
     private enum Count {
         static let password = 6
         static let userNameMax = 12
         static let userNameMin = 3
     }
-
+    
     var user: User?
     
     func isUsernameValid(username: String) -> Bool {
