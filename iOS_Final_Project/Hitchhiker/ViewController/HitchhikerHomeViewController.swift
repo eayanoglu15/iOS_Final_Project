@@ -43,7 +43,9 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
 
 class HitchhikerHomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var hitchhikerHomeTableView: UITableView!
+    
     
     var hitchhiker: User?
     let hitchhikerFeedDataSource = HitchhikerFeedDataSource()
@@ -54,18 +56,26 @@ class HitchhikerHomeViewController: UIViewController, UITableViewDelegate {
         username.text = hitchhiker?.username
         hitchhikerHomeTableView.dataSource = self
         hitchhikerHomeTableView.delegate = self
-        // Do any additional setup after loading the view.
+        
+        title = "Home"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Requests", style: .plain, target: self, action: #selector(requestsButtonTapped))
     }
     
+    @objc func profileButtonTapped() {
+        performSegue(withIdentifier: "toHitchhikerProfile", sender: nil)
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    @objc func requestsButtonTapped() {
+        performSegue(withIdentifier: "toHitchhikerRequests", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toHitchhikerProfile" {
+            let destinationVc = segue.destination as! HitchhikerProfileViewController
+            destinationVc.hitchhikerProfileHelper.hitchhiker = hitchhiker
+        }
+        
+    }
     
 }

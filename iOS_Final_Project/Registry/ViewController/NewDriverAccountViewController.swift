@@ -42,6 +42,9 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         ageTextField.delegate = self
         carModelTextField.delegate = self
         plaqueTextField.delegate = self
+        
+        passwordTextField.isSecureTextEntry = true
+        ageTextField.keyboardType = .decimalPad
     }
     
     @objc func choosePicture() {

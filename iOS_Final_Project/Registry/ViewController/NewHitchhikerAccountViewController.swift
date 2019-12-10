@@ -41,6 +41,8 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         ageTextField.delegate = self
         
         //registerButton.isEnabled = false
+        passwordTextField.isSecureTextEntry = true
+        ageTextField.keyboardType = .decimalPad
     }
     
     @objc func choosePicture() {
