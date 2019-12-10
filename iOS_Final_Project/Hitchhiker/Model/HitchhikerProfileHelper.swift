@@ -9,7 +9,6 @@
 import Foundation
 
 class HitchhikerProfileHelper {
-    
     var hitchhiker: User?
     var hitchhikerInfoArray = [(String, String)]()
     

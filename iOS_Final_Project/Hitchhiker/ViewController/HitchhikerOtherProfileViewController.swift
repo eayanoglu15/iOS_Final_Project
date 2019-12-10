@@ -8,11 +8,45 @@
 
 import UIKit
 
-class HitchhikerOtherProfileViewController: UIViewController {
+extension HitchhikerOtherProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return hitchhikerOtherProfileHelper.otherUserInfoArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoTableViewCell
+        let info = hitchhikerOtherProfileHelper.otherUserInfoArray[indexPath.row]
+        cell.variableLabel.text = info.0
+        cell.valueLabel.text = info.1
+        return cell
+    }
+}
 
+class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegate {
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    @IBOutlet weak var starOneImageView: UIImageView!
+    @IBOutlet weak var starTwoImageView: UIImageView!
+    @IBOutlet weak var starThreeImageView: UIImageView!
+    @IBOutlet weak var starFourImageView: UIImageView!
+    @IBOutlet weak var starFiveImageView: UIImageView!
+    
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var votesLabel: UILabel!
+    
+    @IBOutlet weak var infoTableView: UITableView!
+    
+    var hitchhikerOtherProfileHelper = HitchhikerOtherProfileHelper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        hitchhikerOtherProfileHelper.getInfoArray()
+        infoTableView.delegate = self
+        infoTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     

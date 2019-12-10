@@ -9,6 +9,8 @@
 import Foundation
 
 class HitchhikerHomeHelper {
+    var hitchhiker: User?
+    var selectedUsername: String?
     
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
@@ -16,5 +18,18 @@ class HitchhikerHomeHelper {
             "star.lefthalf.fill", "star", "star"]
         return ratingImageArray
     }
-    
+    /*
+    func setSelectedUser(indexPath: IndexPath) {
+        selectedAccount = searched[indexPath.item]
+        /*
+        if searchActive {
+            selectedAccount = searched[indexPath.item]
+        } else if filterActive {
+            selectedAccount = filtered[indexPath.item]
+        } else {
+            selectedAccount = userAccounts[indexPath.item]
+        }
+         */
+    }
+    */
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class HitchhikerFeedDataSource {
     var feedArray: [HitchhikerFeed] = []
@@ -23,4 +24,19 @@ class HitchhikerFeedDataSource {
         feedArray.append(HitchhikerFeed(profileImage: nil, rating: 3.5, username: "HEY", carModel: "Subaru BRZ", from: "Çengelköy",
         to: "Koç Üniversitesi", departureTime: "14.30 - 15.00", availableSeats: 3))
     }
+    
+    func contextualTripRequestAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
+           // 1
+           var feed = feedArray[indexPath.row]
+           // 2
+           let action = UIContextualAction(style: .normal,
+                                           title: "Send Request") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            print("HEY")
+            completionHandler(true)
+               
+           }
+           // 7
+           action.backgroundColor = UIColor.orange
+           return action
+       }
 }

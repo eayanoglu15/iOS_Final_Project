@@ -29,6 +29,7 @@ extension HitchhikerProfileViewController: UITableViewDataSource {
 class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var votesLabel: UILabel!
     @IBOutlet weak var starOneImageView: UIImageView!
     @IBOutlet weak var starTwoImageView: UIImageView!
     @IBOutlet weak var starThreeImageView: UIImageView!

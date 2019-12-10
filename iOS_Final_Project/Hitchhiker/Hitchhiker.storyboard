@@ -189,7 +189,6 @@
                                             <outlet property="starTwoImageView" destination="PXc-tK-evQ" id="nLg-K9-lDO"/>
                                             <outlet property="toLabel" destination="WnP-Na-eNL" id="MGZ-WN-DrV"/>
                                             <outlet property="usernameLabel" destination="peL-6a-ofz" id="Fgy-WY-bIa"/>
-                                            <segue destination="zEB-Xq-hTr" kind="show" id="Or6-CX-hF2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -217,6 +216,7 @@
                         <outlet property="username" destination="Fmd-Be-xhO" id="dbm-Vx-oi8"/>
                         <segue destination="Vaz-bJ-biS" kind="show" identifier="toHitchhikerProfile" id="6eS-Li-eaG"/>
                         <segue destination="Mkn-BM-CX3" kind="show" identifier="toHitchhikerRequests" id="O7D-LA-hjE"/>
+                        <segue destination="zEB-Xq-hTr" kind="show" identifier="toOtherProfile" id="3IA-SG-YFJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bq-rA-PIf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -390,6 +390,7 @@
                         <outlet property="starOneImageView" destination="uyD-DI-l9c" id="uT7-3i-bgH"/>
                         <outlet property="starThreeImageView" destination="Hq2-S8-CcE" id="EjG-4N-6th"/>
                         <outlet property="starTwoImageView" destination="Sd6-76-oRm" id="u8a-V4-ClG"/>
+                        <outlet property="votesLabel" destination="m1J-ch-IIg" id="yGG-QS-95b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8eE-5q-zRq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -904,14 +905,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="gSC-cD-Fgs"/>
                     <connections>
-                        <outlet property="infoTableView" destination="pkC-04-O00" id="Atf-0d-4Dt"/>
-                        <outlet property="profileImageView" destination="tmM-r0-eSM" id="Bux-ym-mYO"/>
-                        <outlet property="ratingLabel" destination="lYK-BH-BPB" id="e1S-Np-c3T"/>
-                        <outlet property="starFiveImageView" destination="su9-h0-tsw" id="6fY-2Y-Sz7"/>
-                        <outlet property="starFourImageView" destination="FKG-mb-B3q" id="W3e-Os-SZy"/>
-                        <outlet property="starOneImageView" destination="jCt-t7-AKd" id="Ypl-ZU-Zmr"/>
-                        <outlet property="starThreeImageView" destination="PGL-Zo-vmO" id="41c-em-Dyj"/>
-                        <outlet property="starTwoImageView" destination="oOj-kY-XwD" id="hE1-qn-WV4"/>
+                        <outlet property="infoTableView" destination="pkC-04-O00" id="Fxx-G9-CZf"/>
+                        <outlet property="profileImageView" destination="tmM-r0-eSM" id="XEE-im-Qf5"/>
+                        <outlet property="ratingLabel" destination="lYK-BH-BPB" id="LUM-cD-TRp"/>
+                        <outlet property="starFiveImageView" destination="su9-h0-tsw" id="WaR-JQ-KUR"/>
+                        <outlet property="starFourImageView" destination="FKG-mb-B3q" id="9yE-2V-Wn7"/>
+                        <outlet property="starOneImageView" destination="jCt-t7-AKd" id="E5h-G0-FTe"/>
+                        <outlet property="starThreeImageView" destination="PGL-Zo-vmO" id="l7h-8R-MXs"/>
+                        <outlet property="starTwoImageView" destination="oOj-kY-XwD" id="RxW-07-AJt"/>
+                        <outlet property="votesLabel" destination="toR-SG-JSP" id="7De-q8-qA3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAI-cg-n2j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

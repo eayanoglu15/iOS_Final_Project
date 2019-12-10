@@ -39,21 +39,34 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         }
         return cell
     }
+} 
+
+extension HitchhikerHomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let tripRequestAction = self.hitchhikerFeedDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [tripRequestAction])
+        return swipeConfig
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //hitchhikerHomeHelper.setSelectedUser(indexPath: indexPath)
+        //router.route(to: .AccountDetails, from: self)
+        let feed = hitchhikerFeedDataSource.feedArray[indexPath.row]
+        hitchhikerHomeHelper.selectedUsername = feed.username
+        performSegue(withIdentifier: "toOtherProfile", sender: nil)
+    }
 }
 
-class HitchhikerHomeViewController: UIViewController, UITableViewDelegate {
+class HitchhikerHomeViewController: UIViewController {
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var hitchhikerHomeTableView: UITableView!
     
-    
-    var hitchhiker: User?
     let hitchhikerFeedDataSource = HitchhikerFeedDataSource()
     let hitchhikerHomeHelper = HitchhikerHomeHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        username.text = hitchhiker?.username
+        username.text = hitchhikerHomeHelper.hitchhiker?.username
         hitchhikerHomeTableView.dataSource = self
         hitchhikerHomeTableView.delegate = self
         
@@ -73,9 +86,12 @@ class HitchhikerHomeViewController: UIViewController, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toHitchhikerProfile" {
             let destinationVc = segue.destination as! HitchhikerProfileViewController
-            destinationVc.hitchhikerProfileHelper.hitchhiker = hitchhiker
+            destinationVc.hitchhikerProfileHelper.hitchhiker = hitchhikerHomeHelper.hitchhiker
         }
         
+        if segue.identifier == "toOtherProfile" {
+            let destinationVc = segue.destination as! HitchhikerOtherProfileViewController
+            destinationVc.hitchhikerOtherProfileHelper.otherUsername = hitchhikerHomeHelper.selectedUsername
+        }
     }
-    
 }

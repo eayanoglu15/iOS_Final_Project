@@ -107,7 +107,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
      // Pass the selected object to the new view controller.
         if segue.identifier == "toHitchhikerHome" {
             let destinationVc = segue.destination as! HitchhikerHomeViewController
-            destinationVc.hitchhiker = newHitchhikerAccountHelper.user
+            destinationVc.hitchhikerHomeHelper.hitchhiker = newHitchhikerAccountHelper.user
         }
      }
     

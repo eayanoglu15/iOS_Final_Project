@@ -17,6 +17,7 @@
 		854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44E62397C8AC00AFC20D /* String+Additions.swift */; };
 		854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44EA2397D66D00AFC20D /* LoginHelper.swift */; };
 		854A44ED2397D69500AFC20D /* NewHitchhikerAccountHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */; };
+		8557FEBE239FD333005AB39C /* HitchhikerOtherProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557FEBD239FD333005AB39C /* HitchhikerOtherProfileHelper.swift */; };
 		855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB67E239574DF003A28EA /* AppDelegate.swift */; };
 		855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB680239574DF003A28EA /* SceneDelegate.swift */; };
 		855BB686239574DF003A28EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 855BB684239574DF003A28EA /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		854A44E62397C8AC00AFC20D /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		854A44EA2397D66D00AFC20D /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountHelper.swift; sourceTree = "<group>"; };
+		8557FEBD239FD333005AB39C /* HitchhikerOtherProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerOtherProfileHelper.swift; sourceTree = "<group>"; };
 		855BB67B239574DF003A28EA /* iOS_Final_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Final_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		855BB67E239574DF003A28EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		855BB680239574DF003A28EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				853BC57F239A978E00EC84F8 /* HitchhikerHomeHelper.swift */,
 				85A860F5239EACC9000A72EE /* HitchhikerProfileHelper.swift */,
 				85A860F7239EC558000A72EE /* HitchhikerEditProfileHelper.swift */,
+				8557FEBD239FD333005AB39C /* HitchhikerOtherProfileHelper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */,
 				855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */,
 				853BC57C239A941400EC84F8 /* HitchhikerFeed.swift in Sources */,
+				8557FEBE239FD333005AB39C /* HitchhikerOtherProfileHelper.swift in Sources */,
 				855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */,
 				854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */,
 				854A44DD2397C3CC00AFC20D /* User.swift in Sources */,
