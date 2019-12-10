@@ -45,6 +45,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         
         passwordTextField.isSecureTextEntry = true
         ageTextField.keyboardType = .decimalPad
+        phoneNumberTextField.keyboardType = .phonePad
     }
     
     @objc func choosePicture() {
@@ -72,8 +73,18 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
                 showAlert(title: "Missing Information", message: "Please fill all fields of the form")
                 return
         }
-        print(username)
-        // guard let ile username - password check ekle ve message ver
+        guard username.isAlphanumeric, password.isAlphanumeric else {
+            showAlert(title: "Invalid Username or Password", message: "Please use alphanumeric characters")
+            return
+        }
+        guard name.isAlphabetic, surname.isAlphabetic else {
+            showAlert(title: "Invalid Name or Surname", message: "Please use alphabetic characters")
+            return
+        }
+        guard email.isValidEmail else {
+            showAlert(title: "Invalid Email", message: "Please enter a valid email address")
+            return
+        }
         guard let userAge = Int(age) else {
             showAlert(title: "Invalid Age", message: "Please enter your age as a number")
             return

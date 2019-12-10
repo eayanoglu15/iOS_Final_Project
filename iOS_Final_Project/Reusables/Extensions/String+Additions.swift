@@ -23,4 +23,10 @@ extension String {
     var isNumeric: Bool {
         return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
+    
+    var isValidEmail: Bool {
+       let regularExpressionForEmail = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+       let testEmail = NSPredicate(format:"SELF MATCHES %@", regularExpressionForEmail)
+       return testEmail.evaluate(with: self)
+    }
 }

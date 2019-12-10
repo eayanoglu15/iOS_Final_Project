@@ -13,12 +13,11 @@ class HitchhikerEditProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
