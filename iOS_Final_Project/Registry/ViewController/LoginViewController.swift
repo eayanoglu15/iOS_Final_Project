@@ -12,6 +12,14 @@ extension LoginViewController: LoginDataSourceDelegate {
     func showAlert() {
         showAlert(title: "Invalid User", message: "Create Account")
     }
+    
+    func routeToHome(isDriver: Bool) {
+        if isDriver {
+            performSegue(withIdentifier: "toDriverHomeFromLogin", sender: nil)
+        } else {
+            performSegue(withIdentifier: "toHitchhikerHomeFromLogin", sender: nil)
+        }
+    }
 }
 
 class LoginViewController: BaseScrollViewController {
@@ -47,6 +55,18 @@ class LoginViewController: BaseScrollViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "toHitchhikerHomeFromLogin" {
+           let destinationVc = segue.destination as! HitchhikerHomeViewController
+           destinationVc.hitchhikerHomeDataSource.hitchhiker = loginDataSource.user
+       }
+        if segue.identifier == "toDriverHomeFromLogin" {
+            let destinationVc = segue.destination as! DriverHomeViewController
+            destinationVc.driverHomeDataSource.driver = loginDataSource.user
+           
+        }
     }
 }
 

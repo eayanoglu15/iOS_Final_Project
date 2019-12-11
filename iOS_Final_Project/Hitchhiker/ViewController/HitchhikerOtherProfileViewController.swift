@@ -41,10 +41,13 @@ class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegat
     @IBOutlet weak var infoTableView: UITableView!
     
     var hitchhikerOtherProfileHelper = HitchhikerOtherProfileHelper()
+    var hitchhikerOtherProfileDataSource = HitchhikerOtherProfileDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hitchhikerOtherProfileHelper.getInfoArray()
+        if let otherUser = hitchhikerOtherProfileDataSource.otherUser {
+            hitchhikerOtherProfileHelper.getInfoArray(user: otherUser)
+        }
         infoTableView.delegate = self
         infoTableView.dataSource = self
         // Do any additional setup after loading the view.

@@ -8,6 +8,26 @@
 
 import UIKit
 
+extension NewDriverAccountViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        newDriverAccountHelper.selectedGender = newDriverAccountHelper.genderPickerData[row]
+    }
+}
+
+extension NewDriverAccountViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return newDriverAccountHelper.genderPickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return newDriverAccountHelper.genderPickerData[row]
+    }
+}
+
 class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -19,8 +39,10 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var carModelTextField: UITextField!
     @IBOutlet weak var plaqueTextField: UITextField!
+    @IBOutlet weak var genderPickerView: UIPickerView!
     
-    let newDriverAccountHelper = NewDriverAccountHelper()
+    var newDriverAccountHelper = NewDriverAccountHelper()
+    var newDriverDataSource = NewDriverDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +68,9 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         passwordTextField.isSecureTextEntry = true
         ageTextField.keyboardType = .decimalPad
         phoneNumberTextField.keyboardType = .phonePad
+        
+        genderPickerView.delegate = self
+        genderPickerView.dataSource = self
     }
     
     @objc func choosePicture() {
@@ -89,8 +114,10 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
             showAlert(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
-        newDriverAccountHelper.addNewDriver(username: username, password: password, name: name, surname: surname, email: email,
-        phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque)
+        let gender = newDriverAccountHelper.selectedGender
+        
+        newDriverDataSource.addNewDriver(username: username, password: password, name: name, surname: surname, email: email,
+                                            phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
         // feed e yolla
     }
     

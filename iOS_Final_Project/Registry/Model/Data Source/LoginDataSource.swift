@@ -10,6 +10,7 @@ import Foundation
 
 protocol LoginDataSourceDelegate {
     func showAlert ()
+    func routeToHome(isDriver: Bool)
 }
 
 class LoginDataSource {
@@ -49,6 +50,9 @@ class LoginDataSource {
                         let response = try! decoder.decode(LoginResponse.self, from: data)
                         print("success: \(response.username)")
                         
+                        DispatchQueue.main.async {
+                            self.delegate?.routeToHome(isDriver: self.setUser(response: response))
+                        }
                     }
                 }
             }
@@ -56,12 +60,13 @@ class LoginDataSource {
         }
     }
     
-    func setUser(response: LoginResponse) {
+    func setUser(response: LoginResponse) -> Bool {
         let isDriver = response.driver
         if isDriver {
             user = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
         } else {
             user = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
         }
+        return isDriver
     }
 }

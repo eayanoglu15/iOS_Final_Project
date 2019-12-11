@@ -10,15 +10,6 @@ import Foundation
 import UIKit
 
 struct User {
-    /*
-     let usertype: String
-     let username: String
-     let password: String
-     let name: String
-     let email: String
-     let phoneNumber: String
-     let age: String
-     */
     var profileImage: UIImage?
     let isDriver: Bool
     let username: String

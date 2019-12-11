@@ -9,7 +9,6 @@
 import Foundation
 
 class HitchhikerHomeHelper {
-    var hitchhiker: User?
     var selectedUsername: String?
     
     func getRatingImageArray(rating: Double) -> [String] {

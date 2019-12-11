@@ -8,7 +8,27 @@
 
 import UIKit
 
-class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+extension NewHitchhikerAccountViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        newHitchhikerAccountHelper.selectedGender = newHitchhikerAccountHelper.genderPickerData[row]
+    }
+}
+
+extension NewHitchhikerAccountViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return newHitchhikerAccountHelper.genderPickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return newHitchhikerAccountHelper.genderPickerData[row]
+    }
+}
+
+class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -17,10 +37,12 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var genderPickerView: UIPickerView!
     
     @IBOutlet weak var registerButton: UIButton!
     
-    let newHitchhikerAccountHelper = NewHitchhikerAccountHelper()
+    var newHitchhikerAccountHelper = NewHitchhikerAccountHelper()
+    var newHitchhikerDataSource = NewHitchhikerDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +66,9 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         passwordTextField.isSecureTextEntry = true
         ageTextField.keyboardType = .decimalPad
         phoneNumberTextField.keyboardType = .phonePad
+        
+        genderPickerView.delegate = self
+        genderPickerView.dataSource = self
     }
     
     @objc func choosePicture() {
@@ -85,9 +110,10 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
             showAlert(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
+        let gender = newHitchhikerAccountHelper.selectedGender
             
-        newHitchhikerAccountHelper.addNewHitchihiker(username: username, password: password, name: name, surname: surname, email: email,
-        phonenumber: phone, age: userAge)
+        newHitchhikerDataSource.addNewHitchihiker(username: username, password: password, name: name, surname: surname, email: email,
+                                                  phonenumber: phone, age: userAge, gender: gender)
         performSegue(withIdentifier: "toHitchhikerHome", sender: nil)
         // feed e yolla
     }
@@ -107,7 +133,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
      // Pass the selected object to the new view controller.
         if segue.identifier == "toHitchhikerHome" {
             let destinationVc = segue.destination as! HitchhikerHomeViewController
-            destinationVc.hitchhikerHomeHelper.hitchhiker = newHitchhikerAccountHelper.user
+            destinationVc.hitchhikerHomeDataSource.hitchhiker = newHitchhikerDataSource.user
         }
      }
     

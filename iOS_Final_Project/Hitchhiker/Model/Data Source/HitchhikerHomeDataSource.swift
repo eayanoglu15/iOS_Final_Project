@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class HitchhikerFeedDataSource {
+class HitchhikerHomeDataSource {
+    var hitchhiker: User?
     var feedArray: [HitchhikerFeed] = []
     
     init() {

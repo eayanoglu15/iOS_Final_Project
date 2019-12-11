@@ -10,7 +10,7 @@
         <!--Hitchhiker Home View Controller-->
         <scene sceneID="HPr-9H-4tV">
             <objects>
-                <viewController id="PQq-h9-VYx" customClass="HitchhikerHomeViewController" customModule="iOS_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HitchhikerHomeVC" id="PQq-h9-VYx" customClass="HitchhikerHomeViewController" customModule="iOS_Final_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RSb-ry-0FQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

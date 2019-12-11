@@ -9,6 +9,8 @@
 import UIKit
 
 class DriverHomeViewController: UIViewController {
+    var driverHomeHelper = DriverHomeHelper()
+    var driverHomeDataSource = DriverHomeDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()

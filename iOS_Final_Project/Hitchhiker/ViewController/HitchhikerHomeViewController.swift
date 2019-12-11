@@ -14,12 +14,12 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hitchhikerFeedDataSource.feedArray.count
+        return hitchhikerHomeDataSource.feedArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerHomeCell", for: indexPath) as! HitchhikerHomeTableViewCell
-        let feed = hitchhikerFeedDataSource.feedArray[indexPath.row]
+        let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
         let ratingImageNamesArray = hitchhikerHomeHelper.getRatingImageArray(rating: feed.rating)
         
         cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
@@ -43,7 +43,7 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
 
 extension HitchhikerHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let tripRequestAction = self.hitchhikerFeedDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
+        let tripRequestAction = self.hitchhikerHomeDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
         let swipeConfig = UISwipeActionsConfiguration(actions: [tripRequestAction])
         return swipeConfig
     }
@@ -51,7 +51,7 @@ extension HitchhikerHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //hitchhikerHomeHelper.setSelectedUser(indexPath: indexPath)
         //router.route(to: .AccountDetails, from: self)
-        let feed = hitchhikerFeedDataSource.feedArray[indexPath.row]
+        let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
         hitchhikerHomeHelper.selectedUsername = feed.username
         performSegue(withIdentifier: "toOtherProfile", sender: nil)
     }
@@ -61,12 +61,12 @@ class HitchhikerHomeViewController: UIViewController {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var hitchhikerHomeTableView: UITableView!
     
-    let hitchhikerFeedDataSource = HitchhikerFeedDataSource()
+    let hitchhikerHomeDataSource = HitchhikerHomeDataSource()
     let hitchhikerHomeHelper = HitchhikerHomeHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        username.text = hitchhikerHomeHelper.hitchhiker?.username
+        username.text = hitchhikerHomeDataSource.hitchhiker?.username
         hitchhikerHomeTableView.dataSource = self
         hitchhikerHomeTableView.delegate = self
         
@@ -86,12 +86,12 @@ class HitchhikerHomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toHitchhikerProfile" {
             let destinationVc = segue.destination as! HitchhikerProfileViewController
-            destinationVc.hitchhikerProfileHelper.hitchhiker = hitchhikerHomeHelper.hitchhiker
+            destinationVc.hitchhikerProfileDataSource.hitchhiker = hitchhikerHomeDataSource.hitchhiker
         }
         
         if segue.identifier == "toOtherProfile" {
             let destinationVc = segue.destination as! HitchhikerOtherProfileViewController
-            destinationVc.hitchhikerOtherProfileHelper.otherUsername = hitchhikerHomeHelper.selectedUsername
+            destinationVc.hitchhikerOtherProfileDataSource.otherUsername = hitchhikerHomeHelper.selectedUsername
         }
     }
 }

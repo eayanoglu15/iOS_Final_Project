@@ -38,11 +38,14 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var infoTableView: UITableView!
     
     var hitchhikerProfileHelper = HitchhikerProfileHelper()
+    var hitchhikerProfileDataSource = HitchhikerProfileDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hitchhikerProfileHelper.getInfoArray()
-        if let username = hitchhikerProfileHelper.hitchhiker?.username {
+        if let hitchhiker = hitchhikerProfileDataSource.hitchhiker {
+            hitchhikerProfileHelper.getInfoArray(hitchhiker: hitchhiker)
+        }
+        if let username = hitchhikerProfileDataSource.hitchhiker?.username {
             title = username
         }
         infoTableView.delegate = self
@@ -53,7 +56,7 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditProfile" {
             let destinationVc = segue.destination as! HitchhikerEditProfileViewController
-            destinationVc.hitchhikerEditProfileHelper.hitchhiker = hitchhikerProfileHelper.hitchhiker
+            destinationVc.hitchhikerEditProfileDataSource.hitchhiker = hitchhikerProfileDataSource.hitchhiker
         }
     }
 }

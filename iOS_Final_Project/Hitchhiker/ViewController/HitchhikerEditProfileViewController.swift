@@ -10,7 +10,8 @@ import UIKit
 
 class HitchhikerEditProfileViewController: UIViewController {
     var hitchhikerEditProfileHelper = HitchhikerEditProfileHelper()
-
+    var hitchhikerEditProfileDataSource = HitchhikerEditProfileDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

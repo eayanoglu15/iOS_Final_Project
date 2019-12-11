@@ -22,7 +22,7 @@ struct LoginResponse: Codable {
     let driver: Bool
     var plaque: String?
     var carModel: String?
-    let totalDistance: Int      //
+    let totalDistance: Double      //
     let id: Int                 //
     let version: String         //
 }
