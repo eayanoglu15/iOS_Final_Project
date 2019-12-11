@@ -64,7 +64,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         
         //registerButton.isEnabled = false
         passwordTextField.isSecureTextEntry = true
-        ageTextField.keyboardType = .decimalPad
+        ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
         
         genderPickerView.delegate = self

@@ -66,7 +66,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         plaqueTextField.delegate = self
         
         passwordTextField.isSecureTextEntry = true
-        ageTextField.keyboardType = .decimalPad
+        ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
         
         genderPickerView.delegate = self

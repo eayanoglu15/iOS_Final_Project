@@ -9,6 +9,6 @@
 import Foundation
 
 class HitchhikerEditProfileHelper {
-    
-    
+    var genderPickerData = ["Not Specified", "Female", "Male"]
+    var selectedGender = "Not Specified"
 }
