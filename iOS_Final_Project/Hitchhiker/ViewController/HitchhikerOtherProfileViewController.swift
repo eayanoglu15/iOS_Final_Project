@@ -26,6 +26,18 @@ extension HitchhikerOtherProfileViewController: UITableViewDataSource {
     }
 }
 
+
+extension HitchhikerOtherProfileViewController : HitchhikerOtherProfileDataSourceDelegate{
+    func otherUserLoaded() {
+        if let otherUser = hitchhikerOtherProfileDataSource.otherUser {
+            hitchhikerOtherProfileHelper.getInfoArray(user: otherUser)
+        }
+        infoTableView.reloadData()
+    }
+    
+    
+}
+
 class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -45,15 +57,19 @@ class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let otherUser = hitchhikerOtherProfileDataSource.otherUser {
-            hitchhikerOtherProfileHelper.getInfoArray(user: otherUser)
-        }
+        hitchhikerOtherProfileDataSource.delegate = self
         infoTableView.delegate = self
         infoTableView.dataSource = self
+        hitchhikerOtherProfileDataSource.getOtherUser()
+
         // Do any additional setup after loading the view.
     }
     
-
+    
+   /*   override func viewWillAppear(_ animated: Bool) {
+        hitchhikerOtherProfileDataSource.getOtherUser()
+      }
+*/
     /*
     // MARK: - Navigation
 

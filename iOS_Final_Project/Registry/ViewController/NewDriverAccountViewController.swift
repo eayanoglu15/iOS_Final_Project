@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension NewDriverAccountViewController: NewDriverDataSourceDelegate {
+    func showAlert(title:String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    
+}
 extension NewDriverAccountViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         newDriverAccountHelper.selectedGender = newDriverAccountHelper.genderPickerData[row]
@@ -54,6 +63,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
         profileImageView.addGestureRecognizer(gestureRecognizer)
         
+        newDriverDataSource.delegate=self
         // Set TextField Delegates
         usernameTextField.delegate = self
         passwordTextField.delegate = self
@@ -121,11 +131,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         // feed e yolla
     }
     
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
+   
     
     /*
     // MARK: - Navigation

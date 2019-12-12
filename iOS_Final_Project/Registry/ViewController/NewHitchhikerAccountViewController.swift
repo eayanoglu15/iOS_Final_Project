@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension NewHitchhikerAccountViewController: NewHitchhikerDataSourceDelegate {
+    func showAlert(title:String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    
+}
+
 extension NewHitchhikerAccountViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         newHitchhikerAccountHelper.selectedGender = newHitchhikerAccountHelper.genderPickerData[row]
@@ -52,6 +62,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         profileImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
         profileImageView.addGestureRecognizer(gestureRecognizer)
+        newHitchhikerDataSource.delegate=self
         
         // Assign Text Field Delegates
         usernameTextField.delegate = self
@@ -118,12 +129,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         // feed e yolla
     }
     
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
+   
     
      // MARK: - Navigation
      
