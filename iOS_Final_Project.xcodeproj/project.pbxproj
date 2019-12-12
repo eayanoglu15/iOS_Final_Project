@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85056BDA23A24AF700CD1C2E /* DriverNewTripDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85056BD923A24AF700CD1C2E /* DriverNewTripDataSource.swift */; };
+		85056BDC23A2629500CD1C2E /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85056BDB23A2629500CD1C2E /* Date+Additions.swift */; };
+		85056BDE23A2689000CD1C2E /* DriverNewTripHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85056BDD23A2689000CD1C2E /* DriverNewTripHelper.swift */; };
+		85056BE023A2748B00CD1C2E /* DriverEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85056BDF23A2748B00CD1C2E /* DriverEditProfileViewController.swift */; };
+		85056BE223A274E200CD1C2E /* DriverOtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85056BE123A274E200CD1C2E /* DriverOtherProfileViewController.swift */; };
 		8505DE7023A11BD5005ACD62 /* DriverHomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8505DE6F23A11BD5005ACD62 /* DriverHomeDataSource.swift */; };
 		8505DE7223A134A7005ACD62 /* NewHitchhikerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8505DE7123A134A7005ACD62 /* NewHitchhikerDataSource.swift */; };
 		8505DE7423A15446005ACD62 /* NewDriverDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8505DE7323A15446005ACD62 /* NewDriverDataSource.swift */; };
@@ -29,6 +34,10 @@
 		854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44E62397C8AC00AFC20D /* String+Additions.swift */; };
 		854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44EA2397D66D00AFC20D /* LoginHelper.swift */; };
 		854A44ED2397D69500AFC20D /* NewHitchhikerAccountHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */; };
+		854EF59923A1760B0085727F /* TripRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EF59823A1760B0085727F /* TripRequest.swift */; };
+		854EF59F23A193650085727F /* DriverProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EF59E23A193650085727F /* DriverProfileViewController.swift */; };
+		854EF5A123A194440085727F /* DriverNewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854EF5A023A194440085727F /* DriverNewTripViewController.swift */; };
+		8557E9E623A16F9F00711497 /* HitchhikerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557E9E523A16F9F00711497 /* HitchhikerTableViewCell.swift */; };
 		8557FEBE239FD333005AB39C /* HitchhikerOtherProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557FEBD239FD333005AB39C /* HitchhikerOtherProfileHelper.swift */; };
 		8557FEC0239FDAB5005AB39C /* HitchhikerTripRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557FEBF239FDAB5005AB39C /* HitchhikerTripRequestsViewController.swift */; };
 		8557FEC2239FDAC2005AB39C /* HitchhikerTripRequestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8557FEC1239FDAC2005AB39C /* HitchhikerTripRequestsHelper.swift */; };
@@ -44,6 +53,12 @@
 		855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69423959E7D003A28EA /* BaseScrollViewController.swift */; };
 		855BB69A23967B4D003A28EA /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */; };
 		855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BB69B2396803C003A28EA /* InfoViewController.swift */; };
+		8574494923A2CEAD000B0B71 /* DriverProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574494823A2CEAD000B0B71 /* DriverProfileDataSource.swift */; };
+		8574494B23A2CEC8000B0B71 /* DriverEditProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574494A23A2CEC8000B0B71 /* DriverEditProfileDataSource.swift */; };
+		8574494D23A2CEE3000B0B71 /* DriverOtherProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574494C23A2CEE3000B0B71 /* DriverOtherProfileDataSource.swift */; };
+		8574494F23A2DF9E000B0B71 /* DriverProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574494E23A2DF9E000B0B71 /* DriverProfileHelper.swift */; };
+		8574495123A2DFAF000B0B71 /* DriverEditProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574495023A2DFAF000B0B71 /* DriverEditProfileHelper.swift */; };
+		8574495323A2DFC7000B0B71 /* DriverOtherProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574495223A2DFC7000B0B71 /* DriverOtherProfileHelper.swift */; };
 		857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */; };
 		857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */; };
 		859B01862397E70400DE9EEC /* NewDriverAccountHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */; };
@@ -60,6 +75,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		85056BD923A24AF700CD1C2E /* DriverNewTripDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverNewTripDataSource.swift; sourceTree = "<group>"; };
+		85056BDB23A2629500CD1C2E /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
+		85056BDD23A2689000CD1C2E /* DriverNewTripHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverNewTripHelper.swift; sourceTree = "<group>"; };
+		85056BDF23A2748B00CD1C2E /* DriverEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverEditProfileViewController.swift; sourceTree = "<group>"; };
+		85056BE123A274E200CD1C2E /* DriverOtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverOtherProfileViewController.swift; sourceTree = "<group>"; };
 		8505DE6F23A11BD5005ACD62 /* DriverHomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverHomeDataSource.swift; sourceTree = "<group>"; };
 		8505DE7123A134A7005ACD62 /* NewHitchhikerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerDataSource.swift; sourceTree = "<group>"; };
 		8505DE7323A15446005ACD62 /* NewDriverDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverDataSource.swift; sourceTree = "<group>"; };
@@ -82,6 +102,10 @@
 		854A44E62397C8AC00AFC20D /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		854A44EA2397D66D00AFC20D /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		854A44EC2397D69500AFC20D /* NewHitchhikerAccountHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountHelper.swift; sourceTree = "<group>"; };
+		854EF59823A1760B0085727F /* TripRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRequest.swift; sourceTree = "<group>"; };
+		854EF59E23A193650085727F /* DriverProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileViewController.swift; sourceTree = "<group>"; };
+		854EF5A023A194440085727F /* DriverNewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverNewTripViewController.swift; sourceTree = "<group>"; };
+		8557E9E523A16F9F00711497 /* HitchhikerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerTableViewCell.swift; sourceTree = "<group>"; };
 		8557FEBD239FD333005AB39C /* HitchhikerOtherProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerOtherProfileHelper.swift; sourceTree = "<group>"; };
 		8557FEBF239FDAB5005AB39C /* HitchhikerTripRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerTripRequestsViewController.swift; sourceTree = "<group>"; };
 		8557FEC1239FDAC2005AB39C /* HitchhikerTripRequestsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerTripRequestsHelper.swift; sourceTree = "<group>"; };
@@ -99,6 +123,12 @@
 		855BB69423959E7D003A28EA /* BaseScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScrollViewController.swift; sourceTree = "<group>"; };
 		855BB69923967B4D003A28EA /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		855BB69B2396803C003A28EA /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		8574494823A2CEAD000B0B71 /* DriverProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileDataSource.swift; sourceTree = "<group>"; };
+		8574494A23A2CEC8000B0B71 /* DriverEditProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverEditProfileDataSource.swift; sourceTree = "<group>"; };
+		8574494C23A2CEE3000B0B71 /* DriverOtherProfileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverOtherProfileDataSource.swift; sourceTree = "<group>"; };
+		8574494E23A2DF9E000B0B71 /* DriverProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileHelper.swift; sourceTree = "<group>"; };
+		8574495023A2DFAF000B0B71 /* DriverEditProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverEditProfileHelper.swift; sourceTree = "<group>"; };
+		8574495223A2DFC7000B0B71 /* DriverOtherProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverOtherProfileHelper.swift; sourceTree = "<group>"; };
 		857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountViewController.swift; sourceTree = "<group>"; };
 		857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountViewController.swift; sourceTree = "<group>"; };
 		859B01852397E70400DE9EEC /* NewDriverAccountHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountHelper.swift; sourceTree = "<group>"; };
@@ -184,6 +214,7 @@
 		85069AE3239FF4130012E3B7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8557E9E523A16F9F00711497 /* HitchhikerTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -192,6 +223,10 @@
 			isa = PBXGroup;
 			children = (
 				85069AE6239FF4480012E3B7 /* DriverHomeViewController.swift */,
+				854EF59E23A193650085727F /* DriverProfileViewController.swift */,
+				854EF5A023A194440085727F /* DriverNewTripViewController.swift */,
+				85056BDF23A2748B00CD1C2E /* DriverEditProfileViewController.swift */,
+				85056BE123A274E200CD1C2E /* DriverOtherProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -199,8 +234,9 @@
 		85069AE5239FF4240012E3B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				85069AE8239FF4540012E3B7 /* DriverHomeHelper.swift */,
-				8505DE6F23A11BD5005ACD62 /* DriverHomeDataSource.swift */,
+				8557E9DC23A16A7E00711497 /* DataSource */,
+				8557E9DB23A16A7800711497 /* Helper */,
+				854EF59823A1760B0085727F /* TripRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,8 +318,33 @@
 			isa = PBXGroup;
 			children = (
 				854A44E62397C8AC00AFC20D /* String+Additions.swift */,
+				85056BDB23A2629500CD1C2E /* Date+Additions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8557E9DB23A16A7800711497 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				85069AE8239FF4540012E3B7 /* DriverHomeHelper.swift */,
+				85056BDD23A2689000CD1C2E /* DriverNewTripHelper.swift */,
+				8574494E23A2DF9E000B0B71 /* DriverProfileHelper.swift */,
+				8574495023A2DFAF000B0B71 /* DriverEditProfileHelper.swift */,
+				8574495223A2DFC7000B0B71 /* DriverOtherProfileHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		8557E9DC23A16A7E00711497 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				8505DE6F23A11BD5005ACD62 /* DriverHomeDataSource.swift */,
+				85056BD923A24AF700CD1C2E /* DriverNewTripDataSource.swift */,
+				8574494823A2CEAD000B0B71 /* DriverProfileDataSource.swift */,
+				8574494A23A2CEC8000B0B71 /* DriverEditProfileDataSource.swift */,
+				8574494C23A2CEE3000B0B71 /* DriverOtherProfileDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		855BB672239574DF003A28EA = {
@@ -426,6 +487,8 @@
 			files = (
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
 				85069AEE23A00F760012E3B7 /* LoginRequest.swift in Sources */,
+				85056BDA23A24AF700CD1C2E /* DriverNewTripDataSource.swift in Sources */,
+				8574494D23A2CEE3000B0B71 /* DriverOtherProfileDataSource.swift in Sources */,
 				85A860F2239EA428000A72EE /* HitchhikerEditProfileViewController.swift in Sources */,
 				853BC578239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift in Sources */,
 				85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */,
@@ -433,6 +496,7 @@
 				85A860EE239E9D6D000A72EE /* HitchhikerProfileViewController.swift in Sources */,
 				857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */,
 				853BC57A239A93DC00EC84F8 /* HitchhikerHomeDataSource.swift in Sources */,
+				8574494F23A2DF9E000B0B71 /* DriverProfileHelper.swift in Sources */,
 				8505DE7223A134A7005ACD62 /* NewHitchhikerDataSource.swift in Sources */,
 				859B01862397E70400DE9EEC /* NewDriverAccountHelper.swift in Sources */,
 				855BB67F239574DF003A28EA /* AppDelegate.swift in Sources */,
@@ -443,31 +507,43 @@
 				855BB69523959E7D003A28EA /* BaseScrollViewController.swift in Sources */,
 				8505DE7A23A15714005ACD62 /* HitchhikerProfileDataSource.swift in Sources */,
 				85069AE7239FF4480012E3B7 /* DriverHomeViewController.swift in Sources */,
+				85056BE023A2748B00CD1C2E /* DriverEditProfileViewController.swift in Sources */,
+				8557E9E623A16F9F00711497 /* HitchhikerTableViewCell.swift in Sources */,
 				854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */,
 				854A44DD2397C3CC00AFC20D /* User.swift in Sources */,
 				8557FEC4239FDB02005AB39C /* HitchhikerTripRequestTableViewCell.swift in Sources */,
 				855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */,
+				854EF59923A1760B0085727F /* TripRequest.swift in Sources */,
 				854A44E12397C65F00AFC20D /* UserDataSource.swift in Sources */,
 				8557FEC6239FDBE5005AB39C /* HitchhikerTripRequestsDataSource.swift in Sources */,
 				854A44ED2397D69500AFC20D /* NewHitchhikerAccountHelper.swift in Sources */,
 				8505DE7E23A15950005ACD62 /* HitchhikerOtherProfileDataSource.swift in Sources */,
+				8574494B23A2CEC8000B0B71 /* DriverEditProfileDataSource.swift in Sources */,
+				85056BDE23A2689000CD1C2E /* DriverNewTripHelper.swift in Sources */,
+				8574494923A2CEAD000B0B71 /* DriverProfileDataSource.swift in Sources */,
 				8557FEC0239FDAB5005AB39C /* HitchhikerTripRequestsViewController.swift in Sources */,
 				9DBFA1AD23A17ACF00466F65 /* CreateDriverRequest.swift in Sources */,
 				8557FEC2239FDAC2005AB39C /* HitchhikerTripRequestsHelper.swift in Sources */,
 				85A860F4239EAAC7000A72EE /* HitchhikerOtherProfileViewController.swift in Sources */,
 				85069AE9239FF4540012E3B7 /* DriverHomeHelper.swift in Sources */,
+				854EF59F23A193650085727F /* DriverProfileViewController.swift in Sources */,
+				8574495323A2DFC7000B0B71 /* DriverOtherProfileHelper.swift in Sources */,
 				854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */,
 				9DBFA1A923A1703400466F65 /* ApiResponse.swift in Sources */,
 				85A860F8239EC558000A72EE /* HitchhikerEditProfileHelper.swift in Sources */,
 				85354BCD23A03B4A00A0EE95 /* LoginDataSource.swift in Sources */,
+				85056BE223A274E200CD1C2E /* DriverOtherProfileViewController.swift in Sources */,
 				855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */,
+				85056BDC23A2629500CD1C2E /* Date+Additions.swift in Sources */,
 				85A860F6239EACC9000A72EE /* HitchhikerProfileHelper.swift in Sources */,
 				8505DE7C23A158C6005ACD62 /* HitchhikerEditProfileDataSource.swift in Sources */,
 				85A860F0239E9E49000A72EE /* InfoTableViewCell.swift in Sources */,
 				8557FEC8239FDC40005AB39C /* HitchhikerTripRequest.swift in Sources */,
+				8574495123A2DFAF000B0B71 /* DriverEditProfileHelper.swift in Sources */,
 				857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */,
 				9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */,
 				853BC580239A978E00EC84F8 /* HitchhikerHomeHelper.swift in Sources */,
+				854EF5A123A194440085727F /* DriverNewTripViewController.swift in Sources */,
 				85354BCB23A02C3C00A0EE95 /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
