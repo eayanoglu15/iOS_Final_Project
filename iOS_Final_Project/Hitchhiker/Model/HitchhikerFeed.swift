@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-struct HitchhikerFeed {
-    var profileImage: UIImage?
+struct HitchhikerFeed : Codable{
     var rating: Double
-    var username: String
+    var driverUserName: String
     var carModel: String
+    var id: Int
     var from: String
     var to: String
-    var departureTime: String
-    var availableSeats: Int
+    var startTime: String
+    var endTime: String
+    var availableSeatNumber: Int
 }
