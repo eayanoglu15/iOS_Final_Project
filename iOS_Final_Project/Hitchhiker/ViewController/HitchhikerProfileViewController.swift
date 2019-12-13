@@ -51,6 +51,18 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
         infoTableView.delegate = self
         infoTableView.dataSource = self
         // Do any additional setup after loading the view.
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButtonTapped))
+    }
+    
+    @objc func logOutButtonTapped() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(false, forKey: "userLoggedIn")
+        userDefaults.setValue(false, forKey: "userIsDriver")
+        let rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+        print("NV count: ", navigationController?.viewControllers.count)
+        navigationController?.viewControllers = [rootVC]
+        navigationController?.pushViewController(rootVC, animated: false)
+        print("NV count: ", navigationController?.viewControllers.count)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

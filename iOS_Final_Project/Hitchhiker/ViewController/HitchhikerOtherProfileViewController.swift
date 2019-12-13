@@ -61,7 +61,7 @@ class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegat
         infoTableView.delegate = self
         infoTableView.dataSource = self
         hitchhikerOtherProfileDataSource.getOtherUser()
-
+        title = hitchhikerOtherProfileDataSource.otherUser?.username
         // Do any additional setup after loading the view.
     }
     

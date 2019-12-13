@@ -51,6 +51,11 @@ class LoginDataSource {
                         print("success: \(response.username)")
                         
                         DispatchQueue.main.async {
+                            let userDefaults = UserDefaults.standard
+                            userDefaults.setValue(true, forKey: "userLoggedIn")
+                            userDefaults.setValue(response.driver, forKey: "userIsDriver")
+                            print("userLoggedIn: ", userDefaults.bool(forKey: "userLoggedIn"))
+                            print("userIsDriver: ", userDefaults.bool(forKey: "userIsDriver"))
                             self.delegate?.routeToHome(isDriver: self.setUser(response: response))
                         }
                     }

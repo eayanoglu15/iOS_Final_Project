@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 protocol HitchhikerOtherProfileDataSourceDelegate {
     func otherUserLoaded()
     
@@ -33,9 +31,10 @@ class HitchhikerOtherProfileDataSource {
                 print("HERE: \(String.init(data: data!, encoding: .utf8))")
                 
                 let decoder = JSONDecoder()
-                let feedList = try! decoder.decode(LoginResponse.self, from: data!)
+                let response = try! decoder.decode(LoginResponse.self, from: data!)
                 
                 DispatchQueue.main.async {
+                    self.setUser(response: response)
                     self.delegate?.otherUserLoaded()
                 }
             }
