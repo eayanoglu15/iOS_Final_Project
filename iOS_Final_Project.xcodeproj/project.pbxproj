@@ -69,6 +69,7 @@
 		85A860F6239EACC9000A72EE /* HitchhikerProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A860F5239EACC9000A72EE /* HitchhikerProfileHelper.swift */; };
 		85A860F8239EC558000A72EE /* HitchhikerEditProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A860F7239EC558000A72EE /* HitchhikerEditProfileHelper.swift */; };
 		85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */; };
+		85FF0E6323A3DE64009343C9 /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */; };
 		9DBFA1A923A1703400466F65 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1A823A1703400466F65 /* ApiResponse.swift */; };
 		9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */; };
 		9DBFA1AD23A17ACF00466F65 /* CreateDriverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */; };
@@ -139,6 +140,7 @@
 		85A860F5239EACC9000A72EE /* HitchhikerProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerProfileHelper.swift; sourceTree = "<group>"; };
 		85A860F7239EC558000A72EE /* HitchhikerEditProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerEditProfileHelper.swift; sourceTree = "<group>"; };
 		85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerHomeViewController.swift; sourceTree = "<group>"; };
+		85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
 		9DBFA1A823A1703400466F65 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHitchhikerRequest.swift; sourceTree = "<group>"; };
 		9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverRequest.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 		8546C35F2398265600A8317C /* Hitchhiker */ = {
 			isa = PBXGroup;
 			children = (
+				85FF0E5F23A3DE2A009343C9 /* Network */,
 				853BC576239A8E0800EC84F8 /* Cells */,
 				85E86C7023990D24009D011F /* ViewController */,
 				8546C362239826B600A8317C /* Model */,
@@ -412,6 +415,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		85FF0E5F23A3DE2A009343C9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -525,6 +536,7 @@
 				9DBFA1AD23A17ACF00466F65 /* CreateDriverRequest.swift in Sources */,
 				8557FEC2239FDAC2005AB39C /* HitchhikerTripRequestsHelper.swift in Sources */,
 				85A860F4239EAAC7000A72EE /* HitchhikerOtherProfileViewController.swift in Sources */,
+				85FF0E6323A3DE64009343C9 /* GetUserResponse.swift in Sources */,
 				85069AE9239FF4540012E3B7 /* DriverHomeHelper.swift in Sources */,
 				854EF59F23A193650085727F /* DriverProfileViewController.swift in Sources */,
 				8574495323A2DFC7000B0B71 /* DriverOtherProfileHelper.swift in Sources */,

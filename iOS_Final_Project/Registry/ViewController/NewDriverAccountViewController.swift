@@ -14,9 +14,8 @@ extension NewDriverAccountViewController: NewDriverDataSourceDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
-    
-    
 }
+
 extension NewDriverAccountViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         newDriverAccountHelper.selectedGender = newDriverAccountHelper.genderPickerData[row]
@@ -48,7 +47,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var carModelTextField: UITextField!
     @IBOutlet weak var plaqueTextField: UITextField!
-    @IBOutlet weak var genderPickerView: UIPickerView!
+    @IBOutlet weak var genderTextField: UITextField!
     
     var newDriverAccountHelper = NewDriverAccountHelper()
     var newDriverDataSource = NewDriverDataSource()
@@ -79,8 +78,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
         
-        genderPickerView.delegate = self
-        genderPickerView.dataSource = self
+        genderTextField.inputView = newDriverAccountHelper.genderPicker
     }
     
     @objc func choosePicture() {

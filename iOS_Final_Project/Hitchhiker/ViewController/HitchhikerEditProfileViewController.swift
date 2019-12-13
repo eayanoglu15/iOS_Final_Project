@@ -8,27 +8,7 @@
 
 import UIKit
 
-extension HitchhikerEditProfileViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        hitchhikerEditProfileHelper.selectedGender = hitchhikerEditProfileHelper.genderPickerData[row]
-    }
-}
-
-extension HitchhikerEditProfileViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return hitchhikerEditProfileHelper.genderPickerData.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return hitchhikerEditProfileHelper.genderPickerData[row]
-    }
-}
-
-class HitchhikerEditProfileViewController: UIViewController {
+class HitchhikerEditProfileViewController: BaseScrollViewController, UITextFieldDelegate {
     var hitchhikerEditProfileHelper = HitchhikerEditProfileHelper()
     var hitchhikerEditProfileDataSource = HitchhikerEditProfileDataSource()
     
@@ -39,26 +19,10 @@ class HitchhikerEditProfileViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    
-    @IBOutlet weak var genderPickerView: UIPickerView!
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+    @IBOutlet weak var genderTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboard()
         title = "Edit Profile"
         // Do any additional setup after loading the view.
         // Assign Text Field Delegates
@@ -75,8 +39,9 @@ class HitchhikerEditProfileViewController: UIViewController {
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
         
-        genderPickerView.delegate = self
-        genderPickerView.dataSource = self
+        hitchhikerEditProfileHelper.genderPicker.delegate = self
+        hitchhikerEditProfileHelper.genderPicker.dataSource = self
+        genderTextField.inputView = hitchhikerEditProfileHelper.genderPicker
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -94,25 +59,27 @@ class HitchhikerEditProfileViewController: UIViewController {
 
 }
 
-//MARK: - UITextFieldDelegate
-
-extension HitchhikerEditProfileViewController: UITextFieldDelegate {
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-        // self.view.endEditing(true)
-        // return false
+extension HitchhikerEditProfileViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    @objc
-    func textFieldDidChange(textField: UITextField) {
-        /*
-         if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
-         loginButton.isEnabled = true
-         } else {
-         loginButton.isEnabled = false
-         }
-         */
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return hitchhikerEditProfileHelper.genderPickerData.count
+    }
+}
+
+extension HitchhikerEditProfileViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView,
+     titleForRow row: Int,
+     forComponent component: Int) -> String? {
+        return hitchhikerEditProfileHelper.genderPickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView,
+    didSelectRow row: Int,
+    inComponent component: Int) {
+        genderTextField.text = hitchhikerEditProfileHelper.genderPickerData[row]
+        self.view.endEditing(false)
     }
 }

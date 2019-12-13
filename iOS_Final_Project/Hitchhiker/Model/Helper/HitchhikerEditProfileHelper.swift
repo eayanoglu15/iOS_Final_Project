@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class HitchhikerEditProfileHelper {
+    var genderPicker = UIPickerView()
     var genderPickerData = ["Not Specified", "Female", "Male"]
     var selectedGender = "Not Specified"
 }

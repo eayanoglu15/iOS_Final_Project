@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Bc4-uY-a1X">
-                                <rect key="frame" x="0.0" y="150" width="414" height="712"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HitchhikerHomeCell" rowHeight="276" id="ujB-nz-iSR" customClass="HitchhikerHomeTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
@@ -193,27 +193,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fmd-Be-xhO">
-                                <rect key="frame" x="169" y="105" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Fmd-Be-xhO" firstAttribute="centerX" secondItem="vsU-YK-Lef" secondAttribute="centerX" id="88D-WP-Kic"/>
                             <constraint firstItem="Bc4-uY-a1X" firstAttribute="leading" secondItem="vsU-YK-Lef" secondAttribute="leading" id="Mtn-lB-HvK"/>
-                            <constraint firstItem="Bc4-uY-a1X" firstAttribute="top" secondItem="Fmd-Be-xhO" secondAttribute="bottom" constant="24" id="NyY-bG-U55"/>
                             <constraint firstItem="Bc4-uY-a1X" firstAttribute="trailing" secondItem="vsU-YK-Lef" secondAttribute="trailing" id="Y43-4x-BmD"/>
                             <constraint firstItem="Bc4-uY-a1X" firstAttribute="bottom" secondItem="vsU-YK-Lef" secondAttribute="bottom" id="nXh-tU-O4g"/>
-                            <constraint firstItem="Fmd-Be-xhO" firstAttribute="top" secondItem="vsU-YK-Lef" secondAttribute="top" constant="61" id="p2z-zP-8xc"/>
+                            <constraint firstItem="Bc4-uY-a1X" firstAttribute="top" secondItem="vsU-YK-Lef" secondAttribute="top" id="rOg-T5-7iM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vsU-YK-Lef"/>
                     </view>
                     <connections>
                         <outlet property="hitchhikerHomeTableView" destination="Bc4-uY-a1X" id="QXr-cy-ze5"/>
-                        <outlet property="username" destination="Fmd-Be-xhO" id="dbm-Vx-oi8"/>
                         <segue destination="Vaz-bJ-biS" kind="show" identifier="toHitchhikerProfile" id="6eS-Li-eaG"/>
                         <segue destination="Mkn-BM-CX3" kind="show" identifier="toHitchhikerRequests" id="O7D-LA-hjE"/>
                         <segue destination="zEB-Xq-hTr" kind="show" identifier="toOtherProfile" id="3IA-SG-YFJ"/>
@@ -467,20 +458,14 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2FI-Od-OM9">
-                                                <rect key="frame" x="193.5" y="530.5" width="37" height="30"/>
+                                                <rect key="frame" x="193.5" y="465.5" width="37" height="30"/>
                                                 <state key="normal" title="SAVE"/>
                                                 <connections>
                                                     <action selector="saveButtonTapped:" destination="Hsv-N7-vbn" eventType="touchUpInside" id="4ln-uz-bqA"/>
                                                 </connections>
                                             </button>
-                                            <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="JZw-8o-dAY">
-                                                <rect key="frame" x="144" y="396.5" width="260" height="109"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="109" id="15X-Vr-wQc"/>
-                                                </constraints>
-                                            </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C3t-DT-rsy">
-                                                <rect key="frame" x="20" y="440.5" width="84" height="21"/>
+                                                <rect key="frame" x="20" y="398" width="84" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -507,6 +492,11 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HMt-Zg-9Dl">
+                                                <rect key="frame" x="144" y="391.5" width="260" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -515,15 +505,15 @@
                                             <constraint firstItem="Hym-hq-D1e" firstAttribute="centerY" secondItem="FmV-2i-k7w" secondAttribute="centerY" id="5F1-V2-vax"/>
                                             <constraint firstItem="ZET-Uf-2Ue" firstAttribute="trailing" secondItem="in7-0B-vIq" secondAttribute="trailing" id="6W3-41-610"/>
                                             <constraint firstItem="erm-Mk-Zbf" firstAttribute="trailing" secondItem="in7-0B-vIq" secondAttribute="trailing" id="6pn-x7-AmO"/>
-                                            <constraint firstItem="JZw-8o-dAY" firstAttribute="top" secondItem="GrK-OA-dzH" secondAttribute="bottom" constant="25" id="7IF-AB-A3t"/>
                                             <constraint firstItem="FmV-2i-k7w" firstAttribute="leading" secondItem="TwQ-sG-D7V" secondAttribute="leading" constant="20" id="9Pf-0B-WTd"/>
                                             <constraint firstAttribute="trailing" secondItem="GrK-OA-dzH" secondAttribute="trailing" constant="20" id="A9V-H0-5lU"/>
+                                            <constraint firstItem="HMt-Zg-9Dl" firstAttribute="top" secondItem="GrK-OA-dzH" secondAttribute="bottom" constant="20" id="AjQ-Br-0EK"/>
                                             <constraint firstItem="GrK-OA-dzH" firstAttribute="leading" secondItem="erm-Mk-Zbf" secondAttribute="trailing" constant="40" id="B1j-ZM-ncd"/>
                                             <constraint firstItem="vop-at-Am3" firstAttribute="centerY" secondItem="Cmv-Jz-x68" secondAttribute="centerY" id="CHo-UK-cau"/>
                                             <constraint firstItem="vop-at-Am3" firstAttribute="top" secondItem="Hym-hq-D1e" secondAttribute="bottom" constant="20" id="Cs9-Cy-GW8"/>
                                             <constraint firstItem="ZET-Uf-2Ue" firstAttribute="trailing" secondItem="FmV-2i-k7w" secondAttribute="trailing" id="EeF-cO-0Hv"/>
                                             <constraint firstAttribute="trailing" secondItem="Hym-hq-D1e" secondAttribute="trailing" constant="20" id="GQv-l9-3ul"/>
-                                            <constraint firstItem="2FI-Od-OM9" firstAttribute="top" secondItem="JZw-8o-dAY" secondAttribute="bottom" constant="25" id="HeK-0b-4rb"/>
+                                            <constraint firstItem="qMd-M2-rbC" firstAttribute="trailing" secondItem="HMt-Zg-9Dl" secondAttribute="trailing" id="Hj0-QS-01G"/>
                                             <constraint firstItem="umK-Bg-b8P" firstAttribute="top" secondItem="qMd-M2-rbC" secondAttribute="bottom" constant="20" id="JQR-u5-Mwx"/>
                                             <constraint firstItem="ZET-Uf-2Ue" firstAttribute="trailing" secondItem="erm-Mk-Zbf" secondAttribute="trailing" id="JeD-Ia-Je5"/>
                                             <constraint firstAttribute="trailing" secondItem="vop-at-Am3" secondAttribute="trailing" constant="20" id="L0j-aw-hYE"/>
@@ -536,10 +526,8 @@
                                             <constraint firstItem="atf-A4-wlX" firstAttribute="trailing" secondItem="C3t-DT-rsy" secondAttribute="trailing" id="Ugd-NW-IIY"/>
                                             <constraint firstItem="0FI-r3-eA5" firstAttribute="centerY" secondItem="in7-0B-vIq" secondAttribute="centerY" id="VRN-ub-7JB"/>
                                             <constraint firstItem="TlJ-6w-Tph" firstAttribute="leading" secondItem="TwQ-sG-D7V" secondAttribute="leading" constant="20" id="YG7-Jb-ia3"/>
-                                            <constraint firstItem="JZw-8o-dAY" firstAttribute="centerY" secondItem="C3t-DT-rsy" secondAttribute="centerY" id="YQy-fp-qCM"/>
                                             <constraint firstItem="atf-A4-wlX" firstAttribute="leading" secondItem="TwQ-sG-D7V" secondAttribute="leading" constant="20" id="Z9c-Ei-2af"/>
                                             <constraint firstItem="erm-Mk-Zbf" firstAttribute="leading" secondItem="TwQ-sG-D7V" secondAttribute="leading" constant="20" id="ZZU-cr-WFt"/>
-                                            <constraint firstItem="W8e-2X-UE8" firstAttribute="leading" secondItem="JZw-8o-dAY" secondAttribute="leading" id="aUT-KA-czv"/>
                                             <constraint firstItem="ZET-Uf-2Ue" firstAttribute="trailing" secondItem="TlJ-6w-Tph" secondAttribute="trailing" id="eNj-yj-kUE"/>
                                             <constraint firstItem="GrK-OA-dzH" firstAttribute="centerY" secondItem="erm-Mk-Zbf" secondAttribute="centerY" id="eeC-Mu-Au4"/>
                                             <constraint firstItem="umK-Bg-b8P" firstAttribute="leading" secondItem="TlJ-6w-Tph" secondAttribute="trailing" constant="40" id="f0b-Qj-e9Z"/>
@@ -551,8 +539,10 @@
                                             <constraint firstItem="W8e-2X-UE8" firstAttribute="top" secondItem="0FI-r3-eA5" secondAttribute="bottom" constant="20" id="itU-SC-X3J"/>
                                             <constraint firstItem="0FI-r3-eA5" firstAttribute="top" secondItem="vop-at-Am3" secondAttribute="bottom" constant="20" id="kVo-YH-adV"/>
                                             <constraint firstItem="C3t-DT-rsy" firstAttribute="leading" secondItem="TwQ-sG-D7V" secondAttribute="leading" constant="20" id="klw-bx-Ce2"/>
-                                            <constraint firstItem="W8e-2X-UE8" firstAttribute="trailing" secondItem="JZw-8o-dAY" secondAttribute="trailing" id="nFE-OH-KPJ"/>
+                                            <constraint firstItem="qMd-M2-rbC" firstAttribute="leading" secondItem="HMt-Zg-9Dl" secondAttribute="leading" id="m7x-Uu-rMf"/>
                                             <constraint firstAttribute="trailing" secondItem="umK-Bg-b8P" secondAttribute="trailing" constant="20" id="nNY-3R-cKs"/>
+                                            <constraint firstItem="C3t-DT-rsy" firstAttribute="centerY" secondItem="HMt-Zg-9Dl" secondAttribute="centerY" id="ndE-xq-3W0"/>
+                                            <constraint firstItem="2FI-Od-OM9" firstAttribute="top" secondItem="HMt-Zg-9Dl" secondAttribute="bottom" constant="40" id="oUr-Pa-xPD"/>
                                             <constraint firstItem="ZET-Uf-2Ue" firstAttribute="top" secondItem="TwQ-sG-D7V" secondAttribute="top" constant="20" id="oZG-af-9qb"/>
                                             <constraint firstAttribute="trailing" secondItem="0FI-r3-eA5" secondAttribute="trailing" constant="20" id="qi1-e9-pkv"/>
                                             <constraint firstItem="qMd-M2-rbC" firstAttribute="centerY" secondItem="ZET-Uf-2Ue" secondAttribute="centerY" id="qnl-mf-NOy"/>
@@ -586,10 +576,11 @@
                     <connections>
                         <outlet property="ageTextField" destination="GrK-OA-dzH" id="gDC-eJ-VA0"/>
                         <outlet property="emailTextField" destination="0FI-r3-eA5" id="ex7-rh-BUV"/>
-                        <outlet property="genderPickerView" destination="JZw-8o-dAY" id="0Qa-ut-lJp"/>
+                        <outlet property="genderTextField" destination="HMt-Zg-9Dl" id="HVA-3B-3le"/>
                         <outlet property="nameTextField" destination="umK-Bg-b8P" id="20Y-Xq-JB6"/>
                         <outlet property="passwordTextField" destination="W8e-2X-UE8" id="8ej-ML-cYk"/>
                         <outlet property="phoneNumberTextField" destination="vop-at-Am3" id="Cfa-DL-VNw"/>
+                        <outlet property="scrollView" destination="Psl-K3-bqD" id="KWD-vK-6fb"/>
                         <outlet property="surnameTextField" destination="Hym-hq-D1e" id="LXP-ch-HlO"/>
                         <outlet property="usernameTextField" destination="qMd-M2-rbC" id="vhH-M8-fSl"/>
                     </connections>

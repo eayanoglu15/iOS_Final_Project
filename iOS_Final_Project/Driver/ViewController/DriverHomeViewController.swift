@@ -91,6 +91,13 @@ class DriverHomeViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            driverHomeDataSource.getUser(username: username)
+        }
+    }
+    
     @objc func profileButtonTapped() {
         //navigationController?.popToRootViewController(animated: false)
         performSegue(withIdentifier: "toDriverProfile", sender: nil)

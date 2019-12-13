@@ -58,19 +58,15 @@ extension HitchhikerHomeViewController: UITableViewDelegate {
         performSegue(withIdentifier: "toOtherProfile", sender: nil)
     }
 }
-extension HitchhikerHomeViewController: HitchhikerHomeDataSourceDelegate{
+
+extension HitchhikerHomeViewController: HitchhikerHomeDataSourceDelegate {
     func hitchhikerFeedListLoaded(feedList: [HitchhikerFeed]) {
         self.feedArray = feedList
         self.hitchhikerHomeTableView.reloadData()
     }
-    
- 
 }
-    
-    
    
 class HitchhikerHomeViewController: UIViewController {
-    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var hitchhikerHomeTableView: UITableView!
     
     let hitchhikerHomeDataSource = HitchhikerHomeDataSource()
@@ -79,7 +75,6 @@ class HitchhikerHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        username.text = hitchhikerHomeDataSource.hitchhiker?.username
         hitchhikerHomeTableView.dataSource = self
         hitchhikerHomeTableView.delegate = self
         hitchhikerHomeDataSource.delegate=self
@@ -87,6 +82,18 @@ class HitchhikerHomeViewController: UIViewController {
         title = "Home"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Requests", style: .plain, target: self, action: #selector(requestsButtonTapped))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        /*
+        if let playerId = selectedPlayerId {
+            playerDataSource.loadPlayerDetail(playerId: playerId)
+        }
+         */
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            hitchhikerHomeDataSource.getUser(username: username)
+        }
     }
     
     @objc func profileButtonTapped() {

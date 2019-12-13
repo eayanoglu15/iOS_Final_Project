@@ -47,7 +47,8 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
-    @IBOutlet weak var genderPickerView: UIPickerView!
+    @IBOutlet weak var genderTextField: UITextField!
+    
     
     @IBOutlet weak var registerButton: UIButton!
     
@@ -78,8 +79,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
         
-        genderPickerView.delegate = self
-        genderPickerView.dataSource = self
+        genderTextField.inputView = newHitchhikerAccountHelper.genderPicker
     }
     
     @objc func choosePicture() {

@@ -58,6 +58,7 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
         let userDefaults = UserDefaults.standard
         userDefaults.setValue(false, forKey: "userLoggedIn")
         userDefaults.setValue(false, forKey: "userIsDriver")
+        userDefaults.removeObject(forKey: "username")
         let rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
         print("NV count: ", navigationController?.viewControllers.count)
         navigationController?.viewControllers = [rootVC]

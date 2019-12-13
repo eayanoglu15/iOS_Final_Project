@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DriverEditProfileViewController: BaseScrollViewController {
+class DriverEditProfileViewController: BaseScrollViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var carModelTextField: UITextField!
@@ -25,10 +25,25 @@ class DriverEditProfileViewController: BaseScrollViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Edit Profile"
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        nameTextField.delegate = self
+        surnameTextField.delegate = self
+        emailTextField.delegate = self
+        phoneNumberTextField.delegate = self
+        ageTextField.delegate = self
+        carModelTextField.delegate = self
+        carPlaqueTextField.delegate = self
+        
+        passwordTextField.isSecureTextEntry = true
+        ageTextField.keyboardType = .numberPad
+        phoneNumberTextField.keyboardType = .phonePad
         
         driverEditProfileHelper.genderPicker.delegate = self
         driverEditProfileHelper.genderPicker.dataSource = self
-        
+        genderTextField.inputView = driverEditProfileHelper.genderPicker
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {

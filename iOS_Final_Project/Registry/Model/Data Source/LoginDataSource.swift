@@ -54,8 +54,11 @@ class LoginDataSource {
                             let userDefaults = UserDefaults.standard
                             userDefaults.setValue(true, forKey: "userLoggedIn")
                             userDefaults.setValue(response.driver, forKey: "userIsDriver")
+                            userDefaults.setValue(response.username, forKeyPath: "username")
+                            
                             print("userLoggedIn: ", userDefaults.bool(forKey: "userLoggedIn"))
                             print("userIsDriver: ", userDefaults.bool(forKey: "userIsDriver"))
+                            print("username: ",  userDefaults.string(forKey: "username"))
                             self.delegate?.routeToHome(isDriver: self.setUser(response: response))
                         }
                     }
