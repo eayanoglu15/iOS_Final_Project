@@ -279,6 +279,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuz-wr-vSb">
                                                 <rect key="frame" x="169" y="391.5" width="76" height="30"/>
                                                 <state key="normal" title="POST TRIP"/>
+                                                <connections>
+                                                    <action selector="postTripButtonTapped:" destination="qTm-gk-wDF" eventType="touchUpInside" id="f7D-ri-h7j"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

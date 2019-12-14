@@ -8,6 +8,18 @@
 
 import UIKit
 
+extension DriverNewTripViewController: DriverNewTripDataSourceDelegate {
+    func showAlertMsg(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func returnToDriverHome() {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
+
 class DriverNewTripViewController: BaseScrollViewController {
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
@@ -24,6 +36,7 @@ class DriverNewTripViewController: BaseScrollViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "New Trip"
+        driverNewTripDataSource.delegate = self
         // Do any additional setup after loading the view.
         fromPicker.delegate = self
         fromPicker.dataSource = self
@@ -39,7 +52,6 @@ class DriverNewTripViewController: BaseScrollViewController {
         showEndTimePicker()
         
         availableSeatsTextField.keyboardType = .numberPad
-        
     }
     
     func showStartTimePicker() {
@@ -78,6 +90,11 @@ class DriverNewTripViewController: BaseScrollViewController {
         let strDate = dateFormatter.string(from: driverNewTripHelper.startTimePicker.date)
         startTimeTextField.text = strDate
         
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        driverNewTripDataSource.startTime = dateFormatter.string(from: driverNewTripHelper.startTimePicker.date)
+        
+        print("Selected Date: ", driverNewTripDataSource.startTime)
         view.endEditing(true)
     }
     
@@ -86,20 +103,33 @@ class DriverNewTripViewController: BaseScrollViewController {
         dateFormatter.timeStyle = DateFormatter.Style.short
         let strDate = dateFormatter.string(from: driverNewTripHelper.endTimePicker.date)
         endTimeTextField.text = strDate
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        driverNewTripDataSource.endTime = dateFormatter.string(from: driverNewTripHelper.endTimePicker.date)
+        
+        print("Selected Date: ", driverNewTripDataSource.endTime)
         self.view.endEditing(true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func postTripButtonTapped(_ sender: Any) {
+        guard let from = fromTextField.text, !from.isEmpty,
+            let to = toTextField.text, !to.isEmpty,
+            let start = driverNewTripDataSource.startTime,
+            let end = driverNewTripDataSource.endTime,
+            let seats = availableSeatsTextField.text, !seats.isEmpty else {
+                showAlertMsg(title: "Missing Information", message: "Please fill all fields of the form")
+                return
+        }
+        guard let seatNum = Int(seats) else {
+            showAlertMsg(title: "Invalid Seat Number", message: "Please enter number of available seats as a number")
+            return
+        }
+        if let user = driverNewTripDataSource.driver {
+         driverNewTripDataSource.createTrip(from: from, to: to, startTime: start, endTime: end, seatNum: seatNum, driverUsername: user.username)
+        }
     }
-    */
-
+    
 }
 
 extension DriverNewTripViewController: UIPickerViewDataSource {

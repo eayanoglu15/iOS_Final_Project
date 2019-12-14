@@ -215,7 +215,7 @@ class DriverHomeViewController: UIViewController {
         requestTableView.dataSource = self
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Feed", style: .plain, target: self, action: #selector(newFeedButtonTapped))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Feed", style: .plain, target: self, action: #selector(newFeedButtonTapped))
         driverHomeDataSource.delegate = self
     }
     
