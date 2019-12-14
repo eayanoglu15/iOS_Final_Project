@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TripRequest {
+struct TripRequest: Codable {
     let from: String
     let to: String
     let startTime: String

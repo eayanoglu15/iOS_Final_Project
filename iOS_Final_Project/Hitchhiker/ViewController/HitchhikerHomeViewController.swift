@@ -73,6 +73,8 @@ class HitchhikerHomeViewController: UIViewController {
     let hitchhikerHomeHelper = HitchhikerHomeHelper()
     var feedArray: [HitchhikerFeed] = []
     
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hitchhikerHomeTableView.dataSource = self
@@ -82,6 +84,18 @@ class HitchhikerHomeViewController: UIViewController {
         title = "Home"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Requests", style: .plain, target: self, action: #selector(requestsButtonTapped))
+        
+        
+        //refreshControl.addTarget(hitchhikerHomeTableView, action: #selector(reloadData), for: .valueChanged)
+        refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
+        hitchhikerHomeTableView.refreshControl = refreshControl
+    }
+    
+    @objc func reloadData() {
+        hitchhikerHomeDataSource.getPlannedTrips()
+        
+        hitchhikerHomeTableView.refreshControl?.endRefreshing()
+        hitchhikerHomeTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

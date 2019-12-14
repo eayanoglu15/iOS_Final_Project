@@ -18,7 +18,7 @@ struct User {
     let surname: String
     let email: String
     let phoneNumber: String
-    var sex: String?
+    var sex: String
     let age: Int
     // If user is a driver
     var carModel: String?
@@ -30,7 +30,7 @@ struct User {
     
     init(isDriver: Bool, username: String, password: String, name: String,
          surname: String, email: String, phonenumber: String,
-         age: Int, sex: String?) {
+         age: Int, sex: String) {
         self.isDriver = isDriver
         self.username = username
         self.password = password
@@ -39,14 +39,12 @@ struct User {
         self.email = email
         self.phoneNumber = phonenumber
         self.age = age
-        if let userSex = sex {
-            self.sex = userSex
-        }
+        self.sex = sex
     }
     
     init(isDriver: Bool, username: String, password: String, name: String,
          surname: String, email: String, phonenumber: String,
-         age: Int, sex: String?, carModel: String, plaque: String) {
+         age: Int, sex: String, carModel: String, plaque: String) {
         self.isDriver = isDriver
         self.username = username
         self.password = password
@@ -55,9 +53,7 @@ struct User {
         self.email = email
         self.phoneNumber = phonenumber
         self.age = age
-        if let userSex = sex {
-            self.sex = userSex
-        }
+        self.sex = sex
         self.carModel = carModel
         self.plaque = plaque
     }

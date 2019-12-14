@@ -42,10 +42,61 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
         hitchhikerEditProfileHelper.genderPicker.delegate = self
         hitchhikerEditProfileHelper.genderPicker.dataSource = self
         genderTextField.inputView = hitchhikerEditProfileHelper.genderPicker
+        
+        if let user = hitchhikerEditProfileDataSource.hitchhiker {
+            showUserInfo(user: user)
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let username = usernameTextField.text, !username.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty,
+            let name = nameTextField.text, !name.isEmpty,
+            let surname = surnameTextField.text, !surname.isEmpty,
+            let email = emailTextField.text, !email.isEmpty,
+            let phone = phoneNumberTextField.text, !phone.isEmpty,
+            let ageText = ageTextField.text, !ageText.isEmpty else {
+                showAlert(title: "Missing Information", message: "Please fill all fields of the form")
+                return
+        }
+        guard username.isAlphanumeric, password.isAlphanumeric else {
+            showAlert(title: "Invalid Username or Password", message: "Please use alphanumeric characters")
+            return
+        }
+        guard name.isAlphabetic, surname.isAlphabetic else {
+            showAlert(title: "Invalid Name or Surname", message: "Please use alphabetic characters")
+            return
+        }
+        guard email.isValidEmail else {
+            showAlert(title: "Invalid Email", message: "Please enter a valid email address")
+            return
+        }
+        guard let age = Int(ageText) else {
+            showAlert(title: "Invalid Age", message: "Please enter your age as a number")
+            return
+        }
+        let gender = genderTextField.text
+        
+        // UPDATE USER
+        /*
+        newHitchhikerDataSource.addNewHitchihiker(username: username, password: password, name: name, surname: surname, email: email,
+        phonenumber: phone, age: userAge, gender: gender)
+        */
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(username, forKeyPath: "username")
+        
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showUserInfo(user: User) {
+        usernameTextField.text = user.username
+        passwordTextField.text = user.password
+        nameTextField.text = user.firstName
+        surnameTextField.text = user.surname
+        emailTextField.text = user.email
+        phoneNumberTextField.text = user.phoneNumber
+        ageTextField.text = String(user.age)
+        genderTextField.text = user.sex
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -56,7 +107,13 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
         }
          */
     }
-
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
 }
 
 extension HitchhikerEditProfileViewController: UIPickerViewDataSource {

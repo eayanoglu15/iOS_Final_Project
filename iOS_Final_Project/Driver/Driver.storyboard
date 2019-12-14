@@ -129,6 +129,67 @@
                                             <outlet property="usernameLabel" destination="XNZ-1v-GKy" id="3iX-1g-dC0"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" id="2lG-3f-bcV" customClass="MessageTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="256" width="414" height="71"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2lG-3f-bcV" id="GDa-bb-Yjc">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gu-1e-n8l">
+                                                    <rect key="frame" x="25" y="25" width="364" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4Gu-1e-n8l" firstAttribute="leading" secondItem="GDa-bb-Yjc" secondAttribute="leading" constant="25" id="3eR-Ay-4iK"/>
+                                                <constraint firstAttribute="bottom" secondItem="4Gu-1e-n8l" secondAttribute="bottom" constant="25" id="7QE-D2-Xk8"/>
+                                                <constraint firstItem="4Gu-1e-n8l" firstAttribute="centerY" secondItem="GDa-bb-Yjc" secondAttribute="centerY" id="A4h-yk-0cx"/>
+                                                <constraint firstAttribute="trailing" secondItem="4Gu-1e-n8l" secondAttribute="trailing" constant="25" id="BEp-xU-N8v"/>
+                                                <constraint firstItem="4Gu-1e-n8l" firstAttribute="centerX" secondItem="GDa-bb-Yjc" secondAttribute="centerX" id="HK3-S1-jDr"/>
+                                                <constraint firstItem="4Gu-1e-n8l" firstAttribute="top" secondItem="GDa-bb-Yjc" secondAttribute="top" constant="25" id="MKk-rM-g8n"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageTextField" destination="4Gu-1e-n8l" id="fpU-59-leW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newTripCell" id="H2y-8G-3tf" customClass="NewTripTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="327" width="414" height="126"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H2y-8G-3tf" id="YTw-xT-Vfl">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7X-zv-fwP">
+                                                    <rect key="frame" x="184" y="70.5" width="46" height="30.5"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIo-4K-u4I">
+                                                    <rect key="frame" x="25" y="25" width="364" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="vIo-4K-u4I" secondAttribute="trailing" constant="25" id="0p0-UQ-3te"/>
+                                                <constraint firstItem="vIo-4K-u4I" firstAttribute="leading" secondItem="YTw-xT-Vfl" secondAttribute="leading" constant="25" id="26u-XU-teE"/>
+                                                <constraint firstItem="vIo-4K-u4I" firstAttribute="centerX" secondItem="YTw-xT-Vfl" secondAttribute="centerX" id="8LR-C9-Zfd"/>
+                                                <constraint firstAttribute="bottom" secondItem="E7X-zv-fwP" secondAttribute="bottom" constant="25" id="DxG-WQ-72F"/>
+                                                <constraint firstItem="vIo-4K-u4I" firstAttribute="top" secondItem="YTw-xT-Vfl" secondAttribute="top" constant="25" id="Gar-Bg-F2g"/>
+                                                <constraint firstItem="E7X-zv-fwP" firstAttribute="centerX" secondItem="vIo-4K-u4I" secondAttribute="centerX" id="I8D-hs-mXw"/>
+                                                <constraint firstItem="E7X-zv-fwP" firstAttribute="top" secondItem="vIo-4K-u4I" secondAttribute="bottom" constant="25" id="SBk-I7-xQQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="vIo-4K-u4I" secondAttribute="trailing" constant="25" id="rWb-5H-CZ1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="E7X-zv-fwP" id="7ML-mT-AHn"/>
+                                            <outlet property="messageLabel" destination="vIo-4K-u4I" id="1Hu-ND-eu5"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -150,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIv-zw-tD3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-281" y="27"/>
+            <point key="canvasLocation" x="-281.15942028985512" y="26.785714285714285"/>
         </scene>
         <!--Driver New Trip View Controller-->
         <scene sceneID="Pea-ox-LAF">

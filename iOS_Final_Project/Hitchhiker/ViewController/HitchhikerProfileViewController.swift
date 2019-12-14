@@ -8,24 +8,6 @@
 
 import UIKit
 
-extension HitchhikerProfileViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hitchhikerProfileHelper.hitchhikerInfoArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoTableViewCell
-        let info = hitchhikerProfileHelper.hitchhikerInfoArray[indexPath.row]
-        cell.variableLabel.text = info.0
-        cell.valueLabel.text = info.1
-        return cell
-    }
-}
-
 class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -71,5 +53,23 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
             let destinationVc = segue.destination as! HitchhikerEditProfileViewController
             destinationVc.hitchhikerEditProfileDataSource.hitchhiker = hitchhikerProfileDataSource.hitchhiker
         }
+    }
+}
+
+extension HitchhikerProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return hitchhikerProfileHelper.hitchhikerInfoArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoTableViewCell
+        let info = hitchhikerProfileHelper.hitchhikerInfoArray[indexPath.row]
+        cell.variableLabel.text = info.0
+        cell.valueLabel.text = info.1
+        return cell
     }
 }
