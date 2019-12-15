@@ -21,8 +21,9 @@ class HitchhikerTripRequestTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var toLabel: UILabel!
-    @IBOutlet weak var departureTimeLabel: UILabel!
-
+    @IBOutlet weak var minDepartureTimeLabel: UILabel!
+    @IBOutlet weak var maxDepartureTimeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

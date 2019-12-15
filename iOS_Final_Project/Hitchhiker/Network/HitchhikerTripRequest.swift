@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-struct HitchhikerTripRequest {
-    var profileImage: UIImage?
-    var rating: Double
-    var username: String
-    var carModel: String
+struct HitchhikerTripRequest: Codable {
+    //var profileImage: UIImage?
     var from: String
     var to: String
-    var departureTime: String
-    var status: String
+    var startTime: String
+    var endTime: String
+    var id: Int
+    var driverUserName: String
+    var rating: Double
 }

@@ -9,18 +9,20 @@
 import UIKit
 
 extension NewHitchhikerAccountViewController: NewHitchhikerDataSourceDelegate {
-    func showAlert(title:String, message: String) {
+    func showAlertMsg(title:String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
     
-    
+    func goToHomePage() {
+        performSegue(withIdentifier: "toHitchhikerHome", sender: nil)
+    }
 }
 
 extension NewHitchhikerAccountViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        newHitchhikerAccountHelper.selectedGender = newHitchhikerAccountHelper.genderPickerData[row]
+        genderTextField.text = newHitchhikerAccountHelper.genderPickerData[row]
     }
 }
 
@@ -79,6 +81,9 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
         
+        newHitchhikerAccountHelper.genderPicker.delegate = self
+        newHitchhikerAccountHelper.genderPicker.dataSource = self
+        genderTextField.text = newHitchhikerAccountHelper.genderPickerData.first
         genderTextField.inputView = newHitchhikerAccountHelper.genderPicker
     }
     
@@ -101,31 +106,34 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
             let surname = surnameTextField.text, !surname.isEmpty,
             let email = emailTextField.text, !email.isEmpty,
             let phone = phoneNumberTextField.text, !phone.isEmpty,
-            let age = ageTextField.text, !age.isEmpty else {
-                showAlert(title: "Missing Information", message: "Please fill all fields of the form")
+            let age = ageTextField.text, !age.isEmpty,
+            let gender = genderTextField.text, !gender.isEmpty else {
+                showAlertMsg(title: "Missing Information", message: "Please fill all fields of the form")
                 return
         }
         guard username.isAlphanumeric, password.isAlphanumeric else {
-            showAlert(title: "Invalid Username or Password", message: "Please use alphanumeric characters")
+            showAlertMsg(title: "Invalid Username or Password", message: "Please use alphanumeric characters")
             return
         }
         guard name.isAlphabetic, surname.isAlphabetic else {
-            showAlert(title: "Invalid Name or Surname", message: "Please use alphabetic characters")
+            showAlertMsg(title: "Invalid Name or Surname", message: "Please use alphabetic characters")
             return
         }
         guard email.isValidEmail else {
-            showAlert(title: "Invalid Email", message: "Please enter a valid email address")
+            showAlertMsg(title: "Invalid Email", message: "Please enter a valid email address")
             return
         }
         guard let userAge = Int(age) else {
-            showAlert(title: "Invalid Age", message: "Please enter your age as a number")
+            showAlertMsg(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
-        let gender = newHitchhikerAccountHelper.selectedGender
-            
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(true, forKey: "userLoggedIn")
+        userDefaults.setValue(false, forKey: "userIsDriver")
+        userDefaults.setValue(username, forKeyPath: "username")
+        
         newHitchhikerDataSource.addNewHitchihiker(username: username, password: password, name: name, surname: surname, email: email,
                                                   phonenumber: phone, age: userAge, gender: gender)
-        performSegue(withIdentifier: "toHitchhikerHome", sender: nil)
         // feed e yolla
     }
     

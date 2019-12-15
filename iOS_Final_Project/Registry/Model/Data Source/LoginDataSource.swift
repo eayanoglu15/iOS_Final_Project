@@ -9,7 +9,7 @@
 import Foundation
 
 protocol LoginDataSourceDelegate {
-    func showAlert ()
+    func showAlertMsg(title: String, message: String)
     func routeToHome(isDriver: Bool)
 }
 
@@ -32,14 +32,16 @@ class LoginDataSource {
             
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
-                    print("error: \(error)")
+                    DispatchQueue.main.async {
+                        self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
+                    }
                 } else {
                     if let response = response as? HTTPURLResponse {
                         let statusCode = response.statusCode
                         print("statusCode: \(statusCode)")
                         if statusCode == 500 {
                             DispatchQueue.main.async {
-                                self.delegate?.showAlert()
+                                self.delegate?.showAlertMsg(title: "Invalid User", message: "Create Account")
                             }
                             return
                         }

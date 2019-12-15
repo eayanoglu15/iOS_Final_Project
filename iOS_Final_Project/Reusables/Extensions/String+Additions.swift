@@ -29,4 +29,21 @@ extension String {
        let testEmail = NSPredicate(format:"SELF MATCHES %@", regularExpressionForEmail)
        return testEmail.evaluate(with: self)
     }
+    
+    func convertUtcToDisplay() -> String {
+        let dateFormatter = DateFormatter()
+        // 2019-12-15T08:27:05Z
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        guard let date = dateFormatter.date(from: self) else {
+            // 2019-12-14T23:23:33.986Z
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            guard let date = dateFormatter.date(from: self) else {
+                return self
+            }
+            dateFormatter.dateFormat = "HH:mm\tdd/MM/yy"
+            return dateFormatter.string(from: date)
+        }
+        dateFormatter.dateFormat = "HH:mm\tdd/MM/yy"
+        return dateFormatter.string(from: date)
+    }
 }

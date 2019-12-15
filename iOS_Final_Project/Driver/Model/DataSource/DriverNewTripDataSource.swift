@@ -50,7 +50,9 @@ class DriverNewTripDataSource {
             
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
-                    print("error: \(error)")
+                    DispatchQueue.main.async {
+                        self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
+                    }
                 } else {
                     if let response = response as? HTTPURLResponse {
                         let statusCode = response.statusCode

@@ -8,11 +8,74 @@
 
 import Foundation
 
+protocol HitchhikerTripRequestsDataSourceDelegate {
+    func showAlertMsg(title: String, message: String)
+    func loadData()
+}
+
 class HitchhikerTripRequestsDataSource {
-    var tripRequestArray: [HitchhikerTripRequest] = []
+    var delegate: HitchhikerTripRequestsDataSourceDelegate?
     
-    init() {
-        tripRequestArray.append(HitchhikerTripRequest(profileImage: nil, rating: 3.5, username: "Melis", carModel: "Subaru BRZ", from: "Çengelköy",
-                                                      to: "Koç Üniversitesi", departureTime: "14.30 - 15.00", status: "Accepted"))
+    var acceptedRequests = [HitchhikerTripRequest]()
+    var waitingRequests = [HitchhikerTripRequest]()
+    var rejectedRequests = [HitchhikerTripRequest]()
+    var requestExist = false
+    
+    func getPageData(hitchhikerUsername: String) {
+        let baseURL = "http://127.0.0.1:8080/"
+        let session = URLSession.shared
+        
+        let hitchhikerRequest = HitchhikerRequest(hitchhikerUserName: hitchhikerUsername)
+        
+        if let url = URL(string: "\(String(describing: baseURL))trip/getAllRequestsByHitchhiker") {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            let encoder = JSONEncoder()
+            let uploadData = try! encoder.encode(hitchhikerRequest)
+            
+            let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        
+                        self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
+                    }
+                } else {
+                    if let response = response as? HTTPURLResponse {
+                        let statusCode = response.statusCode
+                        print("statusCode: \(statusCode)")
+                        if statusCode == 500 {
+                            DispatchQueue.main.async {
+                                self.delegate?.showAlertMsg(title: "Error", message: "Status Code 500")
+                            }
+                            return
+                        }
+                    }
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        print("data: \(dataString)")
+                        let decoder = JSONDecoder()
+                        let response = try! decoder.decode(HitchhikerRequestsResponse.self, from: data)
+                        
+                        DispatchQueue.main.async {
+                            if let acceptedReqs = response.acceptedRequests {
+                                 self.acceptedRequests = acceptedReqs
+                            }
+                            if let waitings = response.waitingRequests {
+                                self.waitingRequests = waitings
+                            }
+                            
+                            if let rejects = response.rejectedRequests {
+                                self.rejectedRequests = rejects
+                            }
+                            
+                            self.requestExist = response.tripExist
+                            self.delegate?.loadData()
+                        }
+                    }
+                }
+            }
+            uploadTask.resume()
+        }
+        
     }
 }

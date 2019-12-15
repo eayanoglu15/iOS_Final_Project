@@ -76,6 +76,13 @@
 		85A860F8239EC558000A72EE /* HitchhikerEditProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A860F7239EC558000A72EE /* HitchhikerEditProfileHelper.swift */; };
 		85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */; };
 		85FF0E6323A3DE64009343C9 /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */; };
+		85FF13A823A69666005088BF /* HitchhikerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13A723A69666005088BF /* HitchhikerRequest.swift */; };
+		85FF13AA23A699AA005088BF /* HitchhikerRequestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13A923A699AA005088BF /* HitchhikerRequestsResponse.swift */; };
+		85FF13AC23A6C916005088BF /* HitchhikerMakeTripRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13AB23A6C916005088BF /* HitchhikerMakeTripRequest.swift */; };
+		85FF13AE23A6D28A005088BF /* HitchhikerVotePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13AD23A6D28A005088BF /* HitchhikerVotePageViewController.swift */; };
+		85FF13B023A6DA77005088BF /* HitchhikerVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13AF23A6DA77005088BF /* HitchhikerVoteTableViewCell.swift */; };
+		85FF13B223A6DB87005088BF /* HitchhikerVotePageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13B123A6DB87005088BF /* HitchhikerVotePageHelper.swift */; };
+		85FF13B423A6DB9D005088BF /* HitchhikerVotePageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13B323A6DB9D005088BF /* HitchhikerVotePageDataSource.swift */; };
 		9DBFA1A923A1703400466F65 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1A823A1703400466F65 /* ApiResponse.swift */; };
 		9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */; };
 		9DBFA1AD23A17ACF00466F65 /* CreateDriverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */; };
@@ -153,6 +160,13 @@
 		85A860F7239EC558000A72EE /* HitchhikerEditProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerEditProfileHelper.swift; sourceTree = "<group>"; };
 		85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerHomeViewController.swift; sourceTree = "<group>"; };
 		85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
+		85FF13A723A69666005088BF /* HitchhikerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerRequest.swift; sourceTree = "<group>"; };
+		85FF13A923A699AA005088BF /* HitchhikerRequestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerRequestsResponse.swift; sourceTree = "<group>"; };
+		85FF13AB23A6C916005088BF /* HitchhikerMakeTripRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerMakeTripRequest.swift; sourceTree = "<group>"; };
+		85FF13AD23A6D28A005088BF /* HitchhikerVotePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVotePageViewController.swift; sourceTree = "<group>"; };
+		85FF13AF23A6DA77005088BF /* HitchhikerVoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVoteTableViewCell.swift; sourceTree = "<group>"; };
+		85FF13B123A6DB87005088BF /* HitchhikerVotePageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVotePageHelper.swift; sourceTree = "<group>"; };
+		85FF13B323A6DB9D005088BF /* HitchhikerVotePageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVotePageDataSource.swift; sourceTree = "<group>"; };
 		9DBFA1A823A1703400466F65 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHitchhikerRequest.swift; sourceTree = "<group>"; };
 		9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverRequest.swift; sourceTree = "<group>"; };
@@ -209,6 +223,7 @@
 				8505DE7D23A15950005ACD62 /* HitchhikerOtherProfileDataSource.swift */,
 				8505DE7923A15714005ACD62 /* HitchhikerProfileDataSource.swift */,
 				8557FEC5239FDBE5005AB39C /* HitchhikerTripRequestsDataSource.swift */,
+				85FF13B323A6DB9D005088BF /* HitchhikerVotePageDataSource.swift */,
 			);
 			path = "Data Source";
 			sourceTree = "<group>";
@@ -221,6 +236,7 @@
 				8557FEBD239FD333005AB39C /* HitchhikerOtherProfileHelper.swift */,
 				85A860F5239EACC9000A72EE /* HitchhikerProfileHelper.swift */,
 				8557FEC1239FDAC2005AB39C /* HitchhikerTripRequestsHelper.swift */,
+				85FF13B123A6DB87005088BF /* HitchhikerVotePageHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -287,6 +303,7 @@
 				853BC577239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift */,
 				85A860EF239E9E49000A72EE /* InfoTableViewCell.swift */,
 				8557FEC3239FDB02005AB39C /* HitchhikerTripRequestTableViewCell.swift */,
+				85FF13AF23A6DA77005088BF /* HitchhikerVoteTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -309,7 +326,6 @@
 				8505DE7823A15666005ACD62 /* Helper */,
 				8505DE7723A1565E005ACD62 /* Data Source */,
 				853BC57B239A941400EC84F8 /* HitchhikerFeed.swift */,
-				8557FEC7239FDC40005AB39C /* HitchhikerTripRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -437,6 +453,7 @@
 				85A860F1239EA428000A72EE /* HitchhikerEditProfileViewController.swift */,
 				85A860F3239EAAC7000A72EE /* HitchhikerOtherProfileViewController.swift */,
 				8557FEBF239FDAB5005AB39C /* HitchhikerTripRequestsViewController.swift */,
+				85FF13AD23A6D28A005088BF /* HitchhikerVotePageViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -445,6 +462,10 @@
 			isa = PBXGroup;
 			children = (
 				85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */,
+				8557FEC7239FDC40005AB39C /* HitchhikerTripRequest.swift */,
+				85FF13A723A69666005088BF /* HitchhikerRequest.swift */,
+				85FF13A923A699AA005088BF /* HitchhikerRequestsResponse.swift */,
+				85FF13AB23A6C916005088BF /* HitchhikerMakeTripRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -523,12 +544,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
+				85FF13AC23A6C916005088BF /* HitchhikerMakeTripRequest.swift in Sources */,
 				85069AEE23A00F760012E3B7 /* LoginRequest.swift in Sources */,
 				85056BDA23A24AF700CD1C2E /* DriverNewTripDataSource.swift in Sources */,
 				8574494D23A2CEE3000B0B71 /* DriverOtherProfileDataSource.swift in Sources */,
 				85A860F2239EA428000A72EE /* HitchhikerEditProfileViewController.swift in Sources */,
 				853BC578239A8E3100EC84F8 /* HitchhikerHomeTableViewCell.swift in Sources */,
 				85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */,
+				85FF13B023A6DA77005088BF /* HitchhikerVoteTableViewCell.swift in Sources */,
 				8505DE7423A15446005ACD62 /* NewDriverDataSource.swift in Sources */,
 				85A860EE239E9D6D000A72EE /* HitchhikerProfileViewController.swift in Sources */,
 				857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */,
@@ -568,11 +591,14 @@
 				8501CEF223A533EF00872FEF /* TripAcceptionRequest.swift in Sources */,
 				85FF0E6323A3DE64009343C9 /* GetUserResponse.swift in Sources */,
 				85069AE9239FF4540012E3B7 /* DriverHomeHelper.swift in Sources */,
+				85FF13B423A6DB9D005088BF /* HitchhikerVotePageDataSource.swift in Sources */,
 				854EF59F23A193650085727F /* DriverProfileViewController.swift in Sources */,
 				8574495323A2DFC7000B0B71 /* DriverOtherProfileHelper.swift in Sources */,
 				854A44EB2397D66D00AFC20D /* LoginHelper.swift in Sources */,
 				9DBFA1A923A1703400466F65 /* ApiResponse.swift in Sources */,
+				85FF13A823A69666005088BF /* HitchhikerRequest.swift in Sources */,
 				85A860F8239EC558000A72EE /* HitchhikerEditProfileHelper.swift in Sources */,
+				85FF13AE23A6D28A005088BF /* HitchhikerVotePageViewController.swift in Sources */,
 				85354BCD23A03B4A00A0EE95 /* LoginDataSource.swift in Sources */,
 				855BB681239574DF003A28EA /* SceneDelegate.swift in Sources */,
 				85056BDC23A2629500CD1C2E /* Date+Additions.swift in Sources */,
@@ -583,11 +609,13 @@
 				8574495123A2DFAF000B0B71 /* DriverEditProfileHelper.swift in Sources */,
 				857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */,
 				8595709623A2F0D400C7FAFB /* DriverOtherProfileViewController.swift in Sources */,
+				85FF13AA23A699AA005088BF /* HitchhikerRequestsResponse.swift in Sources */,
 				8501CEF423A55AFC00872FEF /* NewTripRequest.swift in Sources */,
 				9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */,
 				853BC580239A978E00EC84F8 /* HitchhikerHomeHelper.swift in Sources */,
 				8501CEEE23A5300100872FEF /* MessageTableViewCell.swift in Sources */,
 				854EF5A123A194440085727F /* DriverNewTripViewController.swift in Sources */,
+				85FF13B223A6DB87005088BF /* HitchhikerVotePageHelper.swift in Sources */,
 				85354BCB23A02C3C00A0EE95 /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

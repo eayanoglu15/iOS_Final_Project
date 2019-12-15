@@ -9,8 +9,10 @@
 import UIKit
 
 extension LoginViewController: LoginDataSourceDelegate {
-    func showAlert() {
-        showAlert(title: "Invalid User", message: "Create Account")
+    func showAlertMsg(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
     func routeToHome(isDriver: Bool) {

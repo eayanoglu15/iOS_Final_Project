@@ -9,7 +9,11 @@
 import UIKit
 
 extension NewDriverAccountViewController: NewDriverDataSourceDelegate {
-    func showAlert(title:String, message: String) {
+    func goToHome() {
+        performSegue(withIdentifier: "toDriverHome", sender: nil)
+    }
+    
+    func showAlertMsg(title:String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
@@ -18,7 +22,7 @@ extension NewDriverAccountViewController: NewDriverDataSourceDelegate {
 
 extension NewDriverAccountViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        newDriverAccountHelper.selectedGender = newDriverAccountHelper.genderPickerData[row]
+        genderTextField.text = newDriverAccountHelper.genderPickerData[row]
     }
 }
 
@@ -78,6 +82,9 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
         
+        newDriverAccountHelper.genderPicker.delegate = self
+        newDriverAccountHelper.genderPicker.dataSource = self
+        genderTextField.text = newDriverAccountHelper.genderPickerData.first
         genderTextField.inputView = newDriverAccountHelper.genderPicker
     }
     
@@ -101,45 +108,45 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
             let email = emailTextField.text, !email.isEmpty,
             let phone = phoneNumberTextField.text, !phone.isEmpty,
             let age = ageTextField.text, !age.isEmpty,
+            let gender = genderTextField.text, !gender.isEmpty,
             let carModel = carModelTextField.text, !carModel.isEmpty,
             let plaque = plaqueTextField.text, !plaque.isEmpty else {
-                showAlert(title: "Missing Information", message: "Please fill all fields of the form")
+                showAlertMsg(title: "Missing Information", message: "Please fill all fields of the form")
                 return
         }
         guard username.isAlphanumeric, password.isAlphanumeric else {
-            showAlert(title: "Invalid Username or Password", message: "Please use alphanumeric characters")
+            showAlertMsg(title: "Invalid Username or Password", message: "Please use alphanumeric characters")
             return
         }
         guard name.isAlphabetic, surname.isAlphabetic else {
-            showAlert(title: "Invalid Name or Surname", message: "Please use alphabetic characters")
+            showAlertMsg(title: "Invalid Name or Surname", message: "Please use alphabetic characters")
             return
         }
         guard email.isValidEmail else {
-            showAlert(title: "Invalid Email", message: "Please enter a valid email address")
+            showAlertMsg(title: "Invalid Email", message: "Please enter a valid email address")
             return
         }
         guard let userAge = Int(age) else {
-            showAlert(title: "Invalid Age", message: "Please enter your age as a number")
+            showAlertMsg(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
-        let gender = newDriverAccountHelper.selectedGender
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.setValue(true, forKey: "userLoggedIn")
+        userDefaults.setValue(true, forKey: "userIsDriver")
+        userDefaults.setValue(username, forKeyPath: "username")
         
         newDriverDataSource.addNewDriver(username: username, password: password, name: name, surname: surname, email: email,
                                             phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
         // feed e yolla
     }
     
-   
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toDriverHome" {
+            let destinationVc = segue.destination as! DriverHomeViewController
+            destinationVc.driverHomeDataSource.driver = newDriverDataSource.user
+        }
     }
-    */
 
 }
 
