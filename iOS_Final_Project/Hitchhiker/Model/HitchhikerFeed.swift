@@ -16,6 +16,7 @@ struct HitchhikerFeed : Codable{
     var id: Int
     var from: String
     var to: String
+    var distance: Double
     var startTime: String
     var endTime: String
     var availableSeatNumber: Int

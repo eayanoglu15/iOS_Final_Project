@@ -245,6 +245,8 @@ class DriverHomeViewController: UIViewController {
         if segue.identifier == "toNewTrip" {
             let destinationVc = segue.destination as! DriverNewTripViewController
             destinationVc.driverNewTripDataSource.driver = driverHomeDataSource.driver
+            destinationVc.driverNewTripDataSource.getFromTo()
+            
         }
         
         if segue.identifier == "toOtherProfileFromDriverHome" {

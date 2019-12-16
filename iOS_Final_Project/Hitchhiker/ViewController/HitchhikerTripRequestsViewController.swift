@@ -92,7 +92,7 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 cell.usernameLabel.text = trip.driverUserName
                 //cell.carModelLabel.text = trip.carModel
-                cell.carModelLabel.text = "Car model??"
+                cell.carModelLabel.text = trip.carModel
                 cell.statusLabel.text = "Accepted"
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
@@ -123,7 +123,7 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 cell.usernameLabel.text = trip.driverUserName
                 //cell.carModelLabel.text = trip.carModel
-                cell.carModelLabel.text = "Car model??"
+                cell.carModelLabel.text = trip.carModel
                 cell.statusLabel.text = "Waiting"
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
@@ -154,7 +154,7 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 cell.usernameLabel.text = trip.driverUserName
                 //cell.carModelLabel.text = trip.carModel
-                cell.carModelLabel.text = "Car model??"
+                cell.carModelLabel.text = trip.carModel
                 cell.statusLabel.text = "Rejected"
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to

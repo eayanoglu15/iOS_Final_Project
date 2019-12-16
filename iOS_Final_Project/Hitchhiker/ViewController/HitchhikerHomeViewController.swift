@@ -97,7 +97,10 @@ class HitchhikerHomeViewController: UIViewController {
     }
     
     @objc func reloadData() {
-        hitchhikerHomeDataSource.getPlannedTrips()
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            hitchhikerHomeDataSource.getPlannedTrips(hitchhikerName: username)
+        }
         hitchhikerHomeTableView.refreshControl?.endRefreshing()
         hitchhikerHomeTableView.reloadData()
     }
@@ -108,8 +111,9 @@ class HitchhikerHomeViewController: UIViewController {
         if let username = userDefaults.string(forKey: "username") {
             print("Username: ", username)
             hitchhikerHomeDataSource.getUser(username: username)
+            hitchhikerHomeDataSource.getPlannedTrips(hitchhikerName: username)
+              
         }
-        hitchhikerHomeDataSource.getPlannedTrips()
     }
     
     @objc func profileButtonTapped() {

@@ -8,6 +8,17 @@
 
 import UIKit
 
+extension DriverOtherProfileViewController : DriverOtherProfileDataSourceDelegate{
+    func otherUserLoaded() {
+        if let otherUser = driverOtherProfileDataSource.otherUser {
+            driverOtherProfileHelper.getInfoArray(user: otherUser)
+        }
+        infoTableView.reloadData()
+    }
+    
+    
+}
+
 class DriverOtherProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -27,7 +38,11 @@ class DriverOtherProfileViewController: UIViewController, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        driverOtherProfileDataSource.delegate = self
+        infoTableView.delegate = self
+        infoTableView.dataSource = self
+        driverOtherProfileDataSource.getOtherUser()
+        title = driverOtherProfileDataSource.otherUser?.username
         // Do any additional setup after loading the view.
     }
     
