@@ -61,6 +61,12 @@ class DriverVoteTableViewCell: UITableViewCell {
         voteStarFiveImageView.isUserInteractionEnabled = true
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+           super.setSelected(selected, animated: animated)
+
+           // Configure the view for the selected state
+       }
+    
     @objc func oneStarTapped()
     {
         print("oneStarTapped")
@@ -159,12 +165,6 @@ class DriverVoteTableViewCell: UITableViewCell {
         voteStarThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
         voteStarFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
         voteStarFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     private enum Constant {

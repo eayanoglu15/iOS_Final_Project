@@ -81,6 +81,11 @@ class HitchhikerHomeViewController: UIViewController {
             let destinationVc = segue.destination as! HitchhikerOtherProfileViewController
             destinationVc.hitchhikerOtherProfileDataSource.otherUsername = hitchhikerHomeHelper.selectedUsername ?? ""
         }
+        
+        if segue.identifier == "toHitchhikerRequests" {
+            let destinationVc = segue.destination as! HitchhikerTripRequestsViewController
+            destinationVc.hitchhikerTripRequestsDataSource.hitchhiker = hitchhikerHomeDataSource.hitchhiker
+        }
     }
 }
 

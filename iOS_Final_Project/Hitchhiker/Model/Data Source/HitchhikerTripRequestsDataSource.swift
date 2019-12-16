@@ -14,6 +14,8 @@ protocol HitchhikerTripRequestsDataSourceDelegate {
 }
 
 class HitchhikerTripRequestsDataSource {
+    var hitchhiker: User?
+    
     var delegate: HitchhikerTripRequestsDataSourceDelegate?
     
     var acceptedRequests = [HitchhikerTripRequest]()

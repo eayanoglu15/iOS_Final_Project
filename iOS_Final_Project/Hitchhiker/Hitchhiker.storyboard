@@ -852,8 +852,35 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TripRequestCell" rowHeight="331" id="Rqr-3Q-QoY" customClass="HitchhikerVoteTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="331"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="messageCell" id="kIz-aV-fmD" customClass="MessageTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="71"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kIz-aV-fmD" id="jJA-Qa-IJJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGz-O8-TFh">
+                                                    <rect key="frame" x="25" y="25" width="364" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pGz-O8-TFh" firstAttribute="top" secondItem="jJA-Qa-IJJ" secondAttribute="top" constant="25" id="295-35-alz"/>
+                                                <constraint firstItem="pGz-O8-TFh" firstAttribute="centerY" secondItem="jJA-Qa-IJJ" secondAttribute="centerY" id="NeP-Hz-t5y"/>
+                                                <constraint firstAttribute="trailing" secondItem="pGz-O8-TFh" secondAttribute="trailing" constant="25" id="hgO-bz-RBT"/>
+                                                <constraint firstItem="pGz-O8-TFh" firstAttribute="centerX" secondItem="jJA-Qa-IJJ" secondAttribute="centerX" id="i9z-pY-kse"/>
+                                                <constraint firstAttribute="bottom" secondItem="pGz-O8-TFh" secondAttribute="bottom" constant="25" id="qWW-Y5-xMp"/>
+                                                <constraint firstItem="pGz-O8-TFh" firstAttribute="leading" secondItem="jJA-Qa-IJJ" secondAttribute="leading" constant="25" id="szo-5E-jUP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageTextField" destination="pGz-O8-TFh" id="iPg-Wo-T53"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hitchhikerVoteCell" rowHeight="331" id="Rqr-3Q-QoY" customClass="HitchhikerVoteTableViewCell" customModule="iOS_Final_Project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99" width="414" height="331"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rqr-3Q-QoY" id="HkR-jo-6QI">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="331"/>

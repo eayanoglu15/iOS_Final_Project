@@ -154,6 +154,7 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 
+                cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
@@ -180,6 +181,7 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 
+                cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
@@ -196,6 +198,7 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 
+                cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
@@ -222,6 +225,7 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 
+                cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()

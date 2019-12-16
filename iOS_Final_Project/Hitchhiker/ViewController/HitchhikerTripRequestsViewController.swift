@@ -62,6 +62,13 @@ class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegat
         tripRequestTableView.refreshControl?.endRefreshing()
         tripRequestTableView.reloadData()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "toHitchhikerVotePage" {
+           let destinationVc = segue.destination as! HitchhikerVotePageViewController
+        destinationVc.hitchhikerVotePageDataSource.hitchhiker = hitchhikerTripRequestsDataSource.hitchhiker
+       }
+    }
 }
 
 extension HitchhikerTripRequestsViewController: UITableViewDataSource {
