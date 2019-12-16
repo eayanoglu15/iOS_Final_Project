@@ -85,29 +85,50 @@ class HitchhikerHomeDataSource {
         
     }
     
-    func getPlannedTrips() {
+    func getPlannedTrips(hitchhikerName: String) {
         let session = URLSession.shared
         let baseURL = "http://127.0.0.1:8080/"
         
-        if let url = URL(string: "\(baseURL)trip/getAllTrips") {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            let dataTask = session.dataTask(with: request) { (data, response, error) in
-                print("HERE: \(String.init(data: data!, encoding: .utf8))")
-                
-                let decoder = JSONDecoder()
-                let feedList = try! decoder.decode([HitchhikerFeed].self, from: data!)
-                
-                DispatchQueue.main.async {
-                    self.feedArray = feedList
-                    self.delegate?.hitchhikerFeedListLoaded()
-                }
-            }
-            
-            dataTask.resume()
-        }
+        let tripRequest = HitchhikerRequest(hitchhikerUserName: hitchhikerName)
+        
+      if let url = URL(string: "\(String(describing: baseURL))trip/getAllTrips") {
+                   var request = URLRequest(url: url)
+                   request.httpMethod = "POST"
+                   request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                   let encoder = JSONEncoder()
+                   let uploadData = try! encoder.encode(tripRequest)
+                   
+                   let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
+                       if let error = error {
+                           DispatchQueue.main.async {
+                               self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
+                           }
+                       } else {
+                           if let response = response as? HTTPURLResponse {
+                               let statusCode = response.statusCode
+                               print("statusCode: \(statusCode)")
+                               if statusCode == 500 {
+                                   DispatchQueue.main.async {
+                                       self.delegate?.showAlertMsg(title: "Error", message: "Status Code 500")
+                                   }
+                                   return
+                               }
+                           }
+                           if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                               print("data from getPlannedTrips: \(dataString)")
+                              let decoder = JSONDecoder()
+                                            let feedList = try! decoder.decode([HitchhikerFeed].self, from: data)
+                                            
+                                            DispatchQueue.main.async {
+                                                self.feedArray = feedList
+                                                self.delegate?.hitchhikerFeedListLoaded()
+                                            }
+                            
+                           }
+                       }
+                   }
+                   uploadTask.resume()
+               }
         
     }
     

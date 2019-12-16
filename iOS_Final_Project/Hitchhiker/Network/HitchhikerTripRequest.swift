@@ -18,4 +18,5 @@ struct HitchhikerTripRequest: Codable {
     var id: Int
     var driverUserName: String
     var rating: Double
+    var carModel: String
 }

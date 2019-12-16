@@ -30,10 +30,34 @@ class DriverNewTripDataSource {
     var delegate: DriverNewTripDataSourceDelegate?
     
     init() {
-        fromArray = ["Koç", "Batı", "Sarıyer", "Hacıosman"]
-        toArray = ["Koç", "Batı", "Sarıyer", "Hacıosman"]
+        self.fromArray = ["Koç", "Batı", "Sarıyer", "Hacıosman"]
+        self.toArray = ["Koç", "Batı", "Sarıyer", "Hacıosman"]
     }
-    
+    func getFromTo() {
+        let session = URLSession.shared
+        let baseURL = "http://127.0.0.1:8080/"
+        
+        if let url = URL(string: "\(baseURL)trip/getFromToLocations") {
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let dataTask = session.dataTask(with: request) { (data, response, error) in
+                print("HERE Other Data: \(String.init(data: data!, encoding: .utf8))")
+                
+                let decoder = JSONDecoder()
+                let response = try! decoder.decode(FromToResponse.self, from: data!)
+                
+                DispatchQueue.main.async {
+                    self.fromArray = response.fromToLocationList
+                    self.toArray = response.fromToLocationList
+                }
+            }
+            
+            dataTask.resume()
+        }
+        
+    }
     func createTrip(from: String, to: String, startTime: String, endTime: String, seatNum: Int, driverUsername: String) {
         
         let tripRequest = NewTripRequest(from: from, to: to, startTime: startTime, endTime: endTime, totalSeatNumber: seatNum, driverUserName: driverUsername)

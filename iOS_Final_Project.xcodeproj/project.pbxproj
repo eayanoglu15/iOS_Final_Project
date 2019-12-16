@@ -83,6 +83,7 @@
 		85FF13B023A6DA77005088BF /* HitchhikerVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13AF23A6DA77005088BF /* HitchhikerVoteTableViewCell.swift */; };
 		85FF13B223A6DB87005088BF /* HitchhikerVotePageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13B123A6DB87005088BF /* HitchhikerVotePageHelper.swift */; };
 		85FF13B423A6DB9D005088BF /* HitchhikerVotePageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13B323A6DB9D005088BF /* HitchhikerVotePageDataSource.swift */; };
+		9D9EEA0623A71CAA00098BEE /* FromToResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9EEA0523A71CAA00098BEE /* FromToResponse.swift */; };
 		9DBFA1A923A1703400466F65 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1A823A1703400466F65 /* ApiResponse.swift */; };
 		9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */; };
 		9DBFA1AD23A17ACF00466F65 /* CreateDriverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */; };
@@ -167,6 +168,7 @@
 		85FF13AF23A6DA77005088BF /* HitchhikerVoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVoteTableViewCell.swift; sourceTree = "<group>"; };
 		85FF13B123A6DB87005088BF /* HitchhikerVotePageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVotePageHelper.swift; sourceTree = "<group>"; };
 		85FF13B323A6DB9D005088BF /* HitchhikerVotePageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVotePageDataSource.swift; sourceTree = "<group>"; };
+		9D9EEA0523A71CAA00098BEE /* FromToResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromToResponse.swift; sourceTree = "<group>"; };
 		9DBFA1A823A1703400466F65 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHitchhikerRequest.swift; sourceTree = "<group>"; };
 		9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverRequest.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				8501CEEB23A51BA800872FEF /* DriverHomeResponse.swift */,
 				8501CEF123A533EF00872FEF /* TripAcceptionRequest.swift */,
 				8501CEF323A55AFC00872FEF /* NewTripRequest.swift */,
+				9D9EEA0523A71CAA00098BEE /* FromToResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				8557E9E623A16F9F00711497 /* HitchhikerTableViewCell.swift in Sources */,
 				854A44E72397C8AC00AFC20D /* String+Additions.swift in Sources */,
 				854A44DD2397C3CC00AFC20D /* User.swift in Sources */,
+				9D9EEA0623A71CAA00098BEE /* FromToResponse.swift in Sources */,
 				8557FEC4239FDB02005AB39C /* HitchhikerTripRequestTableViewCell.swift in Sources */,
 				855BB69C2396803C003A28EA /* InfoViewController.swift in Sources */,
 				854EF59923A1760B0085727F /* TripRequest.swift in Sources */,
@@ -761,8 +765,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6DAJCZY6KX;
 				INFOPLIST_FILE = iOS_Final_Project/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -782,8 +786,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6DAJCZY6KX;
 				INFOPLIST_FILE = iOS_Final_Project/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
