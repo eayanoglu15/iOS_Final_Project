@@ -8,58 +8,6 @@
 
 import UIKit
 
-extension HitchhikerHomeViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hitchhikerHomeDataSource.feedArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerHomeCell", for: indexPath) as! HitchhikerHomeTableViewCell
-        let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
-        let ratingImageNamesArray = hitchhikerHomeHelper.getRatingImageArray(rating: feed.rating)
-        
-        cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
-        cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
-        cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
-        cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
-        cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-        
-        cell.usernameLabel.text = feed.driverUserName
-        cell.carModelLabel.text = feed.carModel
-        cell.availableSeatsLabel.text = "\(feed.availableSeatNumber)"
-        cell.fromLabel.text = feed.from
-        cell.toLabel.text = feed.to
-        cell.minDepartureTimeLabel.text = feed.startTime.convertUtcToDisplay()
-        cell.maxDepartureTimeLabel.text = feed.endTime.convertUtcToDisplay()
-      /*  if let profileImage = feed.profileImage {
-            cell.profileImageView.image = profileImage
-        }
- */
-        return cell
-    }
-} 
-
-extension HitchhikerHomeViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-       let tripRequestAction = self.hitchhikerHomeDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
-        let swipeConfig = UISwipeActionsConfiguration(actions: [tripRequestAction])
-        return swipeConfig
- 
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //hitchhikerHomeHelper.setSelectedUser(indexPath: indexPath)
-        //router.route(to: .AccountDetails, from: self)
-        let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
-        hitchhikerHomeHelper.selectedUsername = feed.driverUserName
-        performSegue(withIdentifier: "toOtherProfile", sender: nil)
-    }
-}
-
 extension HitchhikerHomeViewController: HitchhikerHomeDataSourceDelegate {
     func showAlertMsg(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -96,15 +44,6 @@ class HitchhikerHomeViewController: UIViewController {
         hitchhikerHomeTableView.refreshControl = refreshControl
     }
     
-    @objc func reloadData() {
-        let userDefaults = UserDefaults.standard
-        if let username = userDefaults.string(forKey: "username") {
-            hitchhikerHomeDataSource.getPlannedTrips(hitchhikerName: username)
-        }
-        hitchhikerHomeTableView.refreshControl?.endRefreshing()
-        hitchhikerHomeTableView.reloadData()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let userDefaults = UserDefaults.standard
@@ -112,7 +51,6 @@ class HitchhikerHomeViewController: UIViewController {
             print("Username: ", username)
             hitchhikerHomeDataSource.getUser(username: username)
             hitchhikerHomeDataSource.getPlannedTrips(hitchhikerName: username)
-              
         }
     }
     
@@ -123,8 +61,16 @@ class HitchhikerHomeViewController: UIViewController {
     @objc func requestsButtonTapped() {
         performSegue(withIdentifier: "toHitchhikerRequests", sender: nil)
     }
-   
     
+    @objc func reloadData() {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            hitchhikerHomeDataSource.getPlannedTrips(hitchhikerName: username)
+        }
+        hitchhikerHomeTableView.refreshControl?.endRefreshing()
+        hitchhikerHomeTableView.reloadData()
+    }
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toHitchhikerProfile" {
             let destinationVc = segue.destination as! HitchhikerProfileViewController
@@ -135,5 +81,57 @@ class HitchhikerHomeViewController: UIViewController {
             let destinationVc = segue.destination as! HitchhikerOtherProfileViewController
             destinationVc.hitchhikerOtherProfileDataSource.otherUsername = hitchhikerHomeHelper.selectedUsername ?? ""
         }
+    }
+}
+
+extension HitchhikerHomeViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return hitchhikerHomeDataSource.feedArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerHomeCell", for: indexPath) as! HitchhikerHomeTableViewCell
+        let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
+        let ratingImageNamesArray = hitchhikerHomeHelper.getRatingImageArray(rating: feed.rating)
+        
+        cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+        cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+        cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+        cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+        cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+        
+        cell.usernameLabel.text = feed.driverUserName
+        cell.carModelLabel.text = feed.carModel
+        cell.availableSeatsLabel.text = "\(feed.availableSeatNumber)"
+        cell.fromLabel.text = feed.from
+        cell.toLabel.text = feed.to
+        cell.minDepartureTimeLabel.text = feed.startTime.convertUtcToDisplay()
+        cell.maxDepartureTimeLabel.text = feed.endTime.convertUtcToDisplay()
+      /*  if let profileImage = feed.profileImage {
+            cell.profileImageView.image = profileImage
+        }
+ */
+        return cell
+    }
+}
+
+extension HitchhikerHomeViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       let tripRequestAction = self.hitchhikerHomeDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [tripRequestAction])
+        return swipeConfig
+ 
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //hitchhikerHomeHelper.setSelectedUser(indexPath: indexPath)
+        //router.route(to: .AccountDetails, from: self)
+        let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
+        hitchhikerHomeHelper.selectedUsername = feed.driverUserName
+        performSegue(withIdentifier: "toOtherProfile", sender: nil)
     }
 }

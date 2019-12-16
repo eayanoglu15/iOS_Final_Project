@@ -18,7 +18,8 @@ extension DriverHomeViewController: DriverHomeDataSourceDelegate {
     }
     
     func showAlertMsg(title: String, message: String) {
-        showAlert(title: title, message: message)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
     }
     
     func loadHomePageData() {
@@ -207,6 +208,8 @@ class DriverHomeViewController: UIViewController {
     
     @IBOutlet weak var requestTableView: UITableView!
     
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Driver Home"
@@ -215,8 +218,11 @@ class DriverHomeViewController: UIViewController {
         requestTableView.dataSource = self
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New Feed", style: .plain, target: self, action: #selector(newFeedButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
         driverHomeDataSource.delegate = self
+        
+        refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
+        requestTableView.refreshControl = refreshControl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -227,13 +233,26 @@ class DriverHomeViewController: UIViewController {
         }
     }
     
+    @objc func voteTripButtonTapped() {
+        performSegue(withIdentifier: "toDriverVotePage", sender: nil)
+    }
+    
     @objc func profileButtonTapped() {
-        //navigationController?.popToRootViewController(animated: false)
         performSegue(withIdentifier: "toDriverProfile", sender: nil)
     }
     
     @objc func newFeedButtonTapped() {
         performSegue(withIdentifier: "toNewTrip", sender: nil)
+    }
+    
+    @objc func reloadData() {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            driverHomeDataSource.getUser(username: username)
+            driverHomeDataSource.getHomePageData(driverName: username)
+        }
+        requestTableView.refreshControl?.endRefreshing()
+        requestTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -249,16 +268,15 @@ class DriverHomeViewController: UIViewController {
             
         }
         
+        if segue.identifier == "toDriverVotePage" {
+            let destinationVc = segue.destination as! DriverVotePageViewController
+            destinationVc.driverVotePageDataSource.driver = driverHomeDataSource.driver
+        }
+        
         if segue.identifier == "toOtherProfileFromDriverHome" {
             let destinationVc = segue.destination as! DriverOtherProfileViewController
             destinationVc.driverOtherProfileDataSource.otherUsername = driverHomeHelper.selectedUsername
         }
-    }
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
     }
 }
 

@@ -20,6 +20,50 @@ extension HitchhikerTripRequestsViewController: HitchhikerTripRequestsDataSource
     }
 }
 
+class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegate {
+    @IBOutlet weak var tripRequestTableView: UITableView!
+    
+    var hitchhikerTripRequestsDataSource = HitchhikerTripRequestsDataSource()
+    var hitchhikerTripRequestsHelper = HitchhikerTripRequestsHelper()
+    
+    let refreshControl = UIRefreshControl()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Trip Requests"
+        // Do any additional setup after loading the view.
+        tripRequestTableView.dataSource = self
+        tripRequestTableView.delegate = self
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
+        
+        hitchhikerTripRequestsDataSource.delegate = self
+        
+        refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
+        tripRequestTableView.refreshControl = refreshControl
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            hitchhikerTripRequestsDataSource.getPageData(hitchhikerUsername: username)
+        }
+    }
+    
+    @objc func voteTripButtonTapped() {
+         performSegue(withIdentifier: "toHitchhikerVotePage", sender: nil)
+     }
+    
+    @objc func reloadData() {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            hitchhikerTripRequestsDataSource.getPageData(hitchhikerUsername: username)
+        }
+        tripRequestTableView.refreshControl?.endRefreshing()
+        tripRequestTableView.reloadData()
+    }
+}
+
 extension HitchhikerTripRequestsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -177,34 +221,4 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
             return cell
         }
     }
-}
-
-class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegate {
-    @IBOutlet weak var tripRequestTableView: UITableView!
-    
-    var hitchhikerTripRequestsDataSource = HitchhikerTripRequestsDataSource()
-    var hitchhikerTripRequestsHelper = HitchhikerTripRequestsHelper()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Trip Requests"
-        // Do any additional setup after loading the view.
-        tripRequestTableView.dataSource = self
-        tripRequestTableView.delegate = self
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
-        
-        hitchhikerTripRequestsDataSource.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let userDefaults = UserDefaults.standard
-        if let username = userDefaults.string(forKey: "username") {
-            hitchhikerTripRequestsDataSource.getPageData(hitchhikerUsername: username)
-        }
-    }
-    
-    @objc func voteTripButtonTapped() {
-         performSegue(withIdentifier: "toHitchhikerVotePage", sender: nil)
-     }
 }
