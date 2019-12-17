@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LoginDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
@@ -69,13 +70,15 @@ class LoginDataSource {
             uploadTask.resume()
         }
     }
+   
     
     func setUser(response: LoginResponse) -> Bool {
         let isDriver = response.driver
+        let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
         if isDriver {
-            user = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
+            user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
         } else {
-            user = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
+            user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
         }
         return isDriver
     }

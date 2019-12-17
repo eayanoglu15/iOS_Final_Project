@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct User {
-    var profileImage: UIImage?
+    var profileImage: UIImage
     let isDriver: Bool
     let username: String
     let password: String
@@ -28,7 +28,7 @@ struct User {
     let voteNumber: Int = 0
     let totalDistance: Int = 0
     
-    init(isDriver: Bool, username: String, password: String, name: String,
+    init(profileImage: UIImage, isDriver: Bool, username: String, password: String, name: String,
          surname: String, email: String, phonenumber: String,
          age: Int, sex: String) {
         self.isDriver = isDriver
@@ -40,9 +40,10 @@ struct User {
         self.phoneNumber = phonenumber
         self.age = age
         self.sex = sex
+        self.profileImage=profileImage
     }
     
-    init(isDriver: Bool, username: String, password: String, name: String,
+    init(profileImage: UIImage,isDriver: Bool, username: String, password: String, name: String,
          surname: String, email: String, phonenumber: String,
          age: Int, sex: String, carModel: String, plaque: String) {
         self.isDriver = isDriver
@@ -56,5 +57,6 @@ struct User {
         self.sex = sex
         self.carModel = carModel
         self.plaque = plaque
+        self.profileImage=profileImage
     }
 }

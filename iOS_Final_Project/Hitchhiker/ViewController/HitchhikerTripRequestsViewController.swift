@@ -149,11 +149,9 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                /*
-                 if let profileImage = trip.profileImage {
-                 cell.profileImageView.image = profileImage
-                 }
-                 */
+                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
+                cell.profileImageView.image = UIImage(data: dataDecoded)!
+                 
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -180,11 +178,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                /*
-                 if let profileImage = trip.profileImage {
-                 cell.profileImageView.image = profileImage
-                 }
-                 */
+                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
+                cell.profileImageView.image = UIImage(data: dataDecoded)!
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -211,11 +206,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                /*
-                 if let profileImage = trip.profileImage {
-                 cell.profileImageView.image = profileImage
-                 }
-                 */
+                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
+                cell.profileImageView.image = UIImage(data: dataDecoded)!
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell

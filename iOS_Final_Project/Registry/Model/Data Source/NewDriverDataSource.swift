@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 protocol NewDriverDataSourceDelegate {
     func showAlertMsg (title: String , message :String)
@@ -17,7 +19,8 @@ class NewDriverDataSource {
     var user: User?
     var delegate: NewDriverDataSourceDelegate?
     
-    func addNewDriver(username: String,
+    func addNewDriver(profileImage:String,
+        username: String,
                       password: String,
                       name: String,
                       surname: String,
@@ -29,7 +32,7 @@ class NewDriverDataSource {
                       gender: String) {
         
         let baseURL = "http://127.0.0.1:8080/users/"
-        let createDriverRequest = CreateDriverRequest(username: username, password: password, firstName: name, surname: surname, driver: true, email: email, phone: phonenumber, age: age, carModel: carModel, plaque: plaque, sex: gender)
+        let createDriverRequest = CreateDriverRequest(image: profileImage, username: username, password: password, firstName: name, surname: surname, driver: true, email: email, phone: phonenumber, age: age, carModel: carModel, plaque: plaque, sex: gender)
         
         let session = URLSession.shared
         
@@ -60,7 +63,9 @@ class NewDriverDataSource {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         if (response.success){
-                            self.user = User(isDriver: true, username: username, password: password, name:name, surname:surname,
+                            let dataDecoded:NSData = NSData(base64Encoded: profileImage, options: NSData.Base64DecodingOptions(rawValue: 0))!
+
+                            self.user = User(profileImage: UIImage(data: dataDecoded as Data)!,isDriver: true, username: username, password: password, name:name, surname:surname,
                                 email: email, phonenumber: phonenumber, age: age,
                                 sex: gender, carModel: carModel, plaque: plaque)
                             DispatchQueue.main.async {

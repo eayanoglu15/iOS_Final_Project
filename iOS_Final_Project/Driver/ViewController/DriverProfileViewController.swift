@@ -27,8 +27,10 @@ class DriverProfileViewController: UIViewController, UITableViewDelegate {
         if let driver = driverProfileDataSource.driver {
             driverProfileHelper.getInfoArray(driver: driver)
         }
+       
         if let username = driverProfileDataSource.driver?.username {
             title = username
+            profileImageView.image=driverProfileDataSource.driver?.profileImage
         }
         infoTableView.delegate = self
         infoTableView.dataSource = self

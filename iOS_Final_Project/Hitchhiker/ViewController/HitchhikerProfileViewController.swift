@@ -30,6 +30,7 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
         if let username = hitchhikerProfileDataSource.hitchhiker?.username {
             title = username
         }
+        profileImageView.image = hitchhikerProfileDataSource.hitchhiker?.profileImage
         infoTableView.delegate = self
         infoTableView.dataSource = self
         // Do any additional setup after loading the view.

@@ -16,4 +16,5 @@ struct TripRequest: Codable {
     let id: Int
     let hitchHikerUserName: String
     let rating: Double
+    let image: String
 }

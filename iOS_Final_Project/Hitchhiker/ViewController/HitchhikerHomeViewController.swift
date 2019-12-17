@@ -116,7 +116,10 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         cell.toLabel.text = feed.to
         cell.minDepartureTimeLabel.text = feed.startTime.convertUtcToDisplay()
         cell.maxDepartureTimeLabel.text = feed.endTime.convertUtcToDisplay()
-      /*  if let profileImage = feed.profileImage {
+        let dataDecoded : Data = Data(base64Encoded: feed.image, options: .ignoreUnknownCharacters)!
+        cell.profileImageView.image = UIImage(data: dataDecoded)!
+        
+        /*  if let profileImage = feed.profileImage {
             cell.profileImageView.image = profileImage
         }
  */
