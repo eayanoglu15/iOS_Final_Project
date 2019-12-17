@@ -13,10 +13,19 @@ extension DriverOtherProfileViewController : DriverOtherProfileDataSourceDelegat
         if let otherUser = driverOtherProfileDataSource.otherUser {
             driverOtherProfileHelper.getInfoArray(user: otherUser)
         }
+        if let user = driverOtherProfileDataSource.otherUser {
+            driverOtherProfileHelper.getInfoArray(user: user)
+            let ratingImageNamesArray = driverOtherProfileHelper.getRatingImageArray(rating: user.rating)
+            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+            ratingLabel.text = "\(user.rating) / 5"
+            votesLabel.text = "\(user.voteNumber) vote"
+        }
         infoTableView.reloadData()
     }
-    
-    
 }
 
 class DriverOtherProfileViewController: UIViewController, UITableViewDelegate {
@@ -42,9 +51,10 @@ class DriverOtherProfileViewController: UIViewController, UITableViewDelegate {
         infoTableView.delegate = self
         infoTableView.dataSource = self
         driverOtherProfileDataSource.getOtherUser()
-        title = driverOtherProfileDataSource.otherUser?.username
+        title = driverOtherProfileDataSource.otherUsername
         // Do any additional setup after loading the view.
     }
+    
     
 
     /*

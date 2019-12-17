@@ -24,16 +24,23 @@ class DriverProfileViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let driver = driverProfileDataSource.driver {
-            driverProfileHelper.getInfoArray(driver: driver)
-        }
-        if let username = driverProfileDataSource.driver?.username {
-            title = username
-        }
         infoTableView.delegate = self
         infoTableView.dataSource = self
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButtonTapped))
+        
+        if let driver = driverProfileDataSource.driver {
+            driverProfileHelper.getInfoArray(driver: driver)
+            title = driver.username
+            let ratingImageNamesArray = driverProfileHelper.getRatingImageArray(rating: driver.rating)
+            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+            ratingLabel.text = "\(driver.rating) / 5"
+            votesLabel.text = "\(driver.voteNumber) vote"
+        }
     }
     
     @objc func logOutButtonTapped() {

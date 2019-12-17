@@ -8,25 +8,6 @@
 
 import UIKit
 
-extension HitchhikerOtherProfileViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hitchhikerOtherProfileHelper.otherUserInfoArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoTableViewCell
-        let info = hitchhikerOtherProfileHelper.otherUserInfoArray[indexPath.row]
-        cell.variableLabel.text = info.0
-        cell.valueLabel.text = info.1
-        return cell
-    }
-}
-
-
 extension HitchhikerOtherProfileViewController : HitchhikerOtherProfileDataSourceDelegate{
     func otherUserLoaded() {
         if let otherUser = hitchhikerOtherProfileDataSource.otherUser {
@@ -34,8 +15,6 @@ extension HitchhikerOtherProfileViewController : HitchhikerOtherProfileDataSourc
         }
         infoTableView.reloadData()
     }
-    
-    
 }
 
 class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegate {
@@ -63,6 +42,17 @@ class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegat
         hitchhikerOtherProfileDataSource.getOtherUser()
         title = hitchhikerOtherProfileDataSource.otherUser?.username
         // Do any additional setup after loading the view.
+        if let user = hitchhikerOtherProfileDataSource.otherUser {
+            hitchhikerOtherProfileHelper.getInfoArray(user: user)
+            let ratingImageNamesArray = hitchhikerOtherProfileHelper.getRatingImageArray(rating: user.rating)
+            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+            ratingLabel.text = "\(user.rating) / 5"
+            votesLabel.text = "\(user.voteNumber) vote"
+        }
     }
     
     
@@ -80,4 +70,22 @@ class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegat
     }
     */
 
+}
+
+extension HitchhikerOtherProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return hitchhikerOtherProfileHelper.otherUserInfoArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoTableViewCell
+        let info = hitchhikerOtherProfileHelper.otherUserInfoArray[indexPath.row]
+        cell.variableLabel.text = info.0
+        cell.valueLabel.text = info.1
+        return cell
+    }
 }

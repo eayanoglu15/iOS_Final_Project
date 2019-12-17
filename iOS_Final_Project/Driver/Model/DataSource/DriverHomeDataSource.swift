@@ -89,6 +89,7 @@ class DriverHomeDataSource {
     }
     
     func getUser(username: String) {
+        print("getUser")
         let session = URLSession.shared
         let baseURL = "http://127.0.0.1:8080/"
         
@@ -196,6 +197,7 @@ class DriverHomeDataSource {
     
     
     func getHomePageData(driverName: String) {
+        print("getHomePageData")
         let baseURL = "http://127.0.0.1:8080/"
         let session = URLSession.shared
         

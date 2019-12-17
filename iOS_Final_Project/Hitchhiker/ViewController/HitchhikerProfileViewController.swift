@@ -34,6 +34,18 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
         infoTableView.dataSource = self
         // Do any additional setup after loading the view.
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButtonTapped))
+        
+        if let user = hitchhikerProfileDataSource.hitchhiker {
+            hitchhikerProfileHelper.getInfoArray(hitchhiker: user)
+            let ratingImageNamesArray = hitchhikerProfileHelper.getRatingImageArray(rating: user.rating)
+            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+            ratingLabel.text = "\(user.rating) / 5"
+            votesLabel.text = "\(user.voteNumber) vote"
+        }
     }
     
     @objc func logOutButtonTapped() {

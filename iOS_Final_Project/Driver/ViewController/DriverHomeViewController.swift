@@ -27,6 +27,85 @@ extension DriverHomeViewController: DriverHomeDataSourceDelegate {
     }
 }
 
+class DriverHomeViewController: UIViewController {
+    var driverHomeHelper = DriverHomeHelper()
+    var driverHomeDataSource = DriverHomeDataSource()
+    
+    @IBOutlet weak var requestTableView: UITableView!
+    
+    let refreshControl = UIRefreshControl()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Driver Home"
+        // Do any additional setup after loading the view.
+        requestTableView.delegate = self
+        requestTableView.dataSource = self
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
+        driverHomeDataSource.delegate = self
+        
+        refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
+        requestTableView.refreshControl = refreshControl
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            driverHomeDataSource.getUser(username: username)
+            driverHomeDataSource.getHomePageData(driverName: username)
+        }
+    }
+    
+    @objc func voteTripButtonTapped() {
+        performSegue(withIdentifier: "toDriverVotePage", sender: nil)
+    }
+    
+    @objc func profileButtonTapped() {
+        performSegue(withIdentifier: "toDriverProfile", sender: nil)
+    }
+    
+    @objc func newFeedButtonTapped() {
+        performSegue(withIdentifier: "toNewTrip", sender: nil)
+    }
+    
+    @objc func reloadData() {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            driverHomeDataSource.getUser(username: username)
+            driverHomeDataSource.getHomePageData(driverName: username)
+        }
+        requestTableView.refreshControl?.endRefreshing()
+        requestTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDriverProfile" {
+            let destinationVc = segue.destination as! DriverProfileViewController
+            destinationVc.driverProfileDataSource.driver = driverHomeDataSource.driver
+        }
+        
+        if segue.identifier == "toNewTrip" {
+            let destinationVc = segue.destination as! DriverNewTripViewController
+            destinationVc.driverNewTripDataSource.driver = driverHomeDataSource.driver
+            destinationVc.driverNewTripDataSource.getFromTo()
+            
+        }
+        
+        if segue.identifier == "toDriverVotePage" {
+            let destinationVc = segue.destination as! DriverVotePageViewController
+            destinationVc.driverVotePageDataSource.driver = driverHomeDataSource.driver
+        }
+        
+        if segue.identifier == "toOtherProfileFromDriverHome" {
+            let destinationVc = segue.destination as! DriverOtherProfileViewController
+            destinationVc.driverOtherProfileDataSource.otherUsername = driverHomeHelper.selectedUsername
+        }
+    }
+}
+
+
 extension DriverHomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -181,6 +260,7 @@ extension DriverHomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("status: ", driverHomeDataSource.status)
         switch driverHomeDataSource.status {
         case Status.noTrip:
             return
@@ -189,94 +269,21 @@ extension DriverHomeViewController: UITableViewDelegate {
         case Status.allWaiting:
             let hitchhikerRequest = driverHomeDataSource.waitingRequests[indexPath.row]
             driverHomeHelper.selectedUsername = hitchhikerRequest.hitchHikerUserName
+            print("driverHomeHelper.selectedUsername: ", driverHomeHelper.selectedUsername)
+            print("hitchhikerRequest.hitchHikerUserName: ", hitchhikerRequest.hitchHikerUserName)
             performSegue(withIdentifier: "toOtherProfileFromDriverHome", sender: nil)
         case Status.acceptedAndWaiting:
             let hitchhikerRequest = (indexPath.section == 0) ? driverHomeDataSource.acceptedRequests[indexPath.row] : driverHomeDataSource.waitingRequests[indexPath.row]
             driverHomeHelper.selectedUsername = hitchhikerRequest.hitchHikerUserName
+            print("driverHomeHelper.selectedUsername: ", driverHomeHelper.selectedUsername)
+            print("hitchhikerRequest.hitchHikerUserName: ", hitchhikerRequest.hitchHikerUserName)
             performSegue(withIdentifier: "toOtherProfileFromDriverHome", sender: nil)
         case Status.allAccepted:
             let hitchhikerRequest = driverHomeDataSource.acceptedRequests[indexPath.row]
             driverHomeHelper.selectedUsername = hitchhikerRequest.hitchHikerUserName
+            print("driverHomeHelper.selectedUsername: ", driverHomeHelper.selectedUsername)
+            print("hitchhikerRequest.hitchHikerUserName: ", hitchhikerRequest.hitchHikerUserName)
             performSegue(withIdentifier: "toOtherProfileFromDriverHome", sender: nil)
         }
     }
 }
-
-class DriverHomeViewController: UIViewController {
-    var driverHomeHelper = DriverHomeHelper()
-    var driverHomeDataSource = DriverHomeDataSource()
-    
-    @IBOutlet weak var requestTableView: UITableView!
-    
-    let refreshControl = UIRefreshControl()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Driver Home"
-        // Do any additional setup after loading the view.
-        requestTableView.delegate = self
-        requestTableView.dataSource = self
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
-        driverHomeDataSource.delegate = self
-        
-        refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
-        requestTableView.refreshControl = refreshControl
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let userDefaults = UserDefaults.standard
-        if let username = userDefaults.string(forKey: "username") {
-            driverHomeDataSource.getUser(username: username)
-            driverHomeDataSource.getHomePageData(driverName: username)
-        }
-    }
-    
-    @objc func voteTripButtonTapped() {
-        performSegue(withIdentifier: "toDriverVotePage", sender: nil)
-    }
-    
-    @objc func profileButtonTapped() {
-        performSegue(withIdentifier: "toDriverProfile", sender: nil)
-    }
-    
-    @objc func newFeedButtonTapped() {
-        performSegue(withIdentifier: "toNewTrip", sender: nil)
-    }
-    
-    @objc func reloadData() {
-        let userDefaults = UserDefaults.standard
-        if let username = userDefaults.string(forKey: "username") {
-            driverHomeDataSource.getUser(username: username)
-            driverHomeDataSource.getHomePageData(driverName: username)
-        }
-        requestTableView.refreshControl?.endRefreshing()
-        requestTableView.reloadData()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDriverProfile" {
-            let destinationVc = segue.destination as! DriverProfileViewController
-            destinationVc.driverProfileDataSource.driver = driverHomeDataSource.driver
-        }
-        
-        if segue.identifier == "toNewTrip" {
-            let destinationVc = segue.destination as! DriverNewTripViewController
-            destinationVc.driverNewTripDataSource.driver = driverHomeDataSource.driver
-            destinationVc.driverNewTripDataSource.getFromTo()
-            
-        }
-        
-        if segue.identifier == "toDriverVotePage" {
-            let destinationVc = segue.destination as! DriverVotePageViewController
-            destinationVc.driverVotePageDataSource.driver = driverHomeDataSource.driver
-        }
-        
-        if segue.identifier == "toOtherProfileFromDriverHome" {
-            let destinationVc = segue.destination as! DriverOtherProfileViewController
-            destinationVc.driverOtherProfileDataSource.otherUsername = driverHomeHelper.selectedUsername
-        }
-    }
-}
-
