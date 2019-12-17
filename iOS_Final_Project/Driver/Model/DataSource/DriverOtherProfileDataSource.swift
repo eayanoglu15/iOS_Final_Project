@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DriverOtherProfileDataSourceDelegate {
     func otherUserLoaded()
@@ -45,10 +46,11 @@ class DriverOtherProfileDataSource {
     
     func setUser(response: LoginResponse) {
           let isDriver = response.driver
+        let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
           if isDriver {
-              otherUser = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
+              otherUser = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
           } else {
-              otherUser = User(isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
+              otherUser = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
           }
       }
 }

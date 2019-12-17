@@ -25,4 +25,5 @@ struct LoginResponse: Codable {
     let totalDistance: Double      //
     let id: Int                 //
     let version: String         //
+    let image:String
 }

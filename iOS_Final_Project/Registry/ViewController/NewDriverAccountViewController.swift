@@ -101,7 +101,8 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
-        guard let username = usernameTextField.text, !username.isEmpty,
+        guard let profileImage=profileImageView.image,
+            let username = usernameTextField.text, !username.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
             let name = nameTextField.text, !name.isEmpty,
             let surname = surnameTextField.text, !surname.isEmpty,
@@ -130,13 +131,15 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
             showAlertMsg(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
-        
+        let profileImageData:NSData = profileImage.resizedTo1MB()?.pngData() as! NSData
+        let strBase64 = profileImageData.base64EncodedString(options: .lineLength64Characters)
+        print(strBase64)
         let userDefaults = UserDefaults.standard
         userDefaults.setValue(true, forKey: "userLoggedIn")
         userDefaults.setValue(true, forKey: "userIsDriver")
         userDefaults.setValue(username, forKeyPath: "username")
         
-        newDriverDataSource.addNewDriver(username: username, password: password, name: name, surname: surname, email: email,
+        newDriverDataSource.addNewDriver(profileImage: strBase64, username: username, password: password, name: name, surname: surname, email: email,
                                             phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
         // feed e yolla
     }

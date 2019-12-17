@@ -12,8 +12,10 @@ extension HitchhikerOtherProfileViewController : HitchhikerOtherProfileDataSourc
     func otherUserLoaded() {
         if let otherUser = hitchhikerOtherProfileDataSource.otherUser {
             hitchhikerOtherProfileHelper.getInfoArray(user: otherUser)
+            profileImageView.image=otherUser.profileImage
         }
         infoTableView.reloadData()
+        
     }
 }
 

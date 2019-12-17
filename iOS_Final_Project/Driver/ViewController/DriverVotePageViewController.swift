@@ -159,7 +159,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                
+                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
+                cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.delegate = self
                 cell.tripId = trip.id
                 
@@ -180,7 +181,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-                
+                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
+                cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
@@ -203,7 +205,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                
+                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
+                cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.delegate = self
                 cell.tripId = trip.id
                 
@@ -224,7 +227,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-                
+                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
+                cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to

@@ -94,6 +94,7 @@
 		9DBFA1A923A1703400466F65 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1A823A1703400466F65 /* ApiResponse.swift */; };
 		9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */; };
 		9DBFA1AD23A17ACF00466F65 /* CreateDriverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */; };
+		9DDDD92423A83BA400A62815 /* Image+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDD92323A83BA400A62815 /* Image+Additions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +187,7 @@
 		9DBFA1A823A1703400466F65 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHitchhikerRequest.swift; sourceTree = "<group>"; };
 		9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverRequest.swift; sourceTree = "<group>"; };
+		9DDDD92323A83BA400A62815 /* Image+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Additions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +387,7 @@
 			children = (
 				854A44E62397C8AC00AFC20D /* String+Additions.swift */,
 				85056BDB23A2629500CD1C2E /* Date+Additions.swift */,
+				9DDDD92323A83BA400A62815 /* Image+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				85FF13AA23A699AA005088BF /* HitchhikerRequestsResponse.swift in Sources */,
 				8501CEF423A55AFC00872FEF /* NewTripRequest.swift in Sources */,
 				9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */,
+				9DDDD92423A83BA400A62815 /* Image+Additions.swift in Sources */,
 				853BC580239A978E00EC84F8 /* HitchhikerHomeHelper.swift in Sources */,
 				8501CEEE23A5300100872FEF /* MessageTableViewCell.swift in Sources */,
 				854EF5A123A194440085727F /* DriverNewTripViewController.swift in Sources */,

@@ -20,4 +20,5 @@ struct HitchhikerFeed : Codable{
     var startTime: String
     var endTime: String
     var availableSeatNumber: Int
+    var image: String
 }

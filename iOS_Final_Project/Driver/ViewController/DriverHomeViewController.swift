@@ -187,7 +187,8 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            
+            let dataDecoded : Data = Data(base64Encoded: tripRequest.image, options: .ignoreUnknownCharacters)!
+            cell.profileImageView.image = UIImage(data: dataDecoded)!
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
             return cell
@@ -209,7 +210,8 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            
+            let dataDecoded : Data = Data(base64Encoded: tripRequest.image, options: .ignoreUnknownCharacters)!
+            cell.profileImageView.image = UIImage(data: dataDecoded)!
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
             return cell
@@ -226,7 +228,8 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            
+            let dataDecoded : Data = Data(base64Encoded: tripRequest.image, options: .ignoreUnknownCharacters)!
+            cell.profileImageView.image = UIImage(data: dataDecoded)!
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
             return cell

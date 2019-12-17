@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 protocol NewHitchhikerDataSourceDelegate {
     func showAlertMsg (title: String , message :String)
     func goToHomePage()
@@ -17,7 +17,8 @@ class NewHitchhikerDataSource {
     var user: User?
     var delegate: NewHitchhikerDataSourceDelegate?
     
-    func addNewHitchihiker(username: String,
+    func addNewHitchihiker(profileImage:String,
+                           username: String,
                            password: String,
                            name: String,
                            surname: String,
@@ -26,7 +27,7 @@ class NewHitchhikerDataSource {
                            age: Int,
                            gender: String) {
          let baseURL = "http://127.0.0.1:8080/users/"
-         let createHitchHikerRequest = CreateHitchhikerRequest(username: username, password: password, firstName: name, surname: surname, driver: false, email: email, phone: phonenumber, age: age, sex: gender)
+        let createHitchHikerRequest = CreateHitchhikerRequest(image:profileImage, username: username, password: password, firstName: name, surname: surname, driver: false, email: email, phone: phonenumber, age: age, sex: gender)
         let session = URLSession.shared
         
         if let url = URL(string: "\(String(describing: baseURL))newUser") {
@@ -56,7 +57,8 @@ class NewHitchhikerDataSource {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         if (response.success){
-                            self.user = User(isDriver: false, username: username, password: password,
+                            let dataDecoded : Data = Data(base64Encoded:profileImage, options: .ignoreUnknownCharacters)!
+                            self.user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: false, username: username, password: password,
                             name: name, surname: surname, email: email,
                             phonenumber: phonenumber, age: age, sex: gender)
                             DispatchQueue.main.async {

@@ -9,6 +9,7 @@
 import Foundation
 
 struct CreateHitchhikerRequest: Codable {
+    let image:String
     let username: String
     let password: String
     let firstName: String
