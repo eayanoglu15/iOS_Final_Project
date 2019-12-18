@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension HitchhikerEditProfileViewController: HitchhikerEditProfileDataSourceDelegate {
+    func showAlertMsg(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+}
+
 class HitchhikerEditProfileViewController: BaseScrollViewController, UITextFieldDelegate {
     var hitchhikerEditProfileHelper = HitchhikerEditProfileHelper()
     var hitchhikerEditProfileDataSource = HitchhikerEditProfileDataSource()
@@ -26,6 +35,7 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
         title = "Edit Profile"
         // Do any additional setup after loading the view.
         // Assign Text Field Delegates
+        hitchhikerEditProfileDataSource.delegate = self
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         nameTextField.delegate = self
@@ -75,13 +85,17 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
             showAlert(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
-        let gender = genderTextField.text
+        guard let gender = genderTextField.text else {
+            showAlert(title: "Invalid Gender", message: "Please enter a gender")
+            return
+             }
         
         // UPDATE USER
-        /*
-        newHitchhikerDataSource.addNewHitchihiker(username: username, password: password, name: name, surname: surname, email: email,
-        phonenumber: phone, age: userAge, gender: gender)
-        */
+        let id = 0
+        let userImageString = "Invalid Age" //Change both of them
+        hitchhikerEditProfileDataSource.updateHitchihiker(id: id, username: username, password: password, name: name, surname: surname, email: email,
+        phonenumber: phone, age: age, gender: gender)
+        
         let userDefaults = UserDefaults.standard
         userDefaults.setValue(username, forKeyPath: "username")
         

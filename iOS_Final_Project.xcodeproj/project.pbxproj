@@ -95,6 +95,8 @@
 		9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */; };
 		9DBFA1AD23A17ACF00466F65 /* CreateDriverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */; };
 		9DDDD92423A83BA400A62815 /* Image+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDD92323A83BA400A62815 /* Image+Additions.swift */; };
+		9DDDD92623A8F78D00A62815 /* HitchhikerUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDD92523A8F78D00A62815 /* HitchhikerUpdateRequest.swift */; };
+		9DDDD92823A8FD8400A62815 /* DriverUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDD92723A8FD8400A62815 /* DriverUpdateRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +190,8 @@
 		9DBFA1AA23A17A3700466F65 /* CreateHitchhikerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHitchhikerRequest.swift; sourceTree = "<group>"; };
 		9DBFA1AC23A17ACF00466F65 /* CreateDriverRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDriverRequest.swift; sourceTree = "<group>"; };
 		9DDDD92323A83BA400A62815 /* Image+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Additions.swift"; sourceTree = "<group>"; };
+		9DDDD92523A8F78D00A62815 /* HitchhikerUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerUpdateRequest.swift; sourceTree = "<group>"; };
+		9DDDD92723A8FD8400A62815 /* DriverUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverUpdateRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +208,7 @@
 		8501CEE823A51B0D00872FEF /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9DDDD92723A8FD8400A62815 /* DriverUpdateRequest.swift */,
 				8501CEE923A51B7500872FEF /* DriverHomeRequest.swift */,
 				8501CEEB23A51BA800872FEF /* DriverHomeResponse.swift */,
 				8501CEF123A533EF00872FEF /* TripAcceptionRequest.swift */,
@@ -493,6 +498,7 @@
 				85FF13A923A699AA005088BF /* HitchhikerRequestsResponse.swift */,
 				85FF13AB23A6C916005088BF /* HitchhikerMakeTripRequest.swift */,
 				85BCA87923A8200C009206B1 /* HitchhikerVoteResponse.swift */,
+				9DDDD92523A8F78D00A62815 /* HitchhikerUpdateRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -585,6 +591,7 @@
 				85BCA87623A7E1F2009206B1 /* DriverVoteResponse.swift in Sources */,
 				8501CEEA23A51B7500872FEF /* DriverHomeRequest.swift in Sources */,
 				853BC57A239A93DC00EC84F8 /* HitchhikerHomeDataSource.swift in Sources */,
+				9DDDD92623A8F78D00A62815 /* HitchhikerUpdateRequest.swift in Sources */,
 				8574494F23A2DF9E000B0B71 /* DriverProfileHelper.swift in Sources */,
 				8505DE7223A134A7005ACD62 /* NewHitchhikerDataSource.swift in Sources */,
 				859B01862397E70400DE9EEC /* NewDriverAccountHelper.swift in Sources */,
@@ -644,6 +651,7 @@
 				8595709623A2F0D400C7FAFB /* DriverOtherProfileViewController.swift in Sources */,
 				85BCA86E23A7DC74009206B1 /* DriverVotePageViewController.swift in Sources */,
 				85BCA87823A80D2E009206B1 /* VoteRequest.swift in Sources */,
+				9DDDD92823A8FD8400A62815 /* DriverUpdateRequest.swift in Sources */,
 				85FF13AA23A699AA005088BF /* HitchhikerRequestsResponse.swift in Sources */,
 				8501CEF423A55AFC00872FEF /* NewTripRequest.swift in Sources */,
 				9DBFA1AB23A17A3700466F65 /* CreateHitchhikerRequest.swift in Sources */,

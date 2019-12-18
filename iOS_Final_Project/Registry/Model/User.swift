@@ -27,8 +27,8 @@ struct User {
     let rating: Double = 0
     let voteNumber: Int = 0
     let totalDistance: Int = 0
-    
-    init(profileImage: UIImage, isDriver: Bool, username: String, password: String, name: String,
+    let id:Int = 0
+    init(profileImage: UIImage, isDriver: Bool,username: String, password: String, name: String,
          surname: String, email: String, phonenumber: String,
          age: Int, sex: String) {
         self.isDriver = isDriver

@@ -8,6 +8,14 @@
 
 import UIKit
 
+extension DriverEditProfileViewController: DriverEditProfileDataSourceDelegate {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+}
 class DriverEditProfileViewController: BaseScrollViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -36,7 +44,7 @@ class DriverEditProfileViewController: BaseScrollViewController, UITextFieldDele
         ageTextField.delegate = self
         carModelTextField.delegate = self
         carPlaqueTextField.delegate = self
-        
+        driverEditProfileDataSource.delegate = self
         passwordTextField.isSecureTextEntry = true
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
@@ -44,10 +52,69 @@ class DriverEditProfileViewController: BaseScrollViewController, UITextFieldDele
         driverEditProfileHelper.genderPicker.delegate = self
         driverEditProfileHelper.genderPicker.dataSource = self
         genderTextField.inputView = driverEditProfileHelper.genderPicker
+        if let user = driverEditProfileDataSource.driver {
+                   showUserInfo(user: user)
+               }
     }
-    
+    func showUserInfo(user: User) {
+           usernameTextField.text = user.username
+           passwordTextField.text = user.password
+           nameTextField.text = user.firstName
+           surnameTextField.text = user.surname
+           emailTextField.text = user.email
+           phoneNumberTextField.text = user.phoneNumber
+           ageTextField.text = String(user.age)
+           genderTextField.text = user.sex
+           carModelTextField.text=user.carModel
+          carPlaqueTextField.text=user.plaque
+       }
+       
     @IBAction func saveButtonTapped(_ sender: Any) {
-        
+        guard let username = usernameTextField.text, !username.isEmpty,
+                   let password = passwordTextField.text, !password.isEmpty,
+                   let name = nameTextField.text, !name.isEmpty,
+                   let surname = surnameTextField.text, !surname.isEmpty,
+                   let email = emailTextField.text, !email.isEmpty,
+                   let phone = phoneNumberTextField.text, !phone.isEmpty,
+                   let plaque = carPlaqueTextField.text, !plaque.isEmpty,
+                   let carModel = carModelTextField.text, !carModel.isEmpty,
+                   let ageText = ageTextField.text, !ageText.isEmpty else {
+                       showAlert(title: "Missing Information", message: "Please fill all fields of the form")
+                       return
+               }
+               guard username.isAlphanumeric, password.isAlphanumeric else {
+                   showAlert(title: "Invalid Username or Password", message: "Please use alphanumeric characters")
+                   return
+               }
+               guard name.isAlphabetic, surname.isAlphabetic else {
+                   showAlert(title: "Invalid Name or Surname", message: "Please use alphabetic characters")
+                   return
+               }
+               guard email.isValidEmail else {
+                   showAlert(title: "Invalid Email", message: "Please enter a valid email address")
+                   return
+               }
+               guard let age = Int(ageText) else {
+                   showAlert(title: "Invalid Age", message: "Please enter your age as a number")
+                   return
+               }
+               guard let gender = genderTextField.text else {
+                   showAlert(title: "Invalid Gender", message: "Please enter a gender")
+                   return
+                    }
+               
+               // UPDATE USER
+               let id = 0
+            driverEditProfileDataSource.updateDriver(id: id, username: username, password: password, name: name, surname: surname, email: email,
+                                                 phonenumber: phone, age: age, gender: gender,carModel:carModel,plaque:plaque)
+            
+            
+          
+               
+               let userDefaults = UserDefaults.standard
+               userDefaults.setValue(username, forKeyPath: "username")
+               
+               self.navigationController?.popViewController(animated: true)
     }
     
     /*
