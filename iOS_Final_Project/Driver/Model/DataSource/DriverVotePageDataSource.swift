@@ -81,7 +81,7 @@ class DriverVotePageDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(DriverVoteResponse.self, from: data)
                         

@@ -180,5 +180,8 @@ class HitchhikerHomeDataSource {
         let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
         hitchhiker = User(profileImage:UIImage(data: dataDecoded)!,isDriver: false, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
         self.hitchhiker?.id = response.id
-    }
+        hitchhiker?.rating=response.point
+        hitchhiker?.voteNumber=response.numberRevieved
+        }
+    
 }

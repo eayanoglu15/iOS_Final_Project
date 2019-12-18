@@ -26,4 +26,5 @@ struct GetUserResponse: Codable {
     let id: Int                 //
     let version: String         //
     let image: String
+    
 }

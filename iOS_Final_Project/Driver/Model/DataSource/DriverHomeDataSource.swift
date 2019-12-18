@@ -146,9 +146,10 @@ class DriverHomeDataSource {
         
         let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
         driver = User(profileImage:UIImage(data: dataDecoded)!,isDriver: true, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
-        if var user = driver {
-            user.id = response.id
-        }
+            driver?.rating=response.point
+            driver?.voteNumber=response.numberRevieved
+            driver?.id = response.id
+        
     }
     
     // removeCell
