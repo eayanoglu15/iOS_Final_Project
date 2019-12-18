@@ -58,6 +58,10 @@ class NewHitchhikerDataSource {
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         if (response.success){
                             let dataDecoded : Data = Data(base64Encoded:profileImage, options: .ignoreUnknownCharacters)!
+                            let userDefaults = UserDefaults.standard
+                            userDefaults.setValue(true, forKey: "userLoggedIn")
+                            userDefaults.setValue(false, forKey: "userIsDriver")
+                            userDefaults.setValue(username, forKeyPath: "username")
                             self.user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: false, username: username, password: password,
                             name: name, surname: surname, email: email,
                             phonenumber: phonenumber, age: age, sex: gender)

@@ -130,11 +130,6 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         }
         let profileImageData:NSData = profileImage.resizedTo1MB()?.pngData()! as! NSData
         let strBase64 = profileImageData.base64EncodedString(options: .lineLength64Characters)
-
-        let userDefaults = UserDefaults.standard
-        userDefaults.setValue(true, forKey: "userLoggedIn")
-        userDefaults.setValue(false, forKey: "userIsDriver")
-        userDefaults.setValue(username, forKeyPath: "username")
         
         newHitchhikerDataSource.addNewHitchihiker(profileImage: strBase64, username: username, password: password, name: name, surname: surname, email: email,
                                                   phonenumber: phone, age: userAge, gender: gender)

@@ -23,7 +23,7 @@ struct User {
     // If user is a driver
     var carModel: String?
     var plaque: String?
-    
+    var id: Int?
     let rating: Double = 0
     let voteNumber: Int = 0
     let totalDistance: Int = 0

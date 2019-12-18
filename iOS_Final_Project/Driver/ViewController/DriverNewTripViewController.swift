@@ -90,8 +90,9 @@ class DriverNewTripViewController: BaseScrollViewController {
         let strDate = dateFormatter.string(from: driverNewTripHelper.startTimePicker.date)
         startTimeTextField.text = strDate
         
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = .current
+        //dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
         driverNewTripDataSource.startTime = dateFormatter.string(from: driverNewTripHelper.startTimePicker.date)
         
         print("Selected Date: ", driverNewTripDataSource.startTime)
@@ -104,8 +105,8 @@ class DriverNewTripViewController: BaseScrollViewController {
         let strDate = dateFormatter.string(from: driverNewTripHelper.endTimePicker.date)
         endTimeTextField.text = strDate
         
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = .current
         driverNewTripDataSource.endTime = dateFormatter.string(from: driverNewTripHelper.endTimePicker.date)
         
         print("Selected Date: ", driverNewTripDataSource.endTime)

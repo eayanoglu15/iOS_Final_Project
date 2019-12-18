@@ -134,10 +134,6 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         let profileImageData:NSData = profileImage.resizedTo1MB()?.pngData() as! NSData
         let strBase64 = profileImageData.base64EncodedString(options: .lineLength64Characters)
         print(strBase64)
-        let userDefaults = UserDefaults.standard
-        userDefaults.setValue(true, forKey: "userLoggedIn")
-        userDefaults.setValue(true, forKey: "userIsDriver")
-        userDefaults.setValue(username, forKeyPath: "username")
         
         newDriverDataSource.addNewDriver(profileImage: strBase64, username: username, password: password, name: name, surname: surname, email: email,
                                             phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)

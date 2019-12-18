@@ -54,6 +54,7 @@ class DriverHomeViewController: UIViewController {
         let userDefaults = UserDefaults.standard
         if let username = userDefaults.string(forKey: "username") {
             driverHomeDataSource.getUser(username: username)
+            
             driverHomeDataSource.getHomePageData(driverName: username)
         }
     }
