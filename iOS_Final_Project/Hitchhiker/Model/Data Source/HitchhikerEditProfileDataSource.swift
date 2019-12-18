@@ -14,18 +14,16 @@ protocol HitchhikerEditProfileDataSourceDelegate {
     
 }
 
-class HitchhikerEditProfileDataSource {
+class HitchhikerEditProfileDataSource: BaseDataSource {
     var hitchhiker: User?
-     var delegate: HitchhikerEditProfileDataSourceDelegate?
+    var delegate: HitchhikerEditProfileDataSourceDelegate?
+    
     func updateHitchihiker(id:Int,username: String, password: String, name: String,
                            surname: String, email: String, phonenumber: String,
                            age: Int, gender: String) {
-        let baseURL = "http://127.0.0.1:8080/"
-        let session = URLSession.shared
+        let hitchhikerRequest = HitchhikerUpdateRequest(email: email, password: password, firstName: name, surname: surname, username: username, phone: phonenumber, age: age, sex: gender, driver: false, id: id)
         
-        let hitchhikerRequest = HitchhikerUpdateRequest(id:id,username: username,password:password,name:name,surname:surname,email:email,phonenumber: phonenumber,age:age,gender: gender,isDriver:false )
-        
-        if let url = URL(string: "\(String(describing: baseURL))users/update") {
+        if let url = URL(string: "\(String(describing: baseURL))users/updateUser") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -49,20 +47,17 @@ class HitchhikerEditProfileDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(GetUserResponse.self, from: data)
                         
                         DispatchQueue.main.async {
-                           
+                            
                         }
                     }
                 }
             }
             uploadTask.resume()
         }
-        
-        
     }
-    
 }

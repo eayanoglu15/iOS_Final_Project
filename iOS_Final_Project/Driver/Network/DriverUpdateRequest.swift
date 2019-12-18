@@ -12,10 +12,10 @@ struct DriverUpdateRequest : Codable {
     let id:Int
     let username: String
     let password: String
-    let name: String
+    let firstName: String
     let surname: String
     let email: String
-    let phonenumber: String
+    let phone: String
     let age: Int
     let gender: String
     let isDriver: Bool

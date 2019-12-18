@@ -43,7 +43,7 @@ class DriverNewTripDataSource {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             let dataTask = session.dataTask(with: request) { (data, response, error) in
-                print("HERE Other Data: \(String.init(data: data!, encoding: .utf8))")
+                //print("HERE Other Data: \(String.init(data: data!, encoding: .utf8))")
                 
                 let decoder = JSONDecoder()
                 let response = try! decoder.decode(FromToResponse.self, from: data!)

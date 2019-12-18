@@ -13,7 +13,7 @@ protocol NewHitchhikerDataSourceDelegate {
     func goToHomePage()
 }
 
-class NewHitchhikerDataSource {
+class NewHitchhikerDataSource: BaseDataSource {
     var user: User?
     var delegate: NewHitchhikerDataSourceDelegate?
     
@@ -26,9 +26,8 @@ class NewHitchhikerDataSource {
                            phonenumber: String,
                            age: Int,
                            gender: String) {
-         let baseURL = "http://127.0.0.1:8080/users/"
         let createHitchHikerRequest = CreateHitchhikerRequest(image:profileImage, username: username, password: password, firstName: name, surname: surname, driver: false, email: email, phone: phonenumber, age: age, sex: gender)
-        let session = URLSession.shared
+        //let session = URLSession.shared
         
         if let url = URL(string: "\(String(describing: baseURL))newUser") {
             var request = URLRequest(url: url)
@@ -63,10 +62,10 @@ class NewHitchhikerDataSource {
                             userDefaults.setValue(false, forKey: "userIsDriver")
                             userDefaults.setValue(username, forKeyPath: "username")
                             self.user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: false, username: username, password: password,
-                            name: name, surname: surname, email: email,
-                            phonenumber: phonenumber, age: age, sex: gender)
+                                             name: name, surname: surname, email: email,
+                                             phonenumber: phonenumber, age: age, sex: gender)
                             DispatchQueue.main.async {
-                                 self.delegate?.goToHomePage()
+                                self.delegate?.goToHomePage()
                             }
                         }else{
                             DispatchQueue.main.async {
@@ -74,19 +73,10 @@ class NewHitchhikerDataSource {
                             }
                             return
                         }
-                        
                     }
                 }
             }
             uploadTask.resume()
         }
-        
-        
-        
-       }
-    
-    
-    
-    
-
+    }
 }

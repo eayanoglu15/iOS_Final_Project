@@ -102,9 +102,10 @@ class DriverEditProfileViewController: BaseScrollViewController, UITextFieldDele
                    showAlert(title: "Invalid Gender", message: "Please enter a gender")
                    return
                     }
-               
-               // UPDATE USER
-               let id = 0
+        var id = 0
+        if let driver = driverEditProfileDataSource.driver {
+         id = driver.id
+        }
             driverEditProfileDataSource.updateDriver(id: id, username: username, password: password, name: name, surname: surname, email: email,
                                                  phonenumber: phone, age: age, gender: gender,carModel:carModel,plaque:plaque)
             

@@ -192,6 +192,11 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.profileImageView.image = UIImage(data: dataDecoded)!
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
+            cell.fromLabel.text = tripRequest.from
+            cell.toLabel.text = tripRequest.to
+            cell.minDepartureTimeLabel.text = tripRequest.startTime.UTCToLocal()
+            cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
+            
             return cell
             
         case Status.acceptedAndWaiting:
@@ -215,6 +220,11 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.profileImageView.image = UIImage(data: dataDecoded)!
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
+            cell.fromLabel.text = tripRequest.from
+                       cell.toLabel.text = tripRequest.to
+            cell.minDepartureTimeLabel.text = tripRequest.startTime.UTCToLocal()
+                       cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
+            
             return cell
             
         case Status.allAccepted:
@@ -232,6 +242,11 @@ extension DriverHomeViewController: UITableViewDataSource {
             let dataDecoded : Data = Data(base64Encoded: tripRequest.image, options: .ignoreUnknownCharacters)!
             cell.profileImageView.image = UIImage(data: dataDecoded)!
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
+            
+            cell.fromLabel.text = tripRequest.from
+                       cell.toLabel.text = tripRequest.to
+                       cell.minDepartureTimeLabel.text = tripRequest.startTime.UTCToLocal()
+                       cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
             
             return cell
         }

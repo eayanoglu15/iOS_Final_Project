@@ -189,4 +189,30 @@ class DriverVoteTableViewCell: UITableViewCell {
         }
         return ratingImageArray
     }
+    
+    func setEditableFalse() {
+        voteStarOneImageView.isUserInteractionEnabled = false
+        voteStarTwoImageView.isUserInteractionEnabled = false
+        voteStarThreeImageView.isUserInteractionEnabled = false
+        voteStarFourImageView.isUserInteractionEnabled = false
+        voteStarFiveImageView.isUserInteractionEnabled = false
+    }
+    
+    func setVoteStars(vote: Int) {
+        let votingImageNamesArray = getRatingImageArray(rating: Double(vote))
+        voteStarOneImageView.image = UIImage(systemName: votingImageNamesArray[0])
+        voteStarTwoImageView.image = UIImage(systemName: votingImageNamesArray[1])
+        voteStarThreeImageView.image = UIImage(systemName: votingImageNamesArray[2])
+        voteStarFourImageView.image = UIImage(systemName: votingImageNamesArray[3])
+        voteStarFiveImageView.image = UIImage(systemName: votingImageNamesArray[4])
+    }
+    
+    func setRatingStars(rating: Double) {
+        let ratingImageNamesArray = getRatingImageArray(rating: rating)
+        starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+        starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+        starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+        starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+        starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+    }
 }

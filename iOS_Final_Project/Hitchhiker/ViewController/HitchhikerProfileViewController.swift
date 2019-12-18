@@ -30,6 +30,7 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
         if let username = hitchhikerProfileDataSource.hitchhiker?.username {
             title = username
         }
+        print("Profile id: ", hitchhikerProfileDataSource.hitchhiker?.id)
         profileImageView.image = hitchhikerProfileDataSource.hitchhiker?.profileImage
         infoTableView.delegate = self
         infoTableView.dataSource = self
@@ -46,6 +47,7 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
             starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
             ratingLabel.text = "\(user.rating) / 5"
             votesLabel.text = "\(user.voteNumber) vote"
+            profileImageView.image = hitchhikerProfileDataSource.hitchhiker?.profileImage
         }
     }
     

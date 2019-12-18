@@ -69,11 +69,12 @@ class HitchhikerHomeDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         
                         if (response.success){
+                            print("Trip Request Success")
                             // Trip Request Done?
                             // Delete Row?
                         }
@@ -115,10 +116,11 @@ class HitchhikerHomeDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data from getPlannedTrips: \(dataString)")
+                        //print("data from getPlannedTrips: \(dataString)")
+                       
                         let decoder = JSONDecoder()
                         let feedList = try! decoder.decode([HitchhikerFeed].self, from: data)
-                        
+                        print("feedList.count: ", feedList.count)
                         DispatchQueue.main.async {
                             self.feedArray = feedList
                             self.delegate?.hitchhikerFeedListLoaded()
@@ -158,7 +160,7 @@ class HitchhikerHomeDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
                         
@@ -177,5 +179,6 @@ class HitchhikerHomeDataSource {
     func setUser(response: GetUserResponse) {
         let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
         hitchhiker = User(profileImage:UIImage(data: dataDecoded)!,isDriver: false, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
+        self.hitchhiker?.id = response.id
     }
 }

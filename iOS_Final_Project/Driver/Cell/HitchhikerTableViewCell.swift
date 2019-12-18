@@ -17,8 +17,13 @@ class HitchhikerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var infoLabel: UILabel!
-
+    
+    @IBOutlet weak var fromLabel: UILabel!
+    @IBOutlet weak var toLabel: UILabel!
+    
+    @IBOutlet weak var minDepartureTimeLabel: UILabel!
+    @IBOutlet weak var maxDepartureTimeLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

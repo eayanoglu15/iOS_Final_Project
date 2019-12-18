@@ -20,4 +20,5 @@ struct HitchhikerTripRequest: Codable {
     var rating: Double
     var carModel: String
     var image: String
+    let voteGiven: Int?
 }

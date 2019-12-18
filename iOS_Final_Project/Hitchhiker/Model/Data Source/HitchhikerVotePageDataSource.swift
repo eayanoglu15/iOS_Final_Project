@@ -73,18 +73,21 @@ class HitchhikerVotePageDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(HitchhikerVoteResponse.self, from: data)
                         
                         DispatchQueue.main.async {
                             if let voted = response.votedTrip {
                                 self.votedTrips = voted
+                                print("voted.count: ", voted.count)
                             }
                             if let nonVoted = response.nonVotedTrip {
                                 self.nonVotedTrips = nonVoted
+                                print("nonVoted.count: ", nonVoted.count)
                             }
                             self.tripExist = response.tripExist
+                            print("tripExist: ", self.tripExist)
                             
                             self.getStatus()
                             print("Status: \(self.status)")
@@ -127,7 +130,7 @@ class HitchhikerVotePageDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         

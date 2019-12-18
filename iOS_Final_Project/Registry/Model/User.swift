@@ -23,11 +23,10 @@ struct User {
     // If user is a driver
     var carModel: String?
     var plaque: String?
-    var id: Int?
     let rating: Double = 0
     let voteNumber: Int = 0
     let totalDistance: Int = 0
-    let id:Int = 0
+    var id:Int = 0
     init(profileImage: UIImage, isDriver: Bool,username: String, password: String, name: String,
          surname: String, email: String, phonenumber: String,
          age: Int, sex: String) {

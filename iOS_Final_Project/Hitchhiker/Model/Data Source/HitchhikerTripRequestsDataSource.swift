@@ -54,23 +54,27 @@ class HitchhikerTripRequestsDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(HitchhikerRequestsResponse.self, from: data)
-                        
+                
                         DispatchQueue.main.async {
                             if let acceptedReqs = response.acceptedRequests {
                                  self.acceptedRequests = acceptedReqs
+                                print("acceptedReqs.count: ",acceptedReqs.count)
                             }
                             if let waitings = response.waitingRequests {
                                 self.waitingRequests = waitings
+                                print("waitings.count: ", waitings.count)
                             }
                             
                             if let rejects = response.rejectedRequests {
                                 self.rejectedRequests = rejects
+                                print("rejects.count: ", rejects.count)
                             }
-                            
                             self.requestExist = response.tripExist
+                            print("response.tripExist: ", response.tripExist)
+                            
                             self.delegate?.loadData()
                         }
                     }

@@ -116,7 +116,7 @@ class DriverHomeDataSource {
                             }
                         }
                         if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                            print("data: \(dataString)")
+                            //print("data: \(dataString)")
                             
                             let decoder = JSONDecoder()
                             let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
@@ -232,28 +232,22 @@ class DriverHomeDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(DriverHomeResponse.self, from: data)
                         
                         DispatchQueue.main.async {
                             if let acceptedReqs = response.acceptedRequest {
                                  self.acceptedRequests = acceptedReqs
+                                print("acceptedRequests.count: ", acceptedReqs.count)
                             }
                             if let waitings = response.requests {
                                 self.waitingRequests = waitings
+                                print("waitingRequests.count: ", waitings.count)
                             }
                             
                             self.tripExist = response.tripExist
                             
-                            print("acceptedRequests")
-                            for trip in self.acceptedRequests {
-                                print(trip)
-                            }
-                            print("waitingRequests")
-                            for trip in self.waitingRequests {
-                                print(trip)
-                            }
                             print("tripExist: ", self.tripExist)
                             // reload home table view
                             self.getStatus()

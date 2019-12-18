@@ -90,9 +90,13 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
             return
              }
         
-        // UPDATE USER
-        let id = 0
         let userImageString = "Invalid Age" //Change both of them
+        
+        var id = 0
+        if let hitchhiker = hitchhikerEditProfileDataSource.hitchhiker {
+        id = hitchhiker.id
+        }
+        print("id: ", id)
         hitchhikerEditProfileDataSource.updateHitchihiker(id: id, username: username, password: password, name: name, surname: surname, email: email,
         phonenumber: phone, age: age, gender: gender)
         

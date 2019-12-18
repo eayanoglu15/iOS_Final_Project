@@ -34,6 +34,9 @@ extension String {
         let dateFormatter = DateFormatter()
         // 2019-12-15T08:27:05Z
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        
+        
         guard let date = dateFormatter.date(from: self) else {
             // 2019-12-14T23:23:33.986Z
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -45,5 +48,16 @@ extension String {
         }
         dateFormatter.dateFormat = "HH:mm\tdd/MM/yy"
         return dateFormatter.string(from: date)
+    }
+    
+    func UTCToLocal() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" //Input Format
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        let UTCDate = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = "HH:mm\tdd/MM/yy" // Output Format
+        dateFormatter.timeZone = TimeZone.current
+        let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
+        return UTCToCurrentFormat
     }
 }

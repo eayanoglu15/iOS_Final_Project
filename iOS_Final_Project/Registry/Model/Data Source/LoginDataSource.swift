@@ -14,15 +14,12 @@ protocol LoginDataSourceDelegate {
     func routeToHome(isDriver: Bool)
 }
 
-class LoginDataSource {
+class LoginDataSource : BaseDataSource {
     var user: User?
     var delegate: LoginDataSourceDelegate?
     
     func loginUser(username: String, password: String) {
-        let baseURL = "http://127.0.0.1:8080/users/"
         let loginRequest = LoginRequest(username: username, password: password)
-        
-        let session = URLSession.shared
         
         if let url = URL(string: "\(String(describing: baseURL))login") {
             var request = URLRequest(url: url)
@@ -40,12 +37,6 @@ class LoginDataSource {
                     if let response = response as? HTTPURLResponse {
                         let statusCode = response.statusCode
                         print("statusCode: \(statusCode)")
-                        if statusCode == 500 {
-                            DispatchQueue.main.async {
-                                self.delegate?.showAlertMsg(title: "Invalid User", message: "Create Account")
-                            }
-                            return
-                        }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
                         print("data: \(dataString)")
@@ -58,7 +49,6 @@ class LoginDataSource {
                             userDefaults.setValue(true, forKey: "userLoggedIn")
                             userDefaults.setValue(response.driver, forKey: "userIsDriver")
                             userDefaults.setValue(response.username, forKeyPath: "username")
-                            
                             print("userLoggedIn: ", userDefaults.bool(forKey: "userLoggedIn"))
                             print("userIsDriver: ", userDefaults.bool(forKey: "userIsDriver"))
                             print("username: ",  userDefaults.string(forKey: "username"))
@@ -70,7 +60,6 @@ class LoginDataSource {
             uploadTask.resume()
         }
     }
-   
     
     func setUser(response: LoginResponse) -> Bool {
         let isDriver = response.driver

@@ -23,6 +23,7 @@ extension DriverOtherProfileViewController : DriverOtherProfileDataSourceDelegat
             starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
             ratingLabel.text = "\(user.rating) / 5"
             votesLabel.text = "\(user.voteNumber) vote"
+            profileImageView.image = user.profileImage
         }
         infoTableView.reloadData()
     }

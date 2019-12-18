@@ -24,9 +24,9 @@ class DriverEditProfileDataSource {
         let baseURL = "http://127.0.0.1:8080/"
         let session = URLSession.shared
         
-        let driverRequest = DriverUpdateRequest(id:id,username: username,password:password,name:name,surname:surname,email:email,phonenumber: phonenumber,age:age,gender: gender,isDriver:false,carModel:carModel,plaque:plaque )
+        let driverRequest = DriverUpdateRequest(id:id,username: username,password:password,firstName:name,surname:surname,email:email,phone: phonenumber,age:age,gender: gender,isDriver:false,carModel:carModel,plaque:plaque )
         
-        if let url = URL(string: "\(String(describing: baseURL))users/update") {
+        if let url = URL(string: "\(String(describing: baseURL))users/updateUser") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -54,9 +54,8 @@ class DriverEditProfileDataSource {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(GetUserResponse.self, from: data)
                         
-                        DispatchQueue.main.async {
-                           
-                        }
+                            print("my profile editlendi mi?")
+                        
                     }
                 }
             }

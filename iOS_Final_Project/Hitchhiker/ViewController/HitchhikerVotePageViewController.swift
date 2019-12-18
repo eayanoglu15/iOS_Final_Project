@@ -149,13 +149,7 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "hitchhikerVoteCell", for: indexPath) as! HitchhikerVoteTableViewCell
                 let trip = hitchhikerVotePageDataSource.nonVotedTrips[indexPath.row]
-                let ratingImageNamesArray = hitchhikerVotePageHelper.getRatingImageArray(rating: trip.rating)
-                cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
-                cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
-                cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
-                cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
-                cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-                
+                cell.setRatingStars(rating: trip.rating)
                 cell.usernameLabel.text = trip.driverUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
@@ -165,7 +159,6 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.delegate = self
                 cell.tripId = trip.id
-                
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -177,13 +170,7 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "hitchhikerVoteCell", for: indexPath) as! HitchhikerVoteTableViewCell
                 let trip = hitchhikerVotePageDataSource.votedTrips[indexPath.row]
-                let ratingImageNamesArray = hitchhikerVotePageHelper.getRatingImageArray(rating: trip.rating)
-                cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
-                cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
-                cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
-                cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
-                cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-                
+                cell.setRatingStars(rating: trip.rating)
                 cell.usernameLabel.text = trip.driverUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
@@ -191,17 +178,14 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
                 let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
+                if let vote = trip.voteGiven {
+                        cell.setVoteStars(vote: vote)
+                }
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "hitchhikerVoteCell", for: indexPath) as! HitchhikerVoteTableViewCell
                 let trip = hitchhikerVotePageDataSource.nonVotedTrips[indexPath.row]
-                let ratingImageNamesArray = hitchhikerVotePageHelper.getRatingImageArray(rating: trip.rating)
-                cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
-                cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
-                cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
-                cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
-                cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-                
+                cell.setRatingStars(rating: trip.rating)
                 cell.usernameLabel.text = trip.driverUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
@@ -211,7 +195,6 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.delegate = self
                 cell.tripId = trip.id
-                
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -223,13 +206,7 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "hitchhikerVoteCell", for: indexPath) as! HitchhikerVoteTableViewCell
                 let trip = hitchhikerVotePageDataSource.votedTrips[indexPath.row]
-                let ratingImageNamesArray = hitchhikerVotePageHelper.getRatingImageArray(rating: trip.rating)
-                cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
-                cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
-                cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
-                cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
-                cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-                
+                cell.setRatingStars(rating: trip.rating)
                 cell.usernameLabel.text = trip.driverUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
@@ -237,6 +214,9 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
                 let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
+                if let vote = trip.voteGiven {
+                        cell.setVoteStars(vote: vote)
+                }
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell

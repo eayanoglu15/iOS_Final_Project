@@ -15,12 +15,12 @@ protocol NewDriverDataSourceDelegate {
     func goToHome()
 }
 
-class NewDriverDataSource {
+class NewDriverDataSource: BaseDataSource {
     var user: User?
     var delegate: NewDriverDataSourceDelegate?
     
     func addNewDriver(profileImage:String,
-        username: String,
+                      username: String,
                       password: String,
                       name: String,
                       surname: String,
@@ -31,10 +31,9 @@ class NewDriverDataSource {
                       plaque: String,
                       gender: String) {
         
-        let baseURL = "http://127.0.0.1:8080/users/"
         let createDriverRequest = CreateDriverRequest(image: profileImage, username: username, password: password, firstName: name, surname: surname, driver: true, email: email, phone: phonenumber, age: age, carModel: carModel, plaque: plaque, sex: gender)
         
-        let session = URLSession.shared
+        //let session = URLSession.shared
         
         if let url = URL(string: "\(String(describing: baseURL))newUser") {
             var request = URLRequest(url: url)
@@ -69,8 +68,8 @@ class NewDriverDataSource {
                             userDefaults.setValue(true, forKey: "userIsDriver")
                             userDefaults.setValue(username, forKeyPath: "username")
                             self.user = User(profileImage: UIImage(data: dataDecoded as Data)!,isDriver: true, username: username, password: password, name:name, surname:surname,
-                                email: email, phonenumber: phonenumber, age: age,
-                                sex: gender, carModel: carModel, plaque: plaque)
+                                             email: email, phonenumber: phonenumber, age: age,
+                                             sex: gender, carModel: carModel, plaque: plaque)
                             DispatchQueue.main.async {
                                 self.delegate?.goToHome()
                             }
@@ -80,18 +79,10 @@ class NewDriverDataSource {
                             }
                             return
                         }
-                        
                     }
                 }
             }
             uploadTask.resume()
         }
-        
-        
-        
-       }
-    
-    
-    
-    
+    }
 }
