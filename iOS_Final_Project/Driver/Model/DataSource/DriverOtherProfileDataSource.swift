@@ -21,7 +21,7 @@ class DriverOtherProfileDataSource {
     
     func getOtherUser() {
         let session = URLSession.shared
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         guard let username = otherUsername else {
             return
         }

@@ -52,7 +52,7 @@ class DriverVotePageDataSource {
     }
     
     func getVotePageData(username: String) {
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let driverRequest = DriverHomeRequest(driverUserName: username)
@@ -107,7 +107,7 @@ class DriverVotePageDataSource {
     }
     
     func giveVoteForTrip(tripId: Int, vote: Int) {
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let voteRequest = VoteRequest(tripId: tripId, point: vote, isDriver: true)

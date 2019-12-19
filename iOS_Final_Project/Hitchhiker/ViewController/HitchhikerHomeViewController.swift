@@ -128,8 +128,8 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         cell.availableSeatsLabel.text = "\(feed.availableSeatNumber)"
         cell.fromLabel.text = feed.from
         cell.toLabel.text = feed.to
-        cell.minDepartureTimeLabel.text = feed.startTime.convertUtcToDisplay()
-        cell.maxDepartureTimeLabel.text = feed.endTime.convertUtcToDisplay()
+        cell.minDepartureTimeLabel.text = feed.startTime.UTCToLocal()//.convertUtcToDisplay()
+        cell.maxDepartureTimeLabel.text = feed.endTime.UTCToLocal()//.convertUtcToDisplay()
         let dataDecoded : Data = Data(base64Encoded: feed.image, options: .ignoreUnknownCharacters)!
         cell.profileImageView.image = UIImage(data: dataDecoded)!
         

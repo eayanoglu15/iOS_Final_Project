@@ -147,8 +147,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.statusLabel.text = "Accepted"
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
-                cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
-                cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
+                cell.minDepartureTimeLabel.text = trip.startTime.UTCToLocal()//.convertUtcToDisplay()
+                cell.maxDepartureTimeLabel.text = trip.endTime.UTCToLocal()//.convertUtcToDisplay()
                 let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
                  
@@ -176,8 +176,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.statusLabel.text = "Waiting"
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
-                cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
-                cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
+                cell.minDepartureTimeLabel.text = trip.startTime.UTCToLocal()//.convertUtcToDisplay()
+                cell.maxDepartureTimeLabel.text = trip.endTime.UTCToLocal()//.convertUtcToDisplay()
                 let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
                 return cell
@@ -204,8 +204,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.statusLabel.text = "Rejected"
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
-                cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
-                cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
+                cell.minDepartureTimeLabel.text = trip.startTime.UTCToLocal()//.convertUtcToDisplay()
+                cell.maxDepartureTimeLabel.text = trip.endTime.UTCToLocal()//.convertUtcToDisplay()
                 let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
                 return cell

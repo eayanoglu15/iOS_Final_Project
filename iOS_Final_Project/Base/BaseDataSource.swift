@@ -10,6 +10,6 @@ import Foundation
 
 class BaseDataSource {
     
-    let baseURL = "http://127.0.0.1:8080/users/"
+    let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com/users/"
     let session = URLSession.shared
 }

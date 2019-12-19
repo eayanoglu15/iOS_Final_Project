@@ -40,7 +40,7 @@ class HitchhikerHomeDataSource {
     }
     
     func makeTripRequest(tripRequestId: Int, hitchhikerName: String) {
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let tripRequest = HitchhikerMakeTripRequest(tripId: tripRequestId, hitchHikerUserName: hitchhikerName)
@@ -88,7 +88,7 @@ class HitchhikerHomeDataSource {
     
     func getPlannedTrips(hitchhikerName: String) {
         let session = URLSession.shared
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         
         let tripRequest = HitchhikerRequest(hitchhikerUserName: hitchhikerName)
         
@@ -136,7 +136,7 @@ class HitchhikerHomeDataSource {
     
     func getUser(username: String) {
         let session = URLSession.shared
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         
         if let url = URL(string: "\(baseURL)users/\(username)") {
             var request = URLRequest(url: url)

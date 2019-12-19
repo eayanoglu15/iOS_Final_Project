@@ -33,7 +33,7 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRp-Mv-cqA">
                                                 <rect key="frame" x="25" y="372" width="348" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="LOG IN"/>
                                                 <connections>
                                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0SO-VL-cro"/>
@@ -41,7 +41,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fff-vh-Rwf">
                                                 <rect key="frame" x="25" y="427" width="348" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="CREATE ACCOUNT"/>
                                                 <connections>
                                                     <action selector="createAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Ic-nt-bJA"/>
@@ -564,6 +564,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="selectImage" width="900" height="1200"/>
+        <image name="selectImage" width="119" height="158"/>
     </resources>
 </document>

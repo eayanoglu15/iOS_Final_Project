@@ -35,7 +35,7 @@ class DriverNewTripDataSource {
     }
     func getFromTo() {
         let session = URLSession.shared
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         
         if let url = URL(string: "\(baseURL)trip/getFromToLocations") {
             var request = URLRequest(url: url)
@@ -62,7 +62,7 @@ class DriverNewTripDataSource {
         
         let tripRequest = NewTripRequest(from: from, to: to, startTime: startTime, endTime: endTime, totalSeatNumber: seatNum, driverUserName: driverUsername)
         
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         if let url = URL(string: "\(String(describing: baseURL))trip/createTrip") {

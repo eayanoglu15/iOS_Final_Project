@@ -151,8 +151,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
-                cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
-                cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
+                cell.minDepartureTimeLabel.text = trip.startTime.UTCToLocal()//.convertUtcToDisplay()
+                cell.maxDepartureTimeLabel.text = trip.endTime.UTCToLocal()//.convertUtcToDisplay()
                 let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.delegate = self
@@ -174,8 +174,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
-                cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
-                cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
+                cell.minDepartureTimeLabel.text = trip.startTime.UTCToLocal()//.convertUtcToDisplay()
+                cell.maxDepartureTimeLabel.text = trip.endTime.UTCToLocal()//.convertUtcToDisplay()
                 cell.setEditableFalse()
                 if let vote = trip.voteGiven {
                         cell.setVoteStars(vote: vote)
@@ -188,8 +188,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
-                cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
-                cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
+                cell.minDepartureTimeLabel.text = trip.startTime.UTCToLocal()//.convertUtcToDisplay()
+                cell.maxDepartureTimeLabel.text = trip.endTime.UTCToLocal()//.convertUtcToDisplay()
                 let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
                 cell.profileImageView.image = UIImage(data: dataDecoded)!
                 cell.delegate = self
@@ -211,8 +211,8 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.usernameLabel.text = trip.hitchHikerUserName
                 cell.fromLabel.text = trip.from
                 cell.toLabel.text = trip.to
-                cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
-                cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
+                cell.minDepartureTimeLabel.text = trip.startTime.UTCToLocal()//.convertUtcToDisplay()
+                cell.maxDepartureTimeLabel.text = trip.endTime.UTCToLocal()//.convertUtcToDisplay()
                 cell.setEditableFalse()
                 if let vote = trip.voteGiven {
                         cell.setVoteStars(vote: vote)

@@ -21,7 +21,7 @@ class DriverEditProfileDataSource {
     func updateDriver(id:Int,username: String, password: String, name: String,
                            surname: String, email: String, phonenumber: String,
                            age: Int, gender: String,carModel:String,plaque:String) {
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let driverRequest = DriverUpdateRequest(id:id,username: username,password:password,firstName:name,surname:surname,email:email,phone: phonenumber,age:age,gender: gender,isDriver:false,carModel:carModel,plaque:plaque )
