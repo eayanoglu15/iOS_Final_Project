@@ -35,7 +35,7 @@ class NewDriverDataSource: BaseDataSource {
         
         //let session = URLSession.shared
         
-        if let url = URL(string: "\(String(describing: baseURL))newUser") {
+        if let url = URL(string: "\(String(describing: baseURL))users/newUser") {
             var request = URLRequest(url: url)
             request.httpMethod = "PUT"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

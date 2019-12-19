@@ -21,7 +21,7 @@ class LoginDataSource : BaseDataSource {
     func loginUser(username: String, password: String) {
         let loginRequest = LoginRequest(username: username, password: password)
         
-        if let url = URL(string: "\(String(describing: baseURL))login") {
+        if let url = URL(string: "\(String(describing: baseURL))users/login") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -39,7 +39,7 @@ class LoginDataSource : BaseDataSource {
                         print("statusCode: \(statusCode)")
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        print("data: \(dataString)")
+                       // print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(LoginResponse.self, from: data)
                         print("success: \(response.username)")
