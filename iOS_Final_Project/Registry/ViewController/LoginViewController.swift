@@ -34,7 +34,7 @@ class LoginViewController: BaseScrollViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
-        defaults.set("http://127.0.0.1:8080/users/", forKey: "baseURL")
+        defaults.set("http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/users/", forKey: "baseURL")
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         title = "Welcome"

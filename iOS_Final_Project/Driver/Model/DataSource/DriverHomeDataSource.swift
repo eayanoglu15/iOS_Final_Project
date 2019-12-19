@@ -91,7 +91,7 @@ class DriverHomeDataSource {
     func getUser(username: String) {
         print("getUser")
         let session = URLSession.shared
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         
         if let url = URL(string: "\(baseURL)users/\(username)") {
             var request = URLRequest(url: url)
@@ -155,7 +155,7 @@ class DriverHomeDataSource {
     func hitchhikerAcception(isAccepted: Bool, tripRequestId: Int, indexPath: IndexPath) {
         var str = isAccepted ? "acceptRequest" : "declineRequest"
         
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let acceptionRequest = TripAcceptionRequest(tripRequestId: tripRequestId)
@@ -203,7 +203,7 @@ class DriverHomeDataSource {
     
     func getHomePageData(driverName: String) {
         print("getHomePageData")
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let driverRequest = DriverHomeRequest(driverUserName: driverName)

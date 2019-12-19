@@ -44,7 +44,7 @@ class HitchhikerVotePageDataSource {
     }
     
     func getVotePageData(username: String) {
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let hitchhikerRequest = HitchhikerRequest(hitchhikerUserName: username)
@@ -101,7 +101,7 @@ class HitchhikerVotePageDataSource {
     }
     
     func giveVoteForTrip(tripId: Int, vote: Int) {
-        let baseURL = "http://127.0.0.1:8080/"
+        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
         
         let voteRequest = VoteRequest(tripId: tripId, point: vote, isDriver: false)

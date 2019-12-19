@@ -62,7 +62,8 @@ class NewDriverDataSource: BaseDataSource {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         if (response.success){
-                            let dataDecoded:NSData = NSData(base64Encoded: profileImage, options: NSData.Base64DecodingOptions(rawValue: 0))!
+                            let dataDecoded : Data = Data(base64Encoded:profileImage, options: .ignoreUnknownCharacters)!
+                           
                             let userDefaults = UserDefaults.standard
                             userDefaults.setValue(true, forKey: "userLoggedIn")
                             userDefaults.setValue(true, forKey: "userIsDriver")
