@@ -29,7 +29,6 @@ class NewHitchhikerDataSource: BaseDataSource {
                            age: Int,
                            gender: String) {
         let createHitchHikerRequest = CreateHitchhikerRequest(image: profileImageStr, username: username, password: password, firstName: name, surname: surname, driver: false, email: email, phone: phonenumber, age: age, sex: gender)
-        //let session = URLSession.shared
         
         if let url = URL(string: "\(String(describing: baseURL))users/newUser") {
             var request = URLRequest(url: url)

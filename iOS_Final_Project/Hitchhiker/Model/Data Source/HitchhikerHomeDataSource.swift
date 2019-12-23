@@ -178,12 +178,9 @@ class HitchhikerHomeDataSource {
                         let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
                         print("Image ?: ", userResponse.image)
                         self.userResponse = userResponse
-                        
                         let fileName = userResponse.image.deletingPrefix(NetworkConstants.baseS3URL)
                         print("filename: ", fileName)
-                        //self.awsManager.downloadFile(key: "D3825FAC-E651-461A-8F44-250A4BB9F2F9-12209-000018596ACE956D.jpeg")
                         self.awsManager.downloadFile(key: fileName)
-                        
                     }
                 }
             }
@@ -191,17 +188,10 @@ class HitchhikerHomeDataSource {
         }
     }
     
-    
-func setUser(image: UIImage,response: GetUserResponse) {
-        
-        
-
+func setUser(image: UIImage, response: GetUserResponse) {
             hitchhiker = User(profileImage: image, isDriver: false, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
             self.hitchhiker?.id = response.id
             hitchhiker?.rating=response.point
             hitchhiker?.voteNumber=response.numberRevieved
-        
-        
-        //let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
     }
 }

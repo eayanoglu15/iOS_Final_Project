@@ -9,6 +9,14 @@
 import Foundation
 import UIKit
 
+extension DriverHomeDataSource: AWSS3ManagerDelegate {
+    func setImage(img: UIImage) {
+        if let response = userResponse {
+            setUser(image: img, response: response)
+        }
+    }
+}
+
 protocol DriverHomeDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func loadHomePageData()
@@ -25,8 +33,9 @@ enum Status {
 
 class DriverHomeDataSource {
     var delegate: DriverHomeDataSourceDelegate?
-    
     var driver: User?
+    var awsManager = AWSS3Manager()
+    var userResponse: GetUserResponse?
     
     var acceptedRequests = [TripRequest]()
     var waitingRequests = [TripRequest]()
@@ -50,6 +59,10 @@ class DriverHomeDataSource {
         } else {
             status = Status.noTrip
         }
+    }
+    
+    init() {
+         awsManager.delegate = self
     }
     
     func contextualTripAcceptAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
@@ -120,7 +133,12 @@ class DriverHomeDataSource {
                             
                             let decoder = JSONDecoder()
                             let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
-                            self.setUser(response: userResponse)
+                            
+                            print("Image ?: ", userResponse.image)
+                            self.userResponse = userResponse
+                            let fileName = userResponse.image.deletingPrefix(NetworkConstants.baseS3URL)
+                            print("filename: ", fileName)
+                            self.awsManager.downloadFile(key: fileName)
                             
                         }
                     }
@@ -140,10 +158,8 @@ class DriverHomeDataSource {
         
     }
     
-    func setUser(response: GetUserResponse) {
-        
-        let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
-        driver = User(profileImage:UIImage(data: dataDecoded)!,isDriver: true, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
+    func setUser(image: UIImage, response: GetUserResponse) {
+        driver = User(profileImage: image, isDriver: true, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
         driver?.id = response.id
         driver?.rating=response.point
         driver?.voteNumber=response.numberRevieved

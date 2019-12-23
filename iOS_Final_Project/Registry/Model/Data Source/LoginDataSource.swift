@@ -8,34 +8,36 @@
 
 import Foundation
 import UIKit
-/*
+
 extension LoginDataSource: AWSS3ManagerDelegate {
     func setImage(img: UIImage) {
-        if let response = userResponse {
-            setUser(image: img, response: response)
+        if let response = loginResponse {
+            DispatchQueue.main.async {
+                self.delegate?.routeToHome(isDriver: self.setUser(image: img, response: response))
+            }
         }
     }
 }
-*/
+
 protocol LoginDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func routeToHome(isDriver: Bool)
 }
 
-class LoginDataSource : BaseDataSource {
+class LoginDataSource {
     var user: User?
     var delegate: LoginDataSourceDelegate?
-    /*
     var awsManager = AWSS3Manager()
+    var loginResponse: LoginResponse?
     
-    override init() {
-            awsManager.delegate = self
-       }
-    */
+    init() {
+        awsManager.delegate = self
+    }
+    
     func loginUser(username: String, password: String) {
         let loginRequest = LoginRequest(username: username, password: password)
-        
-        if let url = URL(string: "\(String(describing: baseURL))users/login") {
+        let session = URLSession.shared
+        if let url = URL(string: "\(NetworkConstants.baseURL)users/login") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -59,16 +61,18 @@ class LoginDataSource : BaseDataSource {
                         let response = try! decoder.decode(LoginResponse.self, from: data)
                         print("success: \(response.username)")
                         
-                        DispatchQueue.main.async {
-                            let userDefaults = UserDefaults.standard
-                            userDefaults.setValue(true, forKey: "userLoggedIn")
-                            userDefaults.setValue(response.driver, forKey: "userIsDriver")
-                            userDefaults.setValue(response.username, forKeyPath: "username")
-                            print("userLoggedIn: ", userDefaults.bool(forKey: "userLoggedIn"))
-                            print("userIsDriver: ", userDefaults.bool(forKey: "userIsDriver"))
-                            print("username: ",  userDefaults.string(forKey: "username"))
-                            self.delegate?.routeToHome(isDriver: self.setUser(response: response))
-                        }
+                        let userDefaults = UserDefaults.standard
+                        userDefaults.setValue(true, forKey: "userLoggedIn")
+                        userDefaults.setValue(response.driver, forKey: "userIsDriver")
+                        userDefaults.setValue(response.username, forKeyPath: "username")
+                        print("userLoggedIn: ", userDefaults.bool(forKey: "userLoggedIn"))
+                        print("userIsDriver: ", userDefaults.bool(forKey: "userIsDriver"))
+                        print("username: ",  userDefaults.string(forKey: "username"))
+                        
+                        self.loginResponse = response
+                        let fileName = response.image.deletingPrefix(NetworkConstants.baseS3URL)
+                        print("filename: ", fileName)
+                        self.awsManager.downloadFile(key: fileName)
                     }
                 }
             }
@@ -76,13 +80,12 @@ class LoginDataSource : BaseDataSource {
         }
     }
     
-    func setUser(response: LoginResponse) -> Bool {
+    func setUser(image: UIImage, response: LoginResponse) -> Bool {
         let isDriver = response.driver
-        let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
         if isDriver {
-            user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
+            user = User(profileImage: image, isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
         } else {
-            user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
+            user = User(profileImage: image, isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
         }
         return isDriver
     }

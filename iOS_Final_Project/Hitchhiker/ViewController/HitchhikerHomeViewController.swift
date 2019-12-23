@@ -20,13 +20,13 @@ extension HitchhikerHomeViewController: HitchhikerHomeDataSourceDelegate {
         self.hitchhikerHomeTableView.reloadData()
     }
 }
-   
+
 class HitchhikerHomeViewController: UIViewController {
     @IBOutlet weak var hitchhikerHomeTableView: UITableView!
     
     let hitchhikerHomeDataSource = HitchhikerHomeDataSource()
     let hitchhikerHomeHelper = HitchhikerHomeHelper()
-
+    
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -72,7 +72,7 @@ class HitchhikerHomeViewController: UIViewController {
         hitchhikerHomeTableView.refreshControl?.endRefreshing()
         hitchhikerHomeTableView.reloadData()
     }
-   
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toHitchhikerProfile" {
             print("prepare id: ", hitchhikerHomeDataSource.hitchhiker?.id)
@@ -132,29 +132,29 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         cell.profileImageView.image = UIImage(data: dataDecoded)!
         
         /*  if let profileImage = feed.profileImage {
-            cell.profileImageView.image = profileImage
-        }
- */
+         cell.profileImageView.image = profileImage
+         }
+         */
         return cell
     }
 }
 
 extension HitchhikerHomeViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    if hitchhikerHomeDataSource.feedArray.isEmpty {
-        return nil
-    }
-       let tripRequestAction = self.hitchhikerHomeDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if hitchhikerHomeDataSource.feedArray.isEmpty {
+            return nil
+        }
+        let tripRequestAction = self.hitchhikerHomeDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
         let swipeConfig = UISwipeActionsConfiguration(actions: [tripRequestAction])
         return swipeConfig
- 
+        
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !hitchhikerHomeDataSource.feedArray.isEmpty {
-        let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
-        hitchhikerHomeHelper.selectedUsername = feed.driverUserName
-        performSegue(withIdentifier: "toOtherProfile", sender: nil)
-            }
+            let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
+            hitchhikerHomeHelper.selectedUsername = feed.driverUserName
+            performSegue(withIdentifier: "toOtherProfile", sender: nil)
+        }
     }
 }

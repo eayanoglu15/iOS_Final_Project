@@ -56,6 +56,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     
     var newDriverAccountHelper = NewDriverAccountHelper()
     var newDriverDataSource = NewDriverDataSource()
+    var awsManager = AWSS3Manager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +103,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
+        self.showSpinner()
         guard let profileImage=profileImageView.image,
             let username = usernameTextField.text, !username.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
@@ -132,13 +134,21 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
             showAlertMsg(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
-        let profileImageData:NSData = profileImage.resizedTo1MB()?.pngData() as! NSData
-        let strBase64 = profileImageData.base64EncodedString(options: .lineLength64Characters)
-        //print(strBase64)
-        self.showSpinner()
-        newDriverDataSource.addNewDriver(profileImage: strBase64, username: username, password: password, name: name, surname: surname, email: email,
-                                            phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
-        // feed e yolla
+        if let resizedImage = profileImage.resizedTo1MB() {
+            awsManager.uploadImage(image: resizedImage, progress: {[weak self] ( uploadProgress) in
+                guard let strongSelf = self else { return }
+            }) {[weak self] (uploadedFileUrl, error) in
+                guard let strongSelf = self else { return }
+                if let finalPath = uploadedFileUrl as? String { // 3
+                    print("Uploaded file url: " + finalPath)
+                    strongSelf.newDriverDataSource.addNewDriver(profileImage: resizedImage, profileImageStr: finalPath, username: username, password: password, name: name, surname: surname, email: email,
+                    phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
+                    
+                } else {
+                    print("\(String(describing: error?.localizedDescription))") // 4
+                }
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -147,13 +157,10 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
             destinationVc.driverHomeDataSource.driver = newDriverDataSource.user
         }
     }
-
 }
 
 //MARK: - UITextFieldDelegate
-
 extension NewDriverAccountViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -161,8 +168,7 @@ extension NewDriverAccountViewController: UITextFieldDelegate {
         // return false
     }
     
-    @objc
-    func textFieldDidChange(textField: UITextField) {
+    @objc func textFieldDidChange(textField: UITextField) {
         /*
         if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
             loginButton.isEnabled = true

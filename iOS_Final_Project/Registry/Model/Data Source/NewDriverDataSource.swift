@@ -19,7 +19,8 @@ class NewDriverDataSource: BaseDataSource {
     var user: User?
     var delegate: NewDriverDataSourceDelegate?
     
-    func addNewDriver(profileImage:String,
+    func addNewDriver(profileImage: UIImage,
+                      profileImageStr: String,
                       username: String,
                       password: String,
                       name: String,
@@ -31,9 +32,7 @@ class NewDriverDataSource: BaseDataSource {
                       plaque: String,
                       gender: String) {
         
-        let createDriverRequest = CreateDriverRequest(image: profileImage, username: username, password: password, firstName: name, surname: surname, driver: true, email: email, phone: phonenumber, age: age, carModel: carModel, plaque: plaque, sex: gender)
-        
-        //let session = URLSession.shared
+        let createDriverRequest = CreateDriverRequest(image: profileImageStr, username: username, password: password, firstName: name, surname: surname, driver: true, email: email, phone: phonenumber, age: age, carModel: carModel, plaque: plaque, sex: gender)
         
         if let url = URL(string: "\(String(describing: baseURL))users/newUser") {
             var request = URLRequest(url: url)
@@ -62,13 +61,11 @@ class NewDriverDataSource: BaseDataSource {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         if (response.success){
-                            let dataDecoded : Data = Data(base64Encoded:profileImage, options: .ignoreUnknownCharacters)!
-                           
                             let userDefaults = UserDefaults.standard
                             userDefaults.setValue(true, forKey: "userLoggedIn")
                             userDefaults.setValue(true, forKey: "userIsDriver")
                             userDefaults.setValue(username, forKeyPath: "username")
-                            self.user = User(profileImage: UIImage(data: dataDecoded as Data)!,isDriver: true, username: username, password: password, name:name, surname:surname,
+                            self.user = User(profileImage: profileImage, isDriver: true, username: username, password: password, name:name, surname:surname,
                                              email: email, phonenumber: phonenumber, age: age,
                                              sex: gender, carModel: carModel, plaque: plaque)
                             DispatchQueue.main.async {

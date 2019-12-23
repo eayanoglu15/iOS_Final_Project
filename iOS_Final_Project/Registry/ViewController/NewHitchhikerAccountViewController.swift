@@ -51,8 +51,6 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
-    
-    
     @IBOutlet weak var registerButton: UIButton!
     
     var newHitchhikerAccountHelper = NewHitchhikerAccountHelper()
@@ -62,13 +60,11 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Create Hitchhiker Account"
-        
         // Choose Picture
         profileImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
         profileImageView.addGestureRecognizer(gestureRecognizer)
         newHitchhikerDataSource.delegate=self
-        
         // Assign Text Field Delegates
         usernameTextField.delegate = self
         passwordTextField.delegate = self
@@ -77,12 +73,10 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         emailTextField.delegate = self
         phoneNumberTextField.delegate = self
         ageTextField.delegate = self
-        
         //registerButton.isEnabled = false
         passwordTextField.isSecureTextEntry = true
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
-        
         newHitchhikerAccountHelper.genderPicker.delegate = self
         newHitchhikerAccountHelper.genderPicker.dataSource = self
         genderTextField.text = newHitchhikerAccountHelper.genderPickerData.first
@@ -102,6 +96,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
+        self.showSpinner()
         guard let profileImage = profileImageView.image,
             let username = usernameTextField.text, !username.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
@@ -130,48 +125,32 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
             showAlertMsg(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
-        let profileImageData:NSData = profileImage.resizedTo1MB()?.pngData()! as! NSData
-        let strBase64 = profileImageData.base64EncodedString(options: .lineLength64Characters)
-        self.showSpinner()
-        
-        
- awsManager.uploadImage(image: profileImage, progress: {[weak self] ( uploadProgress) in
-            guard let strongSelf = self else { return }
-        }) {[weak self] (uploadedFileUrl, error) in
-            guard let strongSelf = self else { return }
-            if let finalPath = uploadedFileUrl as? String { // 3
-                print("Uploaded file url: " + finalPath)
-                strongSelf.newHitchhikerDataSource.addNewHitchihiker(profileImage: profileImage, profileImageStr: finalPath, username: username, password: password, name: name, surname: surname, email: email,
-                phonenumber: phone, age: userAge, gender: gender)
-            } else {
-                print("\(String(describing: error?.localizedDescription))") // 4
+        if let resizedImage = profileImage.resizedTo1MB() {
+            awsManager.uploadImage(image: resizedImage, progress: {[weak self] ( uploadProgress) in
+                guard let strongSelf = self else { return }
+            }) {[weak self] (uploadedFileUrl, error) in
+                guard let strongSelf = self else { return }
+                if let finalPath = uploadedFileUrl as? String { // 3
+                    print("Uploaded file url: " + finalPath)
+                    strongSelf.newHitchhikerDataSource.addNewHitchihiker(profileImage: resizedImage, profileImageStr: finalPath, username: username, password: password, name: name, surname: surname, email: email,
+                                                                         phonenumber: phone, age: userAge, gender: gender)
+                } else {
+                    print("\(String(describing: error?.localizedDescription))") // 4
+                }
             }
         }
-        
-        // feed e yolla
     }
     
-   
-    
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toHitchhikerHome" {
             let destinationVc = segue.destination as! HitchhikerHomeViewController
             destinationVc.hitchhikerHomeDataSource.hitchhiker = newHitchhikerDataSource.user
         }
-     }
-    
-    
+    }
 }
 
 //MARK: - UITextFieldDelegate
-
 extension NewHitchhikerAccountViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
