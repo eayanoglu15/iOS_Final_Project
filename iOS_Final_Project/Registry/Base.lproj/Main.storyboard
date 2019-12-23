@@ -44,7 +44,6 @@
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="CREATE ACCOUNT"/>
                                                 <connections>
-                                                    <action selector="createAccountButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Ic-nt-bJA"/>
                                                     <segue destination="uWo-ow-1Ri" kind="show" id="1lr-Do-wBG"/>
                                                 </connections>
                                             </button>
@@ -499,6 +498,7 @@
                                             <constraint firstItem="LZz-jE-ozy" firstAttribute="top" secondItem="d7v-EU-72j" secondAttribute="bottom" constant="25" id="ly4-Mw-rts"/>
                                             <constraint firstItem="ra0-BY-n3R" firstAttribute="leading" secondItem="Cw7-pu-CdD" secondAttribute="leading" constant="25" id="nWe-lw-gRc"/>
                                             <constraint firstAttribute="trailing" secondItem="ptl-vf-NKe" secondAttribute="trailing" constant="25" id="o7h-aJ-3rm"/>
+                                            <constraint firstAttribute="bottom" secondItem="LZz-jE-ozy" secondAttribute="bottom" constant="64" id="oj3-qs-IrE"/>
                                             <constraint firstItem="LZz-jE-ozy" firstAttribute="leading" secondItem="Cw7-pu-CdD" secondAttribute="leading" constant="25" id="pH3-Pz-FPc"/>
                                             <constraint firstItem="N7X-1Z-5Ey" firstAttribute="top" secondItem="Cw7-pu-CdD" secondAttribute="top" constant="25" id="pgk-L7-hfl"/>
                                             <constraint firstItem="d7v-EU-72j" firstAttribute="leading" secondItem="Cw7-pu-CdD" secondAttribute="leading" constant="25" id="q3a-7v-LLW"/>
@@ -564,6 +564,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="selectImage" width="900" height="1200"/>
+        <image name="selectImage" width="119" height="158"/>
     </resources>
 </document>

@@ -42,6 +42,12 @@ class DriverHomeViewController: UIViewController {
         requestTableView.delegate = self
         requestTableView.dataSource = self
         
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            driverHomeDataSource.getUser(username: username)
+            driverHomeDataSource.getHomePageData(driverName: username)
+        }
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
         driverHomeDataSource.delegate = self
@@ -51,12 +57,7 @@ class DriverHomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let userDefaults = UserDefaults.standard
-        if let username = userDefaults.string(forKey: "username") {
-            driverHomeDataSource.getUser(username: username)
-            
-            driverHomeDataSource.getHomePageData(driverName: username)
-        }
+        
     }
     
     @objc func voteTripButtonTapped() {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 extension LoginViewController: LoginDataSourceDelegate {
     func showAlertMsg(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -31,6 +32,27 @@ class LoginViewController: BaseScrollViewController {
     var loginHelper = LoginHelper()
     var loginDataSource = LoginDataSource()
     
+    var indicator = UIActivityIndicatorView()
+    var spinnerView: UIView?
+    
+    func startActivityIndicator() {
+        spinnerView = UIView.init(frame: self.view.bounds)
+        spinnerView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = UIActivityIndicatorView.Style.gray
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        
+        indicator.startAnimating()
+        indicator.backgroundColor = .white
+    }
+    
+    func stopActivityIndicator() {
+        indicator.stopAnimating()
+        indicator.hidesWhenStopped = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = UserDefaults.standard
@@ -42,15 +64,16 @@ class LoginViewController: BaseScrollViewController {
         loginDataSource.delegate = self
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        //stopActivityIndicator()
+    }
+    
     @IBAction func loginButtonTapped(_ sender: Any) {
         if let username = usernameTextField.text,
             let password = passwordTextField.text {
+            //startActivityIndicator()
             loginDataSource.loginUser(username: username, password: password)
         }
-    }
-    
-    @IBAction func createAccountButtonTapped(_ sender: Any) {
-        
     }
     
     func showAlert(title: String, message: String) {
