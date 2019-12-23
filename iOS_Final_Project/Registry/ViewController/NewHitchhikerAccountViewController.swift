@@ -16,6 +16,7 @@ extension NewHitchhikerAccountViewController: NewHitchhikerDataSourceDelegate {
     }
     
     func goToHomePage() {
+        self.removeSpinner()
         performSegue(withIdentifier: "toHitchhikerHome", sender: nil)
     }
 }
@@ -56,6 +57,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     
     var newHitchhikerAccountHelper = NewHitchhikerAccountHelper()
     var newHitchhikerDataSource = NewHitchhikerDataSource()
+    var awsManager = AWSS3Manager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,9 +132,22 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
         }
         let profileImageData:NSData = profileImage.resizedTo1MB()?.pngData()! as! NSData
         let strBase64 = profileImageData.base64EncodedString(options: .lineLength64Characters)
+        self.showSpinner()
         
-        newHitchhikerDataSource.addNewHitchihiker(profileImage: strBase64, username: username, password: password, name: name, surname: surname, email: email,
-                                                  phonenumber: phone, age: userAge, gender: gender)
+        
+ awsManager.uploadImage(image: profileImage, progress: {[weak self] ( uploadProgress) in
+            guard let strongSelf = self else { return }
+        }) {[weak self] (uploadedFileUrl, error) in
+            guard let strongSelf = self else { return }
+            if let finalPath = uploadedFileUrl as? String { // 3
+                print("Uploaded file url: " + finalPath)
+                strongSelf.newHitchhikerDataSource.addNewHitchihiker(profileImage: profileImage, profileImageStr: finalPath, username: username, password: password, name: name, surname: surname, email: email,
+                phonenumber: phone, age: userAge, gender: gender)
+            } else {
+                print("\(String(describing: error?.localizedDescription))") // 4
+            }
+        }
+        
         // feed e yolla
     }
     

@@ -1,0 +1,250 @@
+PODS:
+  - AWSAPIGateway (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSAutoScaling (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSCloudWatch (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSCognito (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSCognitoIdentityProvider (2.12.3):
+    - AWSCognitoIdentityProviderASF (= 1.0.1)
+    - AWSCore (= 2.12.3)
+  - AWSCognitoIdentityProviderASF (1.0.1)
+  - AWSComprehend (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSConnect (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSConnectParticipant (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSCore (2.12.3)
+  - AWSDynamoDB (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSEC2 (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSElasticLoadBalancing (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSiOSSDKv2 (2.12.3):
+    - AWSiOSSDKv2/AutoScaling (= 2.12.3)
+    - AWSiOSSDKv2/AWSAPIGateway (= 2.12.3)
+    - AWSiOSSDKv2/AWSCognito (= 2.12.3)
+    - AWSiOSSDKv2/AWSCognitoIdentityProvider (= 2.12.3)
+    - AWSiOSSDKv2/AWSComprehend (= 2.12.3)
+    - AWSiOSSDKv2/AWSConnect (= 2.12.3)
+    - AWSiOSSDKv2/AWSConnectParticipant (= 2.12.3)
+    - AWSiOSSDKv2/AWSCore (= 2.12.3)
+    - AWSiOSSDKv2/AWSIoT (= 2.12.3)
+    - AWSiOSSDKv2/AWSKMS (= 2.12.3)
+    - AWSiOSSDKv2/AWSLambda (= 2.12.3)
+    - AWSiOSSDKv2/AWSLex (= 2.12.3)
+    - AWSiOSSDKv2/AWSLogs (= 2.12.3)
+    - AWSiOSSDKv2/AWSMachineLearning (= 2.12.3)
+    - AWSiOSSDKv2/AWSPolly (= 2.12.3)
+    - AWSiOSSDKv2/AWSRekognition (= 2.12.3)
+    - AWSiOSSDKv2/AWSS3 (= 2.12.3)
+    - AWSiOSSDKv2/AWSSageMakerRuntime (= 2.12.3)
+    - AWSiOSSDKv2/AWSSES (= 2.12.3)
+    - AWSiOSSDKv2/AWSSimpleDB (= 2.12.3)
+    - AWSiOSSDKv2/AWSSNS (= 2.12.3)
+    - AWSiOSSDKv2/AWSSQS (= 2.12.3)
+    - AWSiOSSDKv2/AWSTextract (= 2.12.3)
+    - AWSiOSSDKv2/AWSTranscribe (= 2.12.3)
+    - AWSiOSSDKv2/AWSTranslate (= 2.12.3)
+    - AWSiOSSDKv2/CloudWatch (= 2.12.3)
+    - AWSiOSSDKv2/DynamoDB (= 2.12.3)
+    - AWSiOSSDKv2/EC2 (= 2.12.3)
+    - AWSiOSSDKv2/ElasticLoadBalancing (= 2.12.3)
+    - AWSiOSSDKv2/Kinesis (= 2.12.3)
+    - AWSiOSSDKv2/KinesisVideoSignaling (= 2.12.3)
+    - AWSiOSSDKv2/MobileAnalytics (= 2.12.3)
+    - AWSiOSSDKv2/Pinpoint (= 2.12.3)
+  - AWSiOSSDKv2/AutoScaling (2.12.3):
+    - AWSAutoScaling (= 2.12.3)
+  - AWSiOSSDKv2/AWSAPIGateway (2.12.3):
+    - AWSAPIGateway (= 2.12.3)
+  - AWSiOSSDKv2/AWSCognito (2.12.3):
+    - AWSCognito (= 2.12.3)
+  - AWSiOSSDKv2/AWSCognitoIdentityProvider (2.12.3):
+    - AWSCognitoIdentityProvider (= 2.12.3)
+  - AWSiOSSDKv2/AWSComprehend (2.12.3):
+    - AWSComprehend (= 2.12.3)
+  - AWSiOSSDKv2/AWSConnect (2.12.3):
+    - AWSConnect (= 2.12.3)
+  - AWSiOSSDKv2/AWSConnectParticipant (2.12.3):
+    - AWSConnectParticipant (= 2.12.3)
+  - AWSiOSSDKv2/AWSCore (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSiOSSDKv2/AWSIoT (2.12.3):
+    - AWSIoT (= 2.12.3)
+  - AWSiOSSDKv2/AWSKMS (2.12.3):
+    - AWSKMS (= 2.12.3)
+  - AWSiOSSDKv2/AWSLambda (2.12.3):
+    - AWSLambda (= 2.12.3)
+  - AWSiOSSDKv2/AWSLex (2.12.3):
+    - AWSLex (= 2.12.3)
+  - AWSiOSSDKv2/AWSLogs (2.12.3):
+    - AWSLogs (= 2.12.3)
+  - AWSiOSSDKv2/AWSMachineLearning (2.12.3):
+    - AWSMachineLearning (= 2.12.3)
+  - AWSiOSSDKv2/AWSPolly (2.12.3):
+    - AWSPolly (= 2.12.3)
+  - AWSiOSSDKv2/AWSRekognition (2.12.3):
+    - AWSRekognition (= 2.12.3)
+  - AWSiOSSDKv2/AWSS3 (2.12.3):
+    - AWSS3 (= 2.12.3)
+  - AWSiOSSDKv2/AWSSageMakerRuntime (2.12.3):
+    - AWSSageMakerRuntime (= 2.12.3)
+  - AWSiOSSDKv2/AWSSES (2.12.3):
+    - AWSSES (= 2.12.3)
+  - AWSiOSSDKv2/AWSSimpleDB (2.12.3):
+    - AWSSimpleDB (= 2.12.3)
+  - AWSiOSSDKv2/AWSSNS (2.12.3):
+    - AWSSNS (= 2.12.3)
+  - AWSiOSSDKv2/AWSSQS (2.12.3):
+    - AWSSQS (= 2.12.3)
+  - AWSiOSSDKv2/AWSTextract (2.12.3):
+    - AWSTextract (= 2.12.3)
+  - AWSiOSSDKv2/AWSTranscribe (2.12.3):
+    - AWSTranscribe (= 2.12.3)
+  - AWSiOSSDKv2/AWSTranslate (2.12.3):
+    - AWSTranslate (= 2.12.3)
+  - AWSiOSSDKv2/CloudWatch (2.12.3):
+    - AWSCloudWatch (= 2.12.3)
+  - AWSiOSSDKv2/DynamoDB (2.12.3):
+    - AWSDynamoDB (= 2.12.3)
+  - AWSiOSSDKv2/EC2 (2.12.3):
+    - AWSEC2 (= 2.12.3)
+  - AWSiOSSDKv2/ElasticLoadBalancing (2.12.3):
+    - AWSElasticLoadBalancing (= 2.12.3)
+  - AWSiOSSDKv2/Kinesis (2.12.3):
+    - AWSKinesis (= 2.12.3)
+  - AWSiOSSDKv2/KinesisVideoSignaling (2.12.3):
+    - AWSKinesisVideoSignaling (= 2.12.3)
+  - AWSiOSSDKv2/MobileAnalytics (2.12.3):
+    - AWSMobileAnalytics (= 2.12.3)
+  - AWSiOSSDKv2/Pinpoint (2.12.3):
+    - AWSPinpoint (= 2.12.3)
+  - AWSIoT (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSKinesis (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSKinesisVideoSignaling (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSKMS (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSLambda (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSLex (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSLogs (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSMachineLearning (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSMobileAnalytics (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSPinpoint (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSPolly (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSRekognition (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSS3 (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSSageMakerRuntime (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSSES (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSSimpleDB (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSSNS (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSSQS (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSTextract (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSTranscribe (2.12.3):
+    - AWSCore (= 2.12.3)
+  - AWSTranslate (2.12.3):
+    - AWSCore (= 2.12.3)
+
+DEPENDENCIES:
+  - AWSiOSSDKv2
+
+SPEC REPOS:
+  trunk:
+    - AWSAPIGateway
+    - AWSAutoScaling
+    - AWSCloudWatch
+    - AWSCognito
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSComprehend
+    - AWSConnect
+    - AWSConnectParticipant
+    - AWSCore
+    - AWSDynamoDB
+    - AWSEC2
+    - AWSElasticLoadBalancing
+    - AWSiOSSDKv2
+    - AWSIoT
+    - AWSKinesis
+    - AWSKinesisVideoSignaling
+    - AWSKMS
+    - AWSLambda
+    - AWSLex
+    - AWSLogs
+    - AWSMachineLearning
+    - AWSMobileAnalytics
+    - AWSPinpoint
+    - AWSPolly
+    - AWSRekognition
+    - AWSS3
+    - AWSSageMakerRuntime
+    - AWSSES
+    - AWSSimpleDB
+    - AWSSNS
+    - AWSSQS
+    - AWSTextract
+    - AWSTranscribe
+    - AWSTranslate
+
+SPEC CHECKSUMS:
+  AWSAPIGateway: 47a0c60a59bc0fcd279c210c07356105abcb3f80
+  AWSAutoScaling: d413e03f45cc83a9a05aa793abe360f7187b24b1
+  AWSCloudWatch: b0c41ac91178e8f45a5ee9250b2abe6729d976f5
+  AWSCognito: 32fb164c537b27794ce6f049e2d036f9e915f896
+  AWSCognitoIdentityProvider: 3561d7cdbe7343a808bd7b2ce61da5b0c27b98e5
+  AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
+  AWSComprehend: 8dcec18e301ab9bb2b0331124171367284c81ba1
+  AWSConnect: 7f5a7bd5562fbc40332b0a192e3731824e71c06e
+  AWSConnectParticipant: 19c6a0ffd34d7c771647f70b52c8926a5564a719
+  AWSCore: a4b4aeb414bdfd55a5e8879adb4985c46da157d6
+  AWSDynamoDB: b1e6b9c2f2697a1e1c0279c29012ae93aa551284
+  AWSEC2: 160bee3e955c41d0612d031ebf3e026f7c0522d3
+  AWSElasticLoadBalancing: b0af892bc1a750af3dbcb9b9a579d0e117c632ad
+  AWSiOSSDKv2: aebdab922b04a64f5488bc6d31daa9ab19d73e7d
+  AWSIoT: 6a94c469b4e2b5768e4206f5c04d16562f8ea031
+  AWSKinesis: 34f4dda8f2aa1b28e434ebb529e0e73f59b8f33b
+  AWSKinesisVideoSignaling: 81e17da108ffb87e6fd0afe80391e12281241dda
+  AWSKMS: 28df260fe8b0ad69137b1c20a0e8b1817b4e7f68
+  AWSLambda: e888330b6857cdc83060fa776f14c5df12b1da6b
+  AWSLex: 2e98d68bf3d4fc7f9655b9e28ed6ce48b48c629b
+  AWSLogs: a21505ed7b70d0622bb9fbabda7a786f7dbb8aef
+  AWSMachineLearning: 08bbdf4299decc9ff5eac1ce5f49808d6881eadf
+  AWSMobileAnalytics: dda0fcf75a5c74de85ab8aaf656cb8236b454689
+  AWSPinpoint: 2922a25814aaaba3a460f06fdb0a722f73fc48a7
+  AWSPolly: a2e3c8fa65b98a5d3242af6b7e6854ee1fea74b6
+  AWSRekognition: cc7761222bcf15e46f149abd0276d2c18b1491e3
+  AWSS3: 511a7b646572686c7e193aa19bd6a5cc43ec2977
+  AWSSageMakerRuntime: b0178b3f774c9c75bdf489b0fec7fa8eb4747f54
+  AWSSES: 2ae25b2a77a8ea1eb464a2b07a24dfedb867511b
+  AWSSimpleDB: 8a2af89eeab38a0df0761bf797bd0bec95e980ea
+  AWSSNS: 2dbeb583a879082562ce30a0bcf36acc41ef1cf2
+  AWSSQS: 7615bca03c81ea3fc96d5c95eb35ebeaa8a7bc44
+  AWSTextract: ac3e2403b73f3ab843a4945f2aea0bfcf5ad7fd6
+  AWSTranscribe: 266e556872f05152f7167759c7c199b70b497170
+  AWSTranslate: 66ee693886d3f2237324d262ec86ee1d95859e31
+
+PODFILE CHECKSUM: c66f34a1914549102f06ccf71c6667a2869d1043
+
+COCOAPODS: 1.8.4

@@ -16,6 +16,7 @@ extension HitchhikerTripRequestsViewController: HitchhikerTripRequestsDataSource
     }
     
     func loadData() {
+        self.removeSpinner()
         tripRequestTableView.reloadData()
     }
 }
@@ -46,6 +47,7 @@ class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegat
     override func viewWillAppear(_ animated: Bool) {
         let userDefaults = UserDefaults.standard
         if let username = userDefaults.string(forKey: "username") {
+            self.showSpinner()
             hitchhikerTripRequestsDataSource.getPageData(hitchhikerUsername: username)
         }
     }

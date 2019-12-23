@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -63,6 +63,7 @@
 		8574494F23A2DF9E000B0B71 /* DriverProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574494E23A2DF9E000B0B71 /* DriverProfileHelper.swift */; };
 		8574495123A2DFAF000B0B71 /* DriverEditProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574495023A2DFAF000B0B71 /* DriverEditProfileHelper.swift */; };
 		8574495323A2DFC7000B0B71 /* DriverOtherProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8574495223A2DFC7000B0B71 /* DriverOtherProfileHelper.swift */; };
+		85788BE223B0F38200B85D49 /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = 85788BE123B0F38200B85D49 /* podfile */; };
 		857CA1EB2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */; };
 		857CA1ED2396F64100DB44D4 /* NewDriverAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */; };
 		8595709623A2F0D400C7FAFB /* DriverOtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8595709523A2F0D400C7FAFB /* DriverOtherProfileViewController.swift */; };
@@ -82,6 +83,9 @@
 		85BCA87A23A8200C009206B1 /* HitchhikerVoteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCA87923A8200C009206B1 /* HitchhikerVoteResponse.swift */; };
 		85D9CBDB23AA962D007391AF /* BaseDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D9CBDA23AA962D007391AF /* BaseDataSource.swift */; };
 		85E86C7223990D3F009D011F /* HitchhikerHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */; };
+		85EBBFDC23B112F6001A78BA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBBFDB23B112F6001A78BA /* Util.swift */; };
+		85EBBFDE23B11E60001A78BA /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBBFDD23B11E60001A78BA /* NetworkConstants.swift */; };
+		85EBBFE023B12036001A78BA /* AWSS3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBBFDF23B12036001A78BA /* AWSS3Manager.swift */; };
 		85FF0E6323A3DE64009343C9 /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */; };
 		85FF13A823A69666005088BF /* HitchhikerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13A723A69666005088BF /* HitchhikerRequest.swift */; };
 		85FF13AA23A699AA005088BF /* HitchhikerRequestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FF13A923A699AA005088BF /* HitchhikerRequestsResponse.swift */; };
@@ -97,9 +101,11 @@
 		9DDDD92423A83BA400A62815 /* Image+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDD92323A83BA400A62815 /* Image+Additions.swift */; };
 		9DDDD92623A8F78D00A62815 /* HitchhikerUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDD92523A8F78D00A62815 /* HitchhikerUpdateRequest.swift */; };
 		9DDDD92823A8FD8400A62815 /* DriverUpdateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDDD92723A8FD8400A62815 /* DriverUpdateRequest.swift */; };
+		F89D0B7E155B86FE12CDEA79 /* Pods_iOS_Final_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B071EE343D51BC6F6E52B82 /* Pods_iOS_Final_Project.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B071EE343D51BC6F6E52B82 /* Pods_iOS_Final_Project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_Final_Project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8501CEE923A51B7500872FEF /* DriverHomeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverHomeRequest.swift; sourceTree = "<group>"; };
 		8501CEEB23A51BA800872FEF /* DriverHomeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverHomeResponse.swift; sourceTree = "<group>"; };
 		8501CEED23A5300100872FEF /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -158,6 +164,7 @@
 		8574494E23A2DF9E000B0B71 /* DriverProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverProfileHelper.swift; sourceTree = "<group>"; };
 		8574495023A2DFAF000B0B71 /* DriverEditProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverEditProfileHelper.swift; sourceTree = "<group>"; };
 		8574495223A2DFC7000B0B71 /* DriverOtherProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverOtherProfileHelper.swift; sourceTree = "<group>"; };
+		85788BE123B0F38200B85D49 /* podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; };
 		857CA1EA2396F23D00DB44D4 /* NewHitchhikerAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHitchhikerAccountViewController.swift; sourceTree = "<group>"; };
 		857CA1EC2396F64100DB44D4 /* NewDriverAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDriverAccountViewController.swift; sourceTree = "<group>"; };
 		8595709523A2F0D400C7FAFB /* DriverOtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverOtherProfileViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +184,9 @@
 		85BCA87923A8200C009206B1 /* HitchhikerVoteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerVoteResponse.swift; sourceTree = "<group>"; };
 		85D9CBDA23AA962D007391AF /* BaseDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDataSource.swift; sourceTree = "<group>"; };
 		85E86C7123990D3F009D011F /* HitchhikerHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerHomeViewController.swift; sourceTree = "<group>"; };
+		85EBBFDB23B112F6001A78BA /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		85EBBFDD23B11E60001A78BA /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		85EBBFDF23B12036001A78BA /* AWSS3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Manager.swift; sourceTree = "<group>"; };
 		85FF0E6223A3DE64009343C9 /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
 		85FF13A723A69666005088BF /* HitchhikerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerRequest.swift; sourceTree = "<group>"; };
 		85FF13A923A699AA005088BF /* HitchhikerRequestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerRequestsResponse.swift; sourceTree = "<group>"; };
@@ -192,6 +202,8 @@
 		9DDDD92323A83BA400A62815 /* Image+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Additions.swift"; sourceTree = "<group>"; };
 		9DDDD92523A8F78D00A62815 /* HitchhikerUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerUpdateRequest.swift; sourceTree = "<group>"; };
 		9DDDD92723A8FD8400A62815 /* DriverUpdateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverUpdateRequest.swift; sourceTree = "<group>"; };
+		DCB1C3801CDE9D2B4668D617 /* Pods-iOS_Final_Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Final_Project.debug.xcconfig"; path = "Target Support Files/Pods-iOS_Final_Project/Pods-iOS_Final_Project.debug.xcconfig"; sourceTree = "<group>"; };
+		F09606066AA13C5984FDBED6 /* Pods-iOS_Final_Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_Final_Project.release.xcconfig"; path = "Target Support Files/Pods-iOS_Final_Project/Pods-iOS_Final_Project.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,12 +211,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F89D0B7E155B86FE12CDEA79 /* Pods_iOS_Final_Project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46AEE088B35F3D63A1CED51C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B071EE343D51BC6F6E52B82 /* Pods_iOS_Final_Project.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8501CEE823A51B0D00872FEF /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +403,8 @@
 			isa = PBXGroup;
 			children = (
 				854A44E52397C73800AFC20D /* Extensions */,
+				85EBBFDB23B112F6001A78BA /* Util.swift */,
+				85EBBFDD23B11E60001A78BA /* NetworkConstants.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -425,8 +448,11 @@
 		855BB672239574DF003A28EA = {
 			isa = PBXGroup;
 			children = (
+				85788BE123B0F38200B85D49 /* podfile */,
 				855BB67D239574DF003A28EA /* iOS_Final_Project */,
 				855BB67C239574DF003A28EA /* Products */,
+				98CA21873A63A5DE2A345FF7 /* Pods */,
+				46AEE088B35F3D63A1CED51C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -460,6 +486,7 @@
 			children = (
 				855BB69423959E7D003A28EA /* BaseScrollViewController.swift */,
 				85D9CBDA23AA962D007391AF /* BaseDataSource.swift */,
+				85EBBFDF23B12036001A78BA /* AWSS3Manager.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -503,6 +530,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		98CA21873A63A5DE2A345FF7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DCB1C3801CDE9D2B4668D617 /* Pods-iOS_Final_Project.debug.xcconfig */,
+				F09606066AA13C5984FDBED6 /* Pods-iOS_Final_Project.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,9 +546,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 855BB68F239574E0003A28EA /* Build configuration list for PBXNativeTarget "iOS_Final_Project" */;
 			buildPhases = (
+				8B1377EF923E675C3161E980 /* [CP] Check Pods Manifest.lock */,
 				855BB677239574DF003A28EA /* Sources */,
 				855BB678239574DF003A28EA /* Frameworks */,
 				855BB679239574DF003A28EA /* Resources */,
+				454680E1FFA179CE8D3308D0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -561,6 +599,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85788BE223B0F38200B85D49 /* podfile in Resources */,
 				85069AE2239FF3F30012E3B7 /* Driver.storyboard in Resources */,
 				855BB68B239574E0003A28EA /* LaunchScreen.storyboard in Resources */,
 				855BB688239574E0003A28EA /* Assets.xcassets in Resources */,
@@ -571,11 +610,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		454680E1FFA179CE8D3308D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS_Final_Project/Pods-iOS_Final_Project-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS_Final_Project/Pods-iOS_Final_Project-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS_Final_Project/Pods-iOS_Final_Project-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B1377EF923E675C3161E980 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOS_Final_Project-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		855BB677239574DF003A28EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85EBBFDE23B11E60001A78BA /* NetworkConstants.swift in Sources */,
 				855BB693239575F0003A28EA /* LoginViewController.swift in Sources */,
 				85FF13AC23A6C916005088BF /* HitchhikerMakeTripRequest.swift in Sources */,
 				85069AEE23A00F760012E3B7 /* LoginRequest.swift in Sources */,
@@ -616,6 +698,7 @@
 				854EF59923A1760B0085727F /* TripRequest.swift in Sources */,
 				8501CEEC23A51BA800872FEF /* DriverHomeResponse.swift in Sources */,
 				8557FEC6239FDBE5005AB39C /* HitchhikerTripRequestsDataSource.swift in Sources */,
+				85EBBFE023B12036001A78BA /* AWSS3Manager.swift in Sources */,
 				854A44ED2397D69500AFC20D /* NewHitchhikerAccountHelper.swift in Sources */,
 				8505DE7E23A15950005ACD62 /* HitchhikerOtherProfileDataSource.swift in Sources */,
 				8574494B23A2CEC8000B0B71 /* DriverEditProfileDataSource.swift in Sources */,
@@ -651,6 +734,7 @@
 				8595709623A2F0D400C7FAFB /* DriverOtherProfileViewController.swift in Sources */,
 				85BCA86E23A7DC74009206B1 /* DriverVotePageViewController.swift in Sources */,
 				85BCA87823A80D2E009206B1 /* VoteRequest.swift in Sources */,
+				85EBBFDC23B112F6001A78BA /* Util.swift in Sources */,
 				9DDDD92823A8FD8400A62815 /* DriverUpdateRequest.swift in Sources */,
 				85FF13AA23A699AA005088BF /* HitchhikerRequestsResponse.swift in Sources */,
 				8501CEF423A55AFC00872FEF /* NewTripRequest.swift in Sources */,
@@ -802,6 +886,7 @@
 		};
 		855BB690239574E0003A28EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB1C3801CDE9D2B4668D617 /* Pods-iOS_Final_Project.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -823,6 +908,7 @@
 		};
 		855BB691239574E0003A28EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F09606066AA13C5984FDBED6 /* Pods-iOS_Final_Project.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";

@@ -22,6 +22,7 @@ extension HitchhikerVotePageViewController: HitchhikerVotePageDataSourceDelegate
     }
     
     func loadVotePageData() {
+        self.removeSpinner()
         voteTableView.reloadData()
     }
 }
@@ -51,6 +52,7 @@ class HitchhikerVotePageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if let user = hitchhikerVotePageDataSource.hitchhiker {
+            self.showSpinner()
             hitchhikerVotePageDataSource.getVotePageData(username: user.username)
         }
     }

@@ -8,7 +8,15 @@
 
 import Foundation
 import UIKit
-
+/*
+extension LoginDataSource: AWSS3ManagerDelegate {
+    func setImage(img: UIImage) {
+        if let response = userResponse {
+            setUser(image: img, response: response)
+        }
+    }
+}
+*/
 protocol LoginDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func routeToHome(isDriver: Bool)
@@ -17,14 +25,21 @@ protocol LoginDataSourceDelegate {
 class LoginDataSource : BaseDataSource {
     var user: User?
     var delegate: LoginDataSourceDelegate?
+    /*
+    var awsManager = AWSS3Manager()
     
+    override init() {
+            awsManager.delegate = self
+       }
+    */
     func loginUser(username: String, password: String) {
         let loginRequest = LoginRequest(username: username, password: password)
         
-        if let url = URL(string: "\(String(describing: baseURL))login") {
+        if let url = URL(string: "\(String(describing: baseURL))users/login") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            //request.addValue("AWS key:value", forHTTPHeaderField: "Authorization")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(loginRequest)
             

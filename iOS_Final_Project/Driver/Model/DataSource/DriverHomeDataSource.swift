@@ -120,10 +120,8 @@ class DriverHomeDataSource {
                             
                             let decoder = JSONDecoder()
                             let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
+                            self.setUser(response: userResponse)
                             
-                            DispatchQueue.main.async {
-                                self.setUser(response: userResponse)
-                            }
                         }
                     }
                 }

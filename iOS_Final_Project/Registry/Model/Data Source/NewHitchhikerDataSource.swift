@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 protocol NewHitchhikerDataSourceDelegate {
     func showAlertMsg (title: String , message :String)
     func goToHomePage()
@@ -17,7 +18,8 @@ class NewHitchhikerDataSource: BaseDataSource {
     var user: User?
     var delegate: NewHitchhikerDataSourceDelegate?
     
-    func addNewHitchihiker(profileImage:String,
+    func addNewHitchihiker(profileImage: UIImage,
+                           profileImageStr: String,
                            username: String,
                            password: String,
                            name: String,
@@ -26,10 +28,10 @@ class NewHitchhikerDataSource: BaseDataSource {
                            phonenumber: String,
                            age: Int,
                            gender: String) {
-        let createHitchHikerRequest = CreateHitchhikerRequest(image:profileImage, username: username, password: password, firstName: name, surname: surname, driver: false, email: email, phone: phonenumber, age: age, sex: gender)
+        let createHitchHikerRequest = CreateHitchhikerRequest(image: profileImageStr, username: username, password: password, firstName: name, surname: surname, driver: false, email: email, phone: phonenumber, age: age, sex: gender)
         //let session = URLSession.shared
         
-        if let url = URL(string: "\(String(describing: baseURL))newUser") {
+        if let url = URL(string: "\(String(describing: baseURL))users/newUser") {
             var request = URLRequest(url: url)
             request.httpMethod = "PUT"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -56,12 +58,12 @@ class NewHitchhikerDataSource: BaseDataSource {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         if (response.success){
-                            let dataDecoded : Data = Data(base64Encoded:profileImage, options: .ignoreUnknownCharacters)!
+                            //let dataDecoded : Data = Data(base64Encoded:profileImage, options: .ignoreUnknownCharacters)!
                             let userDefaults = UserDefaults.standard
                             userDefaults.setValue(true, forKey: "userLoggedIn")
                             userDefaults.setValue(false, forKey: "userIsDriver")
                             userDefaults.setValue(username, forKeyPath: "username")
-                            self.user = User(profileImage:UIImage(data: dataDecoded)!,isDriver: false, username: username, password: password,
+                            self.user = User(profileImage: profileImage, isDriver: false, username: username, password: password,
                                              name: name, surname: surname, email: email,
                                              phonenumber: phonenumber, age: age, sex: gender)
                             DispatchQueue.main.async {

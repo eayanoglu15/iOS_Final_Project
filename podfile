@@ -1,0 +1,8 @@
+#source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '13.0'
+use_frameworks!
+
+target :'iOS_Final_Project' do
+	pod 'AWSiOSSDKv2'
+end

@@ -8,6 +8,11 @@
 
 import UIKit
 
+extension LoginViewController: AWSS3ManagerDelegate {
+    func setImage(img: UIImage) {
+        self.img.image = img
+    }
+}
 
 extension LoginViewController: LoginDataSourceDelegate {
     func showAlertMsg(title: String, message: String) {
@@ -17,6 +22,7 @@ extension LoginViewController: LoginDataSourceDelegate {
     }
     
     func routeToHome(isDriver: Bool) {
+        self.removeSpinner()
         if isDriver {
             performSegue(withIdentifier: "toDriverHomeFromLogin", sender: nil)
         } else {
@@ -28,30 +34,11 @@ extension LoginViewController: LoginDataSourceDelegate {
 class LoginViewController: BaseScrollViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var img: UIImageView!
     
     var loginHelper = LoginHelper()
     var loginDataSource = LoginDataSource()
-    
-    var indicator = UIActivityIndicatorView()
-    var spinnerView: UIView?
-    
-    func startActivityIndicator() {
-        spinnerView = UIView.init(frame: self.view.bounds)
-        spinnerView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        indicator.style = UIActivityIndicatorView.Style.gray
-        indicator.center = self.view.center
-        self.view.addSubview(indicator)
-        
-        indicator.startAnimating()
-        indicator.backgroundColor = .white
-    }
-    
-    func stopActivityIndicator() {
-        indicator.stopAnimating()
-        indicator.hidesWhenStopped = true
-    }
+    var aws = AWSS3Manager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,16 +49,15 @@ class LoginViewController: BaseScrollViewController {
         title = "Welcome"
         passwordTextField.isSecureTextEntry = true
         loginDataSource.delegate = self
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        //stopActivityIndicator()
+        aws.delegate = self
+        aws.downloadFile(key: "D3825FAC-E651-461A-8F44-250A4BB9F2F9-12209-000018596ACE956D.jpeg")
+        
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         if let username = usernameTextField.text,
             let password = passwordTextField.text {
-            //startActivityIndicator()
+            self.showSpinner()
             loginDataSource.loginUser(username: username, password: password)
         }
     }

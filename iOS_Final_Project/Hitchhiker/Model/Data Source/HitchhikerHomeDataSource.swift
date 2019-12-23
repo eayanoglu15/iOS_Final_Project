@@ -9,17 +9,30 @@
 import Foundation
 import UIKit
 
+extension HitchhikerHomeDataSource: AWSS3ManagerDelegate {
+    func setImage(img: UIImage) {
+        if let response = userResponse {
+            setUser(image: img, response: response)
+        }
+    }
+}
+
 protocol HitchhikerHomeDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func hitchhikerFeedListLoaded()
-    
 }
 
 class HitchhikerHomeDataSource {
     var hitchhiker: User?
     var delegate: HitchhikerHomeDataSourceDelegate?
-    
+    var awsManager = AWSS3Manager()
     var feedArray: [HitchhikerFeed] = []
+    
+    var userResponse: GetUserResponse?
+    
+    init() {
+         awsManager.delegate = self
+    }
     
     func contextualTripRequestAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         // 1
@@ -163,10 +176,13 @@ class HitchhikerHomeDataSource {
                         //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
+                        print("Image ?: ", userResponse.image)
+                        self.userResponse = userResponse
                         
-                        DispatchQueue.main.async {
-                            self.setUser(response: userResponse)
-                        }
+                        let fileName = userResponse.image.deletingPrefix(NetworkConstants.baseS3URL)
+                        print("filename: ", fileName)
+                        //self.awsManager.downloadFile(key: "D3825FAC-E651-461A-8F44-250A4BB9F2F9-12209-000018596ACE956D.jpeg")
+                        self.awsManager.downloadFile(key: fileName)
                         
                     }
                 }
@@ -176,11 +192,16 @@ class HitchhikerHomeDataSource {
     }
     
     
-    func setUser(response: GetUserResponse) {
-        let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
-        hitchhiker = User(profileImage:UIImage(data: dataDecoded)!,isDriver: false, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
-        self.hitchhiker?.id = response.id
-        hitchhiker?.rating=response.point
-        hitchhiker?.voteNumber=response.numberRevieved
+func setUser(image: UIImage,response: GetUserResponse) {
+        
+        
+
+            hitchhiker = User(profileImage: image, isDriver: false, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
+            self.hitchhiker?.id = response.id
+            hitchhiker?.rating=response.point
+            hitchhiker?.voteNumber=response.numberRevieved
+        
+        
+        //let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
     }
 }

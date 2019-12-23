@@ -15,11 +15,8 @@ extension HitchhikerHomeViewController: HitchhikerHomeDataSourceDelegate {
         self.present(alert, animated: true)
     }
     
-    func setId() {
-        
-    }
-    
     func hitchhikerFeedListLoaded() {
+        self.removeSpinner()
         self.hitchhikerHomeTableView.reloadData()
     }
 }
@@ -29,7 +26,7 @@ class HitchhikerHomeViewController: UIViewController {
     
     let hitchhikerHomeDataSource = HitchhikerHomeDataSource()
     let hitchhikerHomeHelper = HitchhikerHomeHelper()
-    
+
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -53,6 +50,7 @@ class HitchhikerHomeViewController: UIViewController {
         let userDefaults = UserDefaults.standard
         if let username = userDefaults.string(forKey: "username") {
             print("Username: ", username)
+            self.showSpinner()
             hitchhikerHomeDataSource.getUser(username: username)
             hitchhikerHomeDataSource.getPlannedTrips(hitchhikerName: username)
         }

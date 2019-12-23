@@ -20,6 +20,7 @@ extension DriverVotePageViewController: DriverVotePageDataSourceDelegate {
     }
     
     func loadVotePageData() {
+        self.removeSpinner()
         voteTableView.reloadData()
     }
 }
@@ -49,6 +50,7 @@ class DriverVotePageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if let user = driverVotePageDataSource.driver {
+            self.showSpinner()
             driverVotePageDataSource.getVotePageData(username: user.username)
         }
     }

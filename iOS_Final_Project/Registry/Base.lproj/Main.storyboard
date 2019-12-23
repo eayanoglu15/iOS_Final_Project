@@ -33,7 +33,7 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRp-Mv-cqA">
                                                 <rect key="frame" x="25" y="372" width="348" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="LOG IN"/>
                                                 <connections>
                                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0SO-VL-cro"/>
@@ -41,12 +41,15 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fff-vh-Rwf">
                                                 <rect key="frame" x="25" y="427" width="348" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="CREATE ACCOUNT"/>
                                                 <connections>
                                                     <segue destination="uWo-ow-1Ri" kind="show" id="1lr-Do-wBG"/>
                                                 </connections>
                                             </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OkO-OW-Z8U">
+                                                <rect key="frame" x="79" y="46" width="240" height="128"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -54,12 +57,16 @@
                                             <constraint firstAttribute="trailing" secondItem="EIJ-no-ssK" secondAttribute="trailing" constant="25" id="D6g-pD-ept"/>
                                             <constraint firstItem="fff-vh-Rwf" firstAttribute="leading" secondItem="MIF-HP-Gze" secondAttribute="leading" constant="25" id="EXB-nG-cZ4"/>
                                             <constraint firstItem="LGo-qa-ATe" firstAttribute="top" secondItem="EIJ-no-ssK" secondAttribute="bottom" constant="25" id="Hkd-E9-sdT"/>
+                                            <constraint firstItem="EIJ-no-ssK" firstAttribute="top" secondItem="OkO-OW-Z8U" secondAttribute="bottom" constant="55" id="HsN-TY-AbR"/>
                                             <constraint firstItem="jRp-Mv-cqA" firstAttribute="centerY" secondItem="MIF-HP-Gze" secondAttribute="centerY" id="MaV-IR-kRQ"/>
                                             <constraint firstItem="jRp-Mv-cqA" firstAttribute="top" secondItem="LGo-qa-ATe" secondAttribute="bottom" constant="50" id="Xnq-Pu-kOj"/>
                                             <constraint firstAttribute="trailing" secondItem="fff-vh-Rwf" secondAttribute="trailing" constant="25" id="YJ1-WV-6Mh"/>
+                                            <constraint firstItem="OkO-OW-Z8U" firstAttribute="leading" secondItem="MIF-HP-Gze" secondAttribute="leading" constant="79" id="YaB-a9-gkV"/>
                                             <constraint firstItem="fff-vh-Rwf" firstAttribute="top" secondItem="jRp-Mv-cqA" secondAttribute="bottom" constant="25" id="ZIM-nj-2RK"/>
+                                            <constraint firstAttribute="trailing" secondItem="OkO-OW-Z8U" secondAttribute="trailing" constant="79" id="biK-9a-C03"/>
                                             <constraint firstItem="jRp-Mv-cqA" firstAttribute="leading" secondItem="MIF-HP-Gze" secondAttribute="leading" constant="25" id="cHE-J6-oTv"/>
                                             <constraint firstAttribute="trailing" secondItem="jRp-Mv-cqA" secondAttribute="trailing" constant="25" id="ihp-Zk-5vp"/>
+                                            <constraint firstItem="OkO-OW-Z8U" firstAttribute="top" secondItem="MIF-HP-Gze" secondAttribute="top" constant="46" id="sEB-pz-IYz"/>
                                             <constraint firstAttribute="trailing" secondItem="LGo-qa-ATe" secondAttribute="trailing" constant="25" id="sUf-KS-RAB"/>
                                             <constraint firstItem="LGo-qa-ATe" firstAttribute="leading" secondItem="MIF-HP-Gze" secondAttribute="leading" constant="25" id="wLg-AG-aku"/>
                                         </constraints>
@@ -86,6 +93,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MS0-Ub-5e7"/>
                     <connections>
+                        <outlet property="img" destination="OkO-OW-Z8U" id="Qaj-fz-mTk"/>
                         <outlet property="passwordTextField" destination="LGo-qa-ATe" id="gnk-oS-R5t"/>
                         <outlet property="scrollView" destination="YND-d8-b5A" id="26K-L0-o90"/>
                         <outlet property="usernameTextField" destination="EIJ-no-ssK" id="dtu-RO-aUA"/>
@@ -107,7 +115,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ex-3d-gkf">
                                 <rect key="frame" x="25" y="460" width="364" height="30"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Driver"/>
                                 <connections>
                                     <segue destination="esA-Bt-HyN" kind="show" id="QMv-8Y-6Rj"/>
@@ -115,7 +123,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-an-ngh">
                                 <rect key="frame" x="25" y="515" width="364" height="30"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Hitchhiker"/>
                                 <connections>
                                     <segue destination="8aT-IJ-dte" kind="show" id="NGL-rc-WFh"/>
@@ -206,7 +214,7 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKk-w3-uMy">
                                                 <rect key="frame" x="25" y="577" width="364" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="REGISTER"/>
                                                 <connections>
                                                     <action selector="registerButtonTapped:" destination="8aT-IJ-dte" eventType="touchUpInside" id="0pw-27-jnh"/>
@@ -449,7 +457,7 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZz-jE-ozy">
                                                 <rect key="frame" x="25" y="680" width="364" height="30"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.68439805507659912" green="0.89987123012542725" blue="0.93114757537841797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="REGISTER"/>
                                                 <connections>
                                                     <action selector="registerButtonTapped:" destination="esA-Bt-HyN" eventType="touchUpInside" id="U5u-ag-QbR"/>

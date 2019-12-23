@@ -23,6 +23,7 @@ extension DriverHomeViewController: DriverHomeDataSourceDelegate {
     }
     
     func loadHomePageData() {
+        self.removeSpinner()
         requestTableView.reloadData()
     }
 }
@@ -44,6 +45,7 @@ class DriverHomeViewController: UIViewController {
         
         let userDefaults = UserDefaults.standard
         if let username = userDefaults.string(forKey: "username") {
+            self.showSpinner()
             driverHomeDataSource.getUser(username: username)
             driverHomeDataSource.getHomePageData(driverName: username)
         }
@@ -54,10 +56,6 @@ class DriverHomeViewController: UIViewController {
         
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
         requestTableView.refreshControl = refreshControl
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
     }
     
     @objc func voteTripButtonTapped() {

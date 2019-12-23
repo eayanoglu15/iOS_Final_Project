@@ -23,7 +23,7 @@ class HitchhikerEditProfileDataSource: BaseDataSource {
                            age: Int, gender: String) {
         let hitchhikerRequest = HitchhikerUpdateRequest(email: email, password: password, firstName: name, surname: surname, username: username, phone: phonenumber, age: age, sex: gender, driver: false, id: id)
         
-        if let url = URL(string: "\(String(describing: baseURL))updateUser") {
+        if let url = URL(string: "\(String(describing: baseURL))users/updateUser") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

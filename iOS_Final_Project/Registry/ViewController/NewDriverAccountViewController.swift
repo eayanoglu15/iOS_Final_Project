@@ -10,6 +10,7 @@ import UIKit
 
 extension NewDriverAccountViewController: NewDriverDataSourceDelegate {
     func goToHome() {
+        self.removeSpinner()
         performSegue(withIdentifier: "toDriverHome", sender: nil)
     }
     
@@ -134,7 +135,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         let profileImageData:NSData = profileImage.resizedTo1MB()?.pngData() as! NSData
         let strBase64 = profileImageData.base64EncodedString(options: .lineLength64Characters)
         //print(strBase64)
-        
+        self.showSpinner()
         newDriverDataSource.addNewDriver(profileImage: strBase64, username: username, password: password, name: name, surname: surname, email: email,
                                             phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
         // feed e yolla

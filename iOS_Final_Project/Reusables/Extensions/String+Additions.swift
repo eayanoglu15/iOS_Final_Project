@@ -60,4 +60,9 @@ extension String {
         let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
         return UTCToCurrentFormat
     }
+    
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
 }
