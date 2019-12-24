@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 extension HitchhikerHomeDataSource: AWSS3ManagerDelegate {
+    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
+        
+    }
+    
     func setImage(img: UIImage) {
         if let response = userResponse {
             setUser(image: img, response: response)
@@ -26,6 +30,7 @@ class HitchhikerHomeDataSource {
     var hitchhiker: User?
     var delegate: HitchhikerHomeDataSourceDelegate?
     var awsManager = AWSS3Manager()
+    
     var feedArray: [HitchhikerFeed] = []
     
     var userResponse: GetUserResponse?
@@ -33,6 +38,7 @@ class HitchhikerHomeDataSource {
     init() {
          awsManager.delegate = self
     }
+    
     
     func contextualTripRequestAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         // 1

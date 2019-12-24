@@ -16,6 +16,12 @@ typealias completionBlock = (_ response: Any?, _ error: Error?) -> Void //3
 
 protocol AWSS3ManagerDelegate {
     func setImage(img: UIImage)
+    func setImageForCell(cell: UITableViewCell, img: UIImage)
+}
+
+extension AWSS3ManagerDelegate {
+    func setImage(img: UIImage) { }
+    func setImageForCell(cell: UITableViewCell, img: UIImage) { }
 }
 
 class AWSS3Manager {
@@ -110,16 +116,39 @@ class AWSS3Manager {
             print("Downloading...")
         })
         }
-            transferUtility.downloadData(fromBucket: NetworkConstants.bucketName, key: key, expression: expression) { (task, URL, data, error) in
-                if error != nil {
-                    print(error!)
-                }
-                img = UIImage.init(data: data!)
-                print(img?.size)
-                DispatchQueue.main.async {
-                    self.delegate?.setImage(img: img!)
-                }
+        transferUtility.downloadData(fromBucket: NetworkConstants.bucketName, key: key, expression: expression) { (task, URL, data, error) in
+            if error != nil {
+                print(error!)
             }
+            img = UIImage.init(data: data!)
+            print(img?.size)
+            DispatchQueue.main.async {
+                self.delegate?.setImage(img: img!)
+            }
+        }
     }
     
+    func downloadFileForCell(cell: UITableViewCell, key: String) {
+        var img: UIImage?
+        var imageData: Data?
+        let transferUtility = AWSS3TransferUtility.default()
+        let expression = AWSS3TransferUtilityDownloadExpression()
+        expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
+            print("Downloading...")
+        })
+        }
+        transferUtility.downloadData(fromBucket: NetworkConstants.bucketName, key: key, expression: expression) { (task, URL, data, error) in
+            if error != nil {
+                print(error!)
+            }
+            if let img = UIImage.init(data: data!) {
+                print(img.size)
+                DispatchQueue.main.async {
+                    self.delegate?.setImageForCell(cell: cell, img: img)
+                }
+            }
+        }
+    }
 }
+
+

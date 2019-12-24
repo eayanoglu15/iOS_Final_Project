@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 extension DriverHomeDataSource: AWSS3ManagerDelegate {
+    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
+        
+    }
+    
     func setImage(img: UIImage) {
         if let response = userResponse {
             setUser(image: img, response: response)

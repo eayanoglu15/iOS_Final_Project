@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension DriverHomeViewController: AWSS3ManagerDelegate {
+    func setImageForCell(cell: UITableViewCell, img: UIImage) {
+        (cell as! HitchhikerTableViewCell).profileImageView.image = img
+    }
+}
+
 extension DriverHomeViewController: DriverHomeDataSourceDelegate {
     func deleteRow(indexPath: IndexPath) {
         //requestTableView.deleteRows(at: [indexPath], with: .automatic)
@@ -29,11 +35,11 @@ extension DriverHomeViewController: DriverHomeDataSourceDelegate {
 }
 
 class DriverHomeViewController: UIViewController {
-    var driverHomeHelper = DriverHomeHelper()
-    var driverHomeDataSource = DriverHomeDataSource()
-    
     @IBOutlet weak var requestTableView: UITableView!
     
+    let driverHomeHelper = DriverHomeHelper()
+    let driverHomeDataSource = DriverHomeDataSource()
+    let awsManager = AWSS3Manager()
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -42,7 +48,7 @@ class DriverHomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         requestTableView.delegate = self
         requestTableView.dataSource = self
-        
+        awsManager.delegate = self
         let userDefaults = UserDefaults.standard
         if let username = userDefaults.string(forKey: "username") {
             self.showSpinner()
@@ -187,8 +193,8 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            let dataDecoded : Data = Data(base64Encoded: tripRequest.image, options: .ignoreUnknownCharacters)!
-            cell.profileImageView.image = UIImage(data: dataDecoded)!
+            let fileName = tripRequest.image.deletingPrefix(NetworkConstants.baseS3URL)
+            awsManager.downloadFileForCell(cell: cell, key: fileName)
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
             cell.fromLabel.text = tripRequest.from
@@ -215,8 +221,8 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            let dataDecoded : Data = Data(base64Encoded: tripRequest.image, options: .ignoreUnknownCharacters)!
-            cell.profileImageView.image = UIImage(data: dataDecoded)!
+            let fileName = tripRequest.image.deletingPrefix(NetworkConstants.baseS3URL)
+            awsManager.downloadFileForCell(cell: cell, key: fileName)
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
             cell.fromLabel.text = tripRequest.from
@@ -238,8 +244,8 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            let dataDecoded : Data = Data(base64Encoded: tripRequest.image, options: .ignoreUnknownCharacters)!
-            cell.profileImageView.image = UIImage(data: dataDecoded)!
+            let fileName = tripRequest.image.deletingPrefix(NetworkConstants.baseS3URL)
+            awsManager.downloadFileForCell(cell: cell, key: fileName)
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
             
             cell.fromLabel.text = tripRequest.from

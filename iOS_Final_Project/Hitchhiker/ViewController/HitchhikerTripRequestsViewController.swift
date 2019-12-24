@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension HitchhikerTripRequestsViewController: AWSS3ManagerDelegate {
+    func setImageForCell(cell: UITableViewCell, img: UIImage) {
+        (cell as! HitchhikerTripRequestTableViewCell).profileImageView.image = img
+    }
+}
+
 extension HitchhikerTripRequestsViewController: HitchhikerTripRequestsDataSourceDelegate {
     func showAlertMsg(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -24,9 +30,9 @@ extension HitchhikerTripRequestsViewController: HitchhikerTripRequestsDataSource
 class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tripRequestTableView: UITableView!
     
-    var hitchhikerTripRequestsDataSource = HitchhikerTripRequestsDataSource()
-    var hitchhikerTripRequestsHelper = HitchhikerTripRequestsHelper()
-    
+    let hitchhikerTripRequestsDataSource = HitchhikerTripRequestsDataSource()
+    let hitchhikerTripRequestsHelper = HitchhikerTripRequestsHelper()
+    let awsManager = AWSS3Manager()
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -35,7 +41,7 @@ class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegat
         // Do any additional setup after loading the view.
         tripRequestTableView.dataSource = self
         tripRequestTableView.delegate = self
-        
+        awsManager.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
         
         hitchhikerTripRequestsDataSource.delegate = self
@@ -151,9 +157,10 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
-                cell.profileImageView.image = UIImage(data: dataDecoded)!
-                 
+                
+                let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
+                awsManager.downloadFileForCell(cell: cell, key: fileName)
+                
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -180,8 +187,10 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
-                cell.profileImageView.image = UIImage(data: dataDecoded)!
+                
+                let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
+                awsManager.downloadFileForCell(cell: cell, key: fileName)
+                
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -208,8 +217,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
-                cell.profileImageView.image = UIImage(data: dataDecoded)!
+                let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
+                awsManager.downloadFileForCell(cell: cell, key: fileName)
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell

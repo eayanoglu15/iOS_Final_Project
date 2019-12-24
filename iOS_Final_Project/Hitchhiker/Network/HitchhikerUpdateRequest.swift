@@ -18,5 +18,5 @@ struct HitchhikerUpdateRequest : Codable {
     let age: Int
     let sex: String
     let driver: Bool
-    let id:Int
+    let id: Int
 }

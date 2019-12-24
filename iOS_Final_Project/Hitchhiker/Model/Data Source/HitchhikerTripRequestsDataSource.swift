@@ -15,12 +15,12 @@ protocol HitchhikerTripRequestsDataSourceDelegate {
 
 class HitchhikerTripRequestsDataSource {
     var hitchhiker: User?
-    
     var delegate: HitchhikerTripRequestsDataSourceDelegate?
     
     var acceptedRequests = [HitchhikerTripRequest]()
     var waitingRequests = [HitchhikerTripRequest]()
     var rejectedRequests = [HitchhikerTripRequest]()
+    
     var requestExist = false
     
     func getPageData(hitchhikerUsername: String) {
@@ -39,7 +39,6 @@ class HitchhikerTripRequestsDataSource {
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
-                        
                         self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
                     }
                 } else {

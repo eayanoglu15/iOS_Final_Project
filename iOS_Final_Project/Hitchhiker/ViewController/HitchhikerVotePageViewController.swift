@@ -8,6 +8,11 @@
 
 import UIKit
 
+extension HitchhikerVotePageViewController: AWSS3ManagerDelegate {
+    func setImageForCell(cell: UITableViewCell, img: UIImage) {
+        (cell as! HitchhikerVoteTableViewCell).profileImageView.image = img
+    }
+}
 // table view extensions
 // get username from user defaults
 extension HitchhikerVotePageViewController: HitchhikerVotePageDataSourceDelegate {
@@ -36,9 +41,9 @@ extension HitchhikerVotePageViewController: HitchhikerVoteTableViewCellDelegate 
 class HitchhikerVotePageViewController: UIViewController {
     @IBOutlet weak var voteTableView: UITableView!
     
-    var hitchhikerVotePageDataSource = HitchhikerVotePageDataSource()
-    var hitchhikerVotePageHelper = HitchhikerVotePageHelper()
-    
+    let hitchhikerVotePageDataSource = HitchhikerVotePageDataSource()
+    let hitchhikerVotePageHelper = HitchhikerVotePageHelper()
+    let awsManager = AWSS3Manager()
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -46,6 +51,7 @@ class HitchhikerVotePageViewController: UIViewController {
         title = "My Votes"
         voteTableView.dataSource = self
         hitchhikerVotePageDataSource.delegate = self
+        awsManager.delegate = self
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
         voteTableView.refreshControl = refreshControl
     }
@@ -157,8 +163,8 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
-                cell.profileImageView.image = UIImage(data: dataDecoded)!
+                let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
+                awsManager.downloadFileForCell(cell: cell, key: fileName)
                 cell.delegate = self
                 cell.tripId = trip.id
                 return cell
@@ -178,8 +184,8 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
-                cell.profileImageView.image = UIImage(data: dataDecoded)!
+                let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
+                awsManager.downloadFileForCell(cell: cell, key: fileName)
                 if let vote = trip.voteGiven {
                         cell.setVoteStars(vote: vote)
                 }
@@ -193,8 +199,8 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
-                cell.profileImageView.image = UIImage(data: dataDecoded)!
+                let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
+                awsManager.downloadFileForCell(cell: cell, key: fileName)
                 cell.delegate = self
                 cell.tripId = trip.id
                 return cell
@@ -214,8 +220,8 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                let dataDecoded : Data = Data(base64Encoded: trip.image, options: .ignoreUnknownCharacters)!
-                cell.profileImageView.image = UIImage(data: dataDecoded)!
+                let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
+                awsManager.downloadFileForCell(cell: cell, key: fileName)
                 if let vote = trip.voteGiven {
                         cell.setVoteStars(vote: vote)
                 }

@@ -8,15 +8,32 @@
 
 import Foundation
 import UIKit
+
+extension HitchhikerOtherProfileDataSource: AWSS3ManagerDelegate {
+    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
+        
+    }
+    
+    func setImage(img: UIImage) {
+        if let response = userResponse {
+            setUser(image: img, response: response)
+            DispatchQueue.main.async {
+                self.delegate?.otherUserLoaded()
+            }
+        }
+    }
+}
+
 protocol HitchhikerOtherProfileDataSourceDelegate {
     func otherUserLoaded()
-    
 }
 
 class HitchhikerOtherProfileDataSource {
     var otherUsername: String = ""
     var otherUser: User?
     var delegate: HitchhikerOtherProfileDataSourceDelegate?
+    var awsManager = AWSS3Manager()
+    var userResponse: LoginResponse?
     
     func getOtherUser() {
         let session = URLSession.shared
@@ -32,25 +49,24 @@ class HitchhikerOtherProfileDataSource {
                 
                 let decoder = JSONDecoder()
                 let response = try! decoder.decode(LoginResponse.self, from: data!)
-                
-                DispatchQueue.main.async {
-                    self.setUser(response: response)
-                    self.delegate?.otherUserLoaded()
-                }
+                print("Image ?: ", response.image)
+                self.userResponse = response
+                let fileName = response.image.deletingPrefix(NetworkConstants.baseS3URL)
+                print("filename: ", fileName)
+                self.awsManager.downloadFile(key: fileName)
             }
             
             dataTask.resume()
         }
         
     }
-    func setUser(response: LoginResponse) -> Bool {
+    
+    func setUser(image: UIImage, response: LoginResponse) {
           let isDriver = response.driver
-        let dataDecoded : Data = Data(base64Encoded:response.image, options: .ignoreUnknownCharacters)!
           if isDriver {
-            otherUser = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
+            otherUser = User(profileImage: image,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
           } else {
-              otherUser = User(profileImage:UIImage(data: dataDecoded)!,isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
+              otherUser = User(profileImage: image, isDriver: isDriver, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
           }
-          return isDriver
       }
 }

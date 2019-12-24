@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct HitchhikerFeed : Codable{
+struct HitchhikerFeed : Codable {
     var rating: Double
     var driverUserName: String
     var carModel: String

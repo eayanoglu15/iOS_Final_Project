@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension HitchhikerHomeViewController: AWSS3ManagerDelegate {
+    func setImageForCell(cell: UITableViewCell, img: UIImage) {
+        (cell as! HitchhikerHomeTableViewCell).profileImageView.image = img
+        self.removeSpinner()
+    }
+}
+
 extension HitchhikerHomeViewController: HitchhikerHomeDataSourceDelegate {
     func showAlertMsg(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -26,7 +33,7 @@ class HitchhikerHomeViewController: UIViewController {
     
     let hitchhikerHomeDataSource = HitchhikerHomeDataSource()
     let hitchhikerHomeHelper = HitchhikerHomeHelper()
-    
+    let awsManager = AWSS3Manager()
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -34,7 +41,7 @@ class HitchhikerHomeViewController: UIViewController {
         hitchhikerHomeTableView.dataSource = self
         hitchhikerHomeTableView.delegate = self
         hitchhikerHomeDataSource.delegate=self
-        
+        awsManager.delegate = self
         title = "Home"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Requests", style: .plain, target: self, action: #selector(requestsButtonTapped))
@@ -128,8 +135,10 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         cell.toLabel.text = feed.to
         cell.minDepartureTimeLabel.text = feed.startTime.convertUtcToDisplay()
         cell.maxDepartureTimeLabel.text = feed.endTime.convertUtcToDisplay()
-        let dataDecoded : Data = Data(base64Encoded: feed.image, options: .ignoreUnknownCharacters)!
-        cell.profileImageView.image = UIImage(data: dataDecoded)!
+        
+        let fileName = feed.image.deletingPrefix(NetworkConstants.baseS3URL)
+        self.showSpinner()
+        awsManager.downloadFileForCell(cell: cell, key: fileName)
         
         /*  if let profileImage = feed.profileImage {
          cell.profileImageView.image = profileImage

@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 extension LoginDataSource: AWSS3ManagerDelegate {
+    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
+        
+    }
+    
     func setImage(img: UIImage) {
         if let response = loginResponse {
             DispatchQueue.main.async {

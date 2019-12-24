@@ -9,6 +9,10 @@
 import UIKit
 
 extension LoginViewController: AWSS3ManagerDelegate {
+    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
+        
+    }
+    
     func setImage(img: UIImage) {
         self.img.image = img
     }
@@ -50,6 +54,7 @@ class LoginViewController: BaseScrollViewController {
         passwordTextField.isSecureTextEntry = true
         loginDataSource.delegate = self
         aws.delegate = self
+        
         aws.downloadFile(key: "D3825FAC-E651-461A-8F44-250A4BB9F2F9-12209-000018596ACE956D.jpeg")
         
     }
