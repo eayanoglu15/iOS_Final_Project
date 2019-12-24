@@ -29,7 +29,7 @@ class DriverProfileDataSource {
     var driver: User?
     
     init() {
-           awsManager.delegate = self
+        awsManager.delegate = self
     }
     
     func getUser(username: String) {

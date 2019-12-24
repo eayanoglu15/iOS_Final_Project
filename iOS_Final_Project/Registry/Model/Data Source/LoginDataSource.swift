@@ -10,10 +10,6 @@ import Foundation
 import UIKit
 
 extension LoginDataSource: AWSS3ManagerDelegate {
-    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
-        
-    }
-    
     func setImage(img: UIImage) {
         if let response = loginResponse {
             DispatchQueue.main.async {
@@ -49,10 +45,10 @@ class LoginDataSource {
             //request.addValue("AWS key:value", forHTTPHeaderField: "Authorization")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(loginRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
+                        self.delegate?.removeSpinner()
                         self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
                     }
                 } else {
@@ -68,8 +64,8 @@ class LoginDataSource {
                             response = try decoder.decode(LoginResponse.self, from: data)
                         } catch {
                             DispatchQueue.main.async {
-                                self.delegate?.showAlertMsg(title: "Invalid User", message: "Check your username and password")
                                 self.delegate?.removeSpinner()
+                                self.delegate?.showAlertMsg(title: "Invalid User", message: "Check your username and password")
                             }
                             return
                         }

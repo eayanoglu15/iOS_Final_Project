@@ -10,7 +10,7 @@ import UIKit
 
 class BaseScrollViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboard()
@@ -34,10 +34,8 @@ class BaseScrollViewController: UIViewController {
     
     @objc func handleKeyboard(notification: Notification) {
         let userInfo = notification.userInfo!
-        
         let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
         if notification.name == UIResponder.keyboardWillHideNotification {
             scrollView.contentInset = UIEdgeInsets.zero
         } else {

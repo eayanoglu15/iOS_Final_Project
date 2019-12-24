@@ -48,7 +48,7 @@ class DriverOtherProfileViewController: UIViewController, UITableViewDelegate {
     
     var driverOtherProfileDataSource = DriverOtherProfileDataSource()
     var driverOtherProfileHelper = DriverOtherProfileHelper()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         driverOtherProfileDataSource.delegate = self

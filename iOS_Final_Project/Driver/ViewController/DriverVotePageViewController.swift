@@ -195,7 +195,7 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
                 cell.setEditableFalse()
                 if let vote = trip.voteGiven {
-                        cell.setVoteStars(vote: vote)
+                    cell.setVoteStars(vote: vote)
                 }
                 return cell
             case 1:
@@ -232,7 +232,7 @@ extension DriverVotePageViewController: UITableViewDataSource {
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
                 cell.setEditableFalse()
                 if let vote = trip.voteGiven {
-                        cell.setVoteStars(vote: vote)
+                    cell.setVoteStars(vote: vote)
                 }
                 return cell
             case 1:
@@ -247,5 +247,3 @@ extension DriverVotePageViewController: UITableViewDataSource {
         }
     }
 }
-
-

@@ -18,14 +18,12 @@ class DriverVoteTableViewCell: UITableViewCell {
     @IBOutlet weak var starThreeImageView: UIImageView!
     @IBOutlet weak var starFourImageView: UIImageView!
     @IBOutlet weak var starFiveImageView: UIImageView!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var minDepartureTimeLabel: UILabel!
     @IBOutlet weak var maxDepartureTimeLabel: UILabel!
-    
     @IBOutlet weak var voteStarOneImageView: UIImageView!
     @IBOutlet weak var voteStarTwoImageView: UIImageView!
     @IBOutlet weak var voteStarThreeImageView: UIImageView!

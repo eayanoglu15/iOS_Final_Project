@@ -26,11 +26,9 @@ enum VotePageStatus {
 class DriverVotePageDataSource {
     var delegate: DriverVotePageDataSourceDelegate?
     var driver: User?
-    
     var votedTrips = [TripRequest]()
     var nonVotedTrips = [TripRequest]()
     var tripExist = false
-    
     var status = VotePageStatus.noTrip
     
     func getStatus() {
@@ -52,18 +50,14 @@ class DriverVotePageDataSource {
     }
     
     func getVotePageData(username: String) {
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
-        
         let driverRequest = DriverHomeRequest(driverUserName: username)
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/driverVotePage") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/driverVotePage") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(driverRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -84,7 +78,6 @@ class DriverVotePageDataSource {
                         print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(DriverVoteResponse.self, from: data)
-                        
                         DispatchQueue.main.async {
                             if let voted = response.votedTrip {
                                 self.votedTrips = voted
@@ -93,7 +86,6 @@ class DriverVotePageDataSource {
                                 self.nonVotedTrips = nonVoted
                             }
                             self.tripExist = response.tripExist
-                            
                             self.getStatus()
                             print("Status: \(self.status)")
                             self.delegate?.loadVotePageData()
@@ -103,22 +95,17 @@ class DriverVotePageDataSource {
             }
             uploadTask.resume()
         }
-        
     }
     
     func giveVoteForTrip(tripId: Int, vote: Int) {
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
-        
         let voteRequest = VoteRequest(tripId: tripId, point: vote, isDriver: true)
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/tripPointRequest") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/tripPointRequest") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(voteRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -139,10 +126,9 @@ class DriverVotePageDataSource {
                         //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
-                        
                         if response.success {
                             DispatchQueue.main.async {
-                                 self.delegate?.reloadTableViewAfterVoting()
+                                self.delegate?.reloadTableViewAfterVoting()
                             }
                         }
                     }

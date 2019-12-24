@@ -96,7 +96,6 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
-        self.showSpinner()
         guard let profileImage = profileImageView.image,
             let username = usernameTextField.text, !username.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
@@ -125,6 +124,7 @@ class NewHitchhikerAccountViewController: BaseScrollViewController, UIImagePicke
             showAlertMsg(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
+        self.showSpinner()
         if let resizedImage = profileImage.resizedTo1MB() {
             awsManager.uploadImage(image: resizedImage, progress: {[weak self] ( uploadProgress) in
                 guard let strongSelf = self else { return }

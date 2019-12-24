@@ -9,7 +9,6 @@
 import Foundation
 
 class LoginHelper {
-    
     private enum Count {
         static let password = 6
         static let userNameMax = 12

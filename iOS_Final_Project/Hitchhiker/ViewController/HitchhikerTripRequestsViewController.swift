@@ -44,9 +44,7 @@ class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegat
         tripRequestTableView.delegate = self
         awsManager.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
-        
         hitchhikerTripRequestsDataSource.delegate = self
-        
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
         tripRequestTableView.refreshControl = refreshControl
     }
@@ -60,8 +58,8 @@ class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegat
     }
     
     @objc func voteTripButtonTapped() {
-         performSegue(withIdentifier: "toHitchhikerVotePage", sender: nil)
-     }
+        performSegue(withIdentifier: "toHitchhikerVotePage", sender: nil)
+    }
     
     @objc func reloadData() {
         let userDefaults = UserDefaults.standard
@@ -73,10 +71,10 @@ class HitchhikerTripRequestsViewController: UIViewController, UITableViewDelegat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "toHitchhikerVotePage" {
-           let destinationVc = segue.destination as! HitchhikerVotePageViewController
-        destinationVc.hitchhikerVotePageDataSource.hitchhiker = hitchhikerTripRequestsDataSource.hitchhiker
-       }
+        if segue.identifier == "toHitchhikerVotePage" {
+            let destinationVc = segue.destination as! HitchhikerVotePageViewController
+            destinationVc.hitchhikerVotePageDataSource.hitchhiker = hitchhikerTripRequestsDataSource.hitchhiker
+        }
     }
 }
 
@@ -134,7 +132,7 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if !hitchhikerTripRequestsDataSource.requestExist {
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
-            cell.messageTextField.text = "You haven't make any request yet"
+            cell.messageTextField.text = "You don't have any current request"
             return cell
         }
         switch indexPath.section {
@@ -142,16 +140,13 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
             if !hitchhikerTripRequestsDataSource.acceptedRequests.isEmpty {
                 var trip = hitchhikerTripRequestsDataSource.acceptedRequests[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TripRequestCell", for: indexPath) as! HitchhikerTripRequestTableViewCell
-                
                 let ratingImageNamesArray = hitchhikerTripRequestsHelper.getRatingImageArray(rating: trip.rating)
-                
                 cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
                 cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
                 cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 cell.usernameLabel.text = trip.driverUserName
-                //cell.carModelLabel.text = trip.carModel
                 cell.carModelLabel.text = trip.carModel
                 cell.statusLabel.text = "Accepted"
                 cell.fromLabel.text = trip.from
@@ -177,7 +172,6 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 cell.usernameLabel.text = trip.driverUserName
-                //cell.carModelLabel.text = trip.carModel
                 cell.carModelLabel.text = trip.carModel
                 cell.statusLabel.text = "Waiting"
                 cell.fromLabel.text = trip.from

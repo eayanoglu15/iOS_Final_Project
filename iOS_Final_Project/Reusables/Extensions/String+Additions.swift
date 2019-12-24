@@ -11,7 +11,20 @@ import Foundation
 extension String {
     /// Checks if string is alphabetic
     var isAlphabetic: Bool {
-        return !isEmpty && rangeOfCharacter(from: CharacterSet.letters.inverted) == nil
+        if isEmpty {
+            return false
+        } else {
+            do {
+                let regex = try NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
+                if regex.firstMatch(in: self, options: [], range: NSMakeRange(0, self.count)) != nil {
+                    return false
+                }
+            }
+            catch {
+                print("ERROR")
+            }
+            return true
+        }
     }
     
     /// Checks if string is alpha numeric
@@ -25,9 +38,9 @@ extension String {
     }
     
     var isValidEmail: Bool {
-       let regularExpressionForEmail = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-       let testEmail = NSPredicate(format:"SELF MATCHES %@", regularExpressionForEmail)
-       return testEmail.evaluate(with: self)
+        let regularExpressionForEmail = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let testEmail = NSPredicate(format:"SELF MATCHES %@", regularExpressionForEmail)
+        return testEmail.evaluate(with: self)
     }
     
     func convertUtcToDisplay() -> String {
@@ -63,13 +76,13 @@ extension String {
         dateFormatter.dateFormat = DateFormat.display
         dateFormatter.calendar = NSCalendar.current
         dateFormatter.timeZone = TimeZone.current
-
+        
         let dt = dateFormatter.date(from: self)
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.dateFormat = DateFormat.network
         
         guard let date = dt else {
-           return nil
+            return nil
         }
         return dateFormatter.string(from: date)
     }

@@ -13,5 +13,4 @@ class NewDriverAccountHelper {
     var genderPicker = UIPickerView()
     var genderPickerData = ["Not Specified", "Female", "Male"]
     var selectedGender = "Not Specified"
-    
 }

@@ -19,8 +19,8 @@ extension DriverEditProfileViewController: DriverEditProfileDataSourceDelegate {
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
-    
 }
+
 class DriverEditProfileViewController: BaseScrollViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!

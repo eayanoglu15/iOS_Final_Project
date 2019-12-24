@@ -19,9 +19,9 @@ class HitchhikerVotePageHelper {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-            for _ in 0..<numberOfFilledStars {
-                ratingImageArray.append(Constant.filledStarName)
-            }
+        for _ in 0..<numberOfFilledStars {
+            ratingImageArray.append(Constant.filledStarName)
+        }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }

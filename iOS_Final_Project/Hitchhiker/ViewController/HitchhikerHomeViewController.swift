@@ -44,9 +44,6 @@ class HitchhikerHomeViewController: UIViewController {
         title = "Home"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "My Requests", style: .plain, target: self, action: #selector(requestsButtonTapped))
-        
-        
-        //refreshControl.addTarget(hitchhikerHomeTableView, action: #selector(reloadData), for: .valueChanged)
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
         hitchhikerHomeTableView.refreshControl = refreshControl
     }
@@ -85,12 +82,10 @@ class HitchhikerHomeViewController: UIViewController {
             let destinationVc = segue.destination as! HitchhikerProfileViewController
             destinationVc.hitchhikerProfileDataSource.hitchhiker = hitchhikerHomeDataSource.hitchhiker
         }
-        
         if segue.identifier == "toOtherProfile" {
             let destinationVc = segue.destination as! HitchhikerOtherProfileViewController
             destinationVc.hitchhikerOtherProfileDataSource.otherUsername = hitchhikerHomeHelper.selectedUsername ?? ""
         }
-        
         if segue.identifier == "toHitchhikerRequests" {
             let destinationVc = segue.destination as! HitchhikerTripRequestsViewController
             destinationVc.hitchhikerTripRequestsDataSource.hitchhiker = hitchhikerHomeDataSource.hitchhiker
@@ -116,18 +111,15 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
             cell.messageTextField.text = "No driver post a trip yet. Wait for apply one"
             return cell
         }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerHomeCell", for: indexPath) as! HitchhikerHomeTableViewCell
         let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
         print("feed.rating: ", feed.rating)
         let ratingImageNamesArray = hitchhikerHomeHelper.getRatingImageArray(rating: feed.rating)
-        
         cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
         cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
         cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
         cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
         cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-        
         cell.usernameLabel.text = feed.driverUserName
         cell.carModelLabel.text = feed.carModel
         cell.availableSeatsLabel.text = "\(feed.availableSeatNumber)"
@@ -135,10 +127,8 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         cell.toLabel.text = feed.to
         cell.minDepartureTimeLabel.text = feed.startTime.convertUtcToDisplay()
         cell.maxDepartureTimeLabel.text = feed.endTime.convertUtcToDisplay()
-        
         let fileName = feed.image.deletingPrefix(NetworkConstants.baseS3URL)
         awsManager.downloadFileForCell(cell: cell, key: fileName)
-        
         return cell
     }
 }
@@ -151,7 +141,6 @@ extension HitchhikerHomeViewController: UITableViewDelegate {
         let tripRequestAction = self.hitchhikerHomeDataSource.contextualTripRequestAction(forRowAtIndexPath: indexPath)
         let swipeConfig = UISwipeActionsConfiguration(actions: [tripRequestAction])
         return swipeConfig
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

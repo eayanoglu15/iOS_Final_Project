@@ -9,7 +9,6 @@
 import Foundation
 
 class HitchhikerTripRequestsHelper {
-    
     private enum Constant {
         static let starNum = 5
         static let filledStarName = "star.fill"
@@ -20,9 +19,9 @@ class HitchhikerTripRequestsHelper {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-            for _ in 0..<numberOfFilledStars {
-                ratingImageArray.append(Constant.filledStarName)
-            }
+        for _ in 0..<numberOfFilledStars {
+            ratingImageArray.append(Constant.filledStarName)
+        }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }
@@ -32,5 +31,4 @@ class HitchhikerTripRequestsHelper {
         }
         return ratingImageArray
     }
-    
 }

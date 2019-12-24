@@ -49,10 +49,8 @@ class DriverHomeViewController: UIViewController {
         requestTableView.dataSource = self
         driverHomeDataSource.delegate = self
         awsManager.delegate = self
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
-        
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
         requestTableView.refreshControl = refreshControl
     }
@@ -90,19 +88,16 @@ class DriverHomeViewController: UIViewController {
             let destinationVc = segue.destination as! DriverNewTripViewController
             destinationVc.driverNewTripDataSource.driver = driverHomeDataSource.driver
         }
-        
         if segue.identifier == "toDriverVotePage" {
             let destinationVc = segue.destination as! DriverVotePageViewController
             destinationVc.driverVotePageDataSource.driver = driverHomeDataSource.driver
         }
-        
         if segue.identifier == "toOtherProfileFromDriverHome" {
             let destinationVc = segue.destination as! DriverOtherProfileViewController
             destinationVc.driverOtherProfileDataSource.otherUsername = driverHomeHelper.selectedUsername
         }
     }
 }
-
 
 extension DriverHomeViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -174,9 +169,7 @@ extension DriverHomeViewController: UITableViewDataSource {
             
         case Status.allWaiting:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerCell", for: indexPath) as! HitchhikerTableViewCell
-            
             let tripRequest = driverHomeDataSource.waitingRequests[indexPath.row]
-        
             print("tripRequest.rating: ", tripRequest.rating)
             let ratingImageNamesArray = driverHomeHelper.getRatingImageArray(rating: tripRequest.rating)
             cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
@@ -184,21 +177,17 @@ extension DriverHomeViewController: UITableViewDataSource {
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            
             let fileName = tripRequest.image.deletingPrefix(NetworkConstants.baseS3URL)
             awsManager.downloadFileForCell(cell: cell, key: fileName)
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
-            
             cell.fromLabel.text = tripRequest.from
             cell.toLabel.text = tripRequest.to
             cell.minDepartureTimeLabel.text = tripRequest.startTime.UTCToLocal()
             cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
-            
             return cell
             
         case Status.acceptedAndWaiting:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerCell", for: indexPath) as! HitchhikerTableViewCell
-            
             var tripRequest: TripRequest
             if indexPath.section == 0 {
                 tripRequest = driverHomeDataSource.acceptedRequests[indexPath.row]
@@ -207,7 +196,6 @@ extension DriverHomeViewController: UITableViewDataSource {
             }
             print("tripRequest.rating: ", tripRequest.rating)
             let ratingImageNamesArray = driverHomeHelper.getRatingImageArray(rating: tripRequest.rating)
-            
             cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
             cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
@@ -216,21 +204,17 @@ extension DriverHomeViewController: UITableViewDataSource {
             let fileName = tripRequest.image.deletingPrefix(NetworkConstants.baseS3URL)
             awsManager.downloadFileForCell(cell: cell, key: fileName)
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
-            
             cell.fromLabel.text = tripRequest.from
-                       cell.toLabel.text = tripRequest.to
+            cell.toLabel.text = tripRequest.to
             cell.minDepartureTimeLabel.text = tripRequest.startTime.UTCToLocal()
-                       cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
-            
+            cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
             return cell
             
         case Status.allAccepted:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerCell", for: indexPath) as! HitchhikerTableViewCell
-            
             let tripRequest = driverHomeDataSource.acceptedRequests[indexPath.row]
             print("tripRequest.rating: ", tripRequest.rating)
             let ratingImageNamesArray = driverHomeHelper.getRatingImageArray(rating: tripRequest.rating)
-            
             cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
             cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
@@ -239,12 +223,10 @@ extension DriverHomeViewController: UITableViewDataSource {
             let fileName = tripRequest.image.deletingPrefix(NetworkConstants.baseS3URL)
             awsManager.downloadFileForCell(cell: cell, key: fileName)
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
-            
             cell.fromLabel.text = tripRequest.from
-                       cell.toLabel.text = tripRequest.to
-                       cell.minDepartureTimeLabel.text = tripRequest.startTime.UTCToLocal()
-                       cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
-            
+            cell.toLabel.text = tripRequest.to
+            cell.minDepartureTimeLabel.text = tripRequest.startTime.UTCToLocal()
+            cell.maxDepartureTimeLabel.text = tripRequest.endTime.UTCToLocal()
             return cell
         }
     }

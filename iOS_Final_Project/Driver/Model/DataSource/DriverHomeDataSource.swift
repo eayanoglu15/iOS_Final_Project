@@ -59,7 +59,7 @@ class DriverHomeDataSource {
                                             self.hitchhikerAcception(isAccepted: true, tripRequestId: trip.id, indexPath: indexPath)
                                             completionHandler(true)
         }
-        action.backgroundColor = UIColor.green
+        action.backgroundColor = UIColor.acceptGreen
         return action
     }
     
@@ -72,7 +72,7 @@ class DriverHomeDataSource {
                                             completionHandler(true)
                                             
         }
-        action.backgroundColor = UIColor.red
+        action.backgroundColor = UIColor.redOrange
         return action
     }
     
@@ -145,5 +145,3 @@ class DriverHomeDataSource {
         }
     }
 }
-
-

@@ -35,7 +35,6 @@ class DriverNewTripViewController: BaseScrollViewController {
     
     var driverNewTripDataSource = DriverNewTripDataSource()
     var driverNewTripHelper = DriverNewTripHelper()
-    
     var fromPicker = UIPickerView()
     var toPicker = UIPickerView()
     
@@ -48,17 +47,13 @@ class DriverNewTripViewController: BaseScrollViewController {
         fromPicker.dataSource = self
         toPicker.delegate = self
         toPicker.dataSource = self
-
         fromTextField.inputView = fromPicker
         toTextField.inputView = toPicker
-        
         driverNewTripHelper.setDefaultValues()
         showStartTimePicker()
         showEndTimePicker()
-        
         startTimeTextField.text = driverNewTripHelper.currentTime
         endTimeTextField.text = driverNewTripHelper.currentTime
-        
         availableSeatsTextField.text = driverNewTripHelper.minSeat
         availableSeatsTextField.keyboardType = .numberPad
     }
@@ -124,13 +119,14 @@ class DriverNewTripViewController: BaseScrollViewController {
         
         guard let start = driverNewTripHelper.startTime.localToUTC(),
             let end = driverNewTripHelper.endTime.localToUTC() else {
-            showAlertMsg(title: "Invalid Time", message: "Select time")
+                showAlertMsg(title: "Invalid Time", message: "Select time")
                 return
         }
         print("Start Time: ", start)
         print("End Time: ", end)
-        if let user = driverNewTripDataSource.driver {
-         driverNewTripDataSource.createTrip(from: from, to: to, startTime: start, endTime: end, seatNum: seatNum, driverUsername: user.username)
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            driverNewTripDataSource.createTrip(from: from, to: to, startTime: start, endTime: end, seatNum: seatNum, driverUsername: username)
         }
     }
     
@@ -154,8 +150,8 @@ extension DriverNewTripViewController: UIPickerViewDataSource {
 
 extension DriverNewTripViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView,
-     titleForRow row: Int,
-     forComponent component: Int) -> String? {
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
         if pickerView == fromPicker {
             return driverNewTripDataSource.fromArray[row]
         }
@@ -166,8 +162,8 @@ extension DriverNewTripViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView,
-    didSelectRow row: Int,
-    inComponent component: Int) {
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
         if pickerView == fromPicker {
             fromTextField.text = driverNewTripDataSource.fromArray[row]
         }

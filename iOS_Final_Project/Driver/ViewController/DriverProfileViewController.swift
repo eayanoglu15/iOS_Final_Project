@@ -101,5 +101,3 @@ extension DriverProfileViewController: UITableViewDataSource {
         return cell
     }
 }
-
-

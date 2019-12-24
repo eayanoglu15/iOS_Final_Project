@@ -21,9 +21,9 @@ class HitchhikerHomeHelper {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-            for _ in 0..<numberOfFilledStars {
-                ratingImageArray.append(Constant.filledStarName)
-            }
+        for _ in 0..<numberOfFilledStars {
+            ratingImageArray.append(Constant.filledStarName)
+        }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }
@@ -33,18 +33,4 @@ class HitchhikerHomeHelper {
         }
         return ratingImageArray
     }
-    /*
-    func setSelectedUser(indexPath: IndexPath) {
-        selectedAccount = searched[indexPath.item]
-        /*
-        if searchActive {
-            selectedAccount = searched[indexPath.item]
-        } else if filterActive {
-            selectedAccount = filtered[indexPath.item]
-        } else {
-            selectedAccount = userAccounts[indexPath.item]
-        }
-         */
-    }
-    */
 }

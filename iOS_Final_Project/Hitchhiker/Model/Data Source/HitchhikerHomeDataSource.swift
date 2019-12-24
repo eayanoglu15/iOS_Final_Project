@@ -28,9 +28,7 @@ class HitchhikerHomeDataSource {
     var hitchhiker: User?
     var delegate: HitchhikerHomeDataSourceDelegate?
     var awsManager = AWSS3Manager()
-    
     var feedArray: [HitchhikerFeed] = []
-    
     var userResponse: GetUserResponse?
     
     init() {
@@ -38,9 +36,7 @@ class HitchhikerHomeDataSource {
     }
     
     func contextualTripRequestAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        // 1
         var trip = feedArray[indexPath.row]
-        // 2
         let action = UIContextualAction(style: .normal, title: "Send Request") {
             (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             print("Sending request...")
@@ -48,27 +44,21 @@ class HitchhikerHomeDataSource {
                 self.delegate?.showSpinner()
                 self.makeTripRequest(tripRequestId: trip.id, hitchhikerName: user.username)
             }
-            
             completionHandler(true)
         }
-        // 7
-        action.backgroundColor = UIColor.blue
+        action.backgroundColor = UIColor.summerSky
         return action
     }
     
     func makeTripRequest(tripRequestId: Int, hitchhikerName: String) {
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
-        
         let tripRequest = HitchhikerMakeTripRequest(tripId: tripRequestId, hitchHikerUserName: hitchhikerName)
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/makeTripRequest") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/makeTripRequest") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(tripRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -86,39 +76,30 @@ class HitchhikerHomeDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
-                        
                         if (response.success){
                             if let hitchhiker = self.hitchhiker {
                                 self.getPlannedTrips(hitchhikerName: hitchhiker.username)
                                 print("Trip Request Success")
                             }
-                            // Trip Request Done?
-                            // Delete Row?
                         }
                     }
                 }
             }
             uploadTask.resume()
         }
-        
     }
     
     func getPlannedTrips(hitchhikerName: String) {
         let session = URLSession.shared
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
-        
         let tripRequest = HitchhikerRequest(hitchhikerUserName: hitchhikerName)
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/getAllTrips") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/getAllTrips") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(tripRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -136,8 +117,6 @@ class HitchhikerHomeDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        //print("data from getPlannedTrips: \(dataString)")
-                        
                         let decoder = JSONDecoder()
                         let feedList = try! decoder.decode([HitchhikerFeed].self, from: data)
                         print("feedList.count: ", feedList.count)
@@ -145,24 +124,19 @@ class HitchhikerHomeDataSource {
                             self.feedArray = feedList
                             self.delegate?.hitchhikerFeedListLoaded()
                         }
-                        
                     }
                 }
             }
             uploadTask.resume()
         }
-        
     }
     
     func getUser(username: String) {
         let session = URLSession.shared
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
-        
-        if let url = URL(string: "\(baseURL)users/\(username)") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)users/\(username)") {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
             let dataTask = session.dataTask(with: request) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -180,7 +154,6 @@ class HitchhikerHomeDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
                         print("Image ?: ", userResponse.image)

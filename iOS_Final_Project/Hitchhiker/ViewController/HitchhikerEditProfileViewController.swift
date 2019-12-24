@@ -93,8 +93,7 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
             id = hitchhiker.id
         }
         print("id: ", id)
-        hitchhikerEditProfileDataSource.updateHitchihiker(id: id, username: username, password: password, name: name, surname: surname, email: email,
-                                                          phonenumber: phone, age: age, gender: gender)
+        hitchhikerEditProfileDataSource.updateHitchihiker(id: id, username: username, password: password, name: name, surname: surname, email: email, phonenumber: phone, age: age, gender: gender)
     }
     
     func showUserInfo(user: User) {

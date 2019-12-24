@@ -35,11 +35,10 @@ class HitchhikerOtherProfileDataSource {
     
     func getOtherUser() {
         let session = URLSession.shared
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         guard let username = otherUsername else {
             return
         }
-        if let url = URL(string: "\(baseURL)users/\(username)") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)users/\(username)") {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

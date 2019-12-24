@@ -195,7 +195,7 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 awsManager.downloadFileForCell(cell: cell, key: fileName)
                 cell.setEditableFalse()
                 if let vote = trip.voteGiven {
-                        cell.setVoteStars(vote: vote)
+                    cell.setVoteStars(vote: vote)
                 }
                 return cell
             case 1:
@@ -232,7 +232,7 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
                 awsManager.downloadFileForCell(cell: cell, key: fileName)
                 if let vote = trip.voteGiven {
-                        cell.setVoteStars(vote: vote)
+                    cell.setVoteStars(vote: vote)
                 }
                 return cell
             case 1:
@@ -247,6 +247,3 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
         }
     }
 }
-
-
-

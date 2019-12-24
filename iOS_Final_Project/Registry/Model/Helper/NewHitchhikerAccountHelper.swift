@@ -10,13 +10,6 @@ import Foundation
 import UIKit
 
 class NewHitchhikerAccountHelper {
-    /*
-    private enum Count {
-        static let password = 6
-        static let userNameMax = 12
-        static let userNameMin = 3
-    }
-    */
     var genderPicker = UIPickerView()
     var genderPickerData = ["Not Specified", "Female", "Male"]
     var selectedGender = "Not Specified"

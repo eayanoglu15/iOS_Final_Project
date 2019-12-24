@@ -29,7 +29,7 @@ class HitchhikerProfileDataSource {
     var userResponse: GetUserResponse?
     
     init() {
-           awsManager.delegate = self
+        awsManager.delegate = self
     }
     
     func getUser(username: String) {

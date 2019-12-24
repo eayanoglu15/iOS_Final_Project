@@ -12,9 +12,10 @@ import UIKit
 protocol NewHitchhikerDataSourceDelegate {
     func showAlertMsg (title: String , message :String)
     func goToHomePage()
+    func removeSpinner()
 }
 
-class NewHitchhikerDataSource: BaseDataSource {
+class NewHitchhikerDataSource {
     var user: User?
     var delegate: NewHitchhikerDataSourceDelegate?
     
@@ -28,18 +29,18 @@ class NewHitchhikerDataSource: BaseDataSource {
                            phonenumber: String,
                            age: Int,
                            gender: String) {
+        let session = URLSession.shared
         let createHitchHikerRequest = CreateHitchhikerRequest(image: profileImageStr, username: username, password: password, firstName: name, surname: surname, driver: false, email: email, phone: phonenumber, age: age, sex: gender)
-        
-        if let url = URL(string: "\(String(describing: baseURL))users/newUser") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)users/newUser") {
             var request = URLRequest(url: url)
             request.httpMethod = "PUT"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(createHitchHikerRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
+                        self.delegate?.removeSpinner()
                         self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
                     }
                 } else {
@@ -48,6 +49,7 @@ class NewHitchhikerDataSource: BaseDataSource {
                         print("statusCode: \(statusCode)")
                         if statusCode == 500 {
                             DispatchQueue.main.async {
+                                self.delegate?.removeSpinner()
                                 self.delegate?.showAlertMsg(title:"Sorry",message:"Please give us time we will fix it. ")
                             }
                             return
@@ -62,14 +64,13 @@ class NewHitchhikerDataSource: BaseDataSource {
                             userDefaults.setValue(true, forKey: "userLoggedIn")
                             userDefaults.setValue(false, forKey: "userIsDriver")
                             userDefaults.setValue(username, forKeyPath: "username")
-                            self.user = User(profileImage: profileImage, isDriver: false, username: username, password: password,
-                                             name: name, surname: surname, email: email,
-                                             phonenumber: phonenumber, age: age, sex: gender)
+                            self.user = User(profileImage: profileImage, isDriver: false, username: username, password: password, name: name, surname: surname, email: email, phonenumber: phonenumber, age: age, sex: gender)
                             DispatchQueue.main.async {
                                 self.delegate?.goToHomePage()
                             }
                         }else{
                             DispatchQueue.main.async {
+                                self.delegate?.removeSpinner()
                                 self.delegate?.showAlertMsg(title:"Sorry",message:response.message  )
                             }
                             return

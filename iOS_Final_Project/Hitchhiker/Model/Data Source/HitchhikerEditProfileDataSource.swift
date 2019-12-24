@@ -14,13 +14,14 @@ protocol HitchhikerEditProfileDataSourceDelegate {
     func goToProfile()
 }
 
-class HitchhikerEditProfileDataSource: BaseDataSource {
+class HitchhikerEditProfileDataSource {
     var hitchhiker: User?
     var delegate: HitchhikerEditProfileDataSourceDelegate?
     
     func updateHitchihiker(id: Int, username: String, password: String, name: String,
                            surname: String, email: String, phonenumber: String,
                            age: Int, gender: String) {
+        let session = URLSession.shared
         let hitchhikerRequest = HitchhikerUpdateRequest(email: email, password: password, firstName: name, surname: surname, username: username, phone: phonenumber, age: age, sex: gender, driver: false, id: id)
         if let url = URL(string: "\(NetworkConstants.baseURL)users/updateUser") {
             var request = URLRequest(url: url)

@@ -61,13 +61,9 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Create Driver Account"
-        // Do any additional setup after loading the view.
-        
-        // Choose Profile Image
         profileImageView.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
         profileImageView.addGestureRecognizer(gestureRecognizer)
-        
         newDriverDataSource.delegate=self
         // Set TextField Delegates
         usernameTextField.delegate = self
@@ -79,11 +75,9 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
         ageTextField.delegate = self
         carModelTextField.delegate = self
         plaqueTextField.delegate = self
-        
         passwordTextField.isSecureTextEntry = true
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
-        
         newDriverAccountHelper.genderPicker.delegate = self
         newDriverAccountHelper.genderPicker.dataSource = self
         genderTextField.text = newDriverAccountHelper.genderPickerData.first
@@ -103,7 +97,6 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
     }
     
     @IBAction func registerButtonTapped(_ sender: Any) {
-        self.showSpinner()
         guard let profileImage=profileImageView.image,
             let username = usernameTextField.text, !username.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
@@ -134,6 +127,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
             showAlertMsg(title: "Invalid Age", message: "Please enter your age as a number")
             return
         }
+        self.showSpinner()
         if let resizedImage = profileImage.resizedTo1MB() {
             awsManager.uploadImage(image: resizedImage, progress: {[weak self] ( uploadProgress) in
                 guard let strongSelf = self else { return }
@@ -142,8 +136,7 @@ class NewDriverAccountViewController: BaseScrollViewController, UIImagePickerCon
                 if let finalPath = uploadedFileUrl as? String { // 3
                     print("Uploaded file url: " + finalPath)
                     strongSelf.newDriverDataSource.addNewDriver(profileImage: resizedImage, profileImageStr: finalPath, username: username, password: password, name: name, surname: surname, email: email,
-                    phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
-                    
+                                                                phonenumber: phone, age: userAge, carModel: carModel, plaque: plaque, gender: gender)
                 } else {
                     print("\(String(describing: error?.localizedDescription))") // 4
                 }
@@ -164,17 +157,15 @@ extension NewDriverAccountViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-        // self.view.endEditing(true)
-        // return false
     }
     
     @objc func textFieldDidChange(textField: UITextField) {
         /*
-        if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
-            loginButton.isEnabled = true
-        } else {
-            loginButton.isEnabled = false
-        }
-        */
+         if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
+         loginButton.isEnabled = true
+         } else {
+         loginButton.isEnabled = false
+         }
+         */
     }
 }

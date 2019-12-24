@@ -16,26 +16,20 @@ protocol HitchhikerTripRequestsDataSourceDelegate {
 class HitchhikerTripRequestsDataSource {
     var hitchhiker: User?
     var delegate: HitchhikerTripRequestsDataSourceDelegate?
-    
     var acceptedRequests = [HitchhikerTripRequest]()
     var waitingRequests = [HitchhikerTripRequest]()
     var rejectedRequests = [HitchhikerTripRequest]()
-    
     var requestExist = false
     
     func getPageData(hitchhikerUsername: String) {
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
-        
         let hitchhikerRequest = HitchhikerRequest(hitchhikerUserName: hitchhikerUsername)
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/getAllRequestsByHitchhiker") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/getAllRequestsByHitchhiker") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(hitchhikerRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -56,24 +50,21 @@ class HitchhikerTripRequestsDataSource {
                         //print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(HitchhikerRequestsResponse.self, from: data)
-                
                         DispatchQueue.main.async {
                             if let acceptedReqs = response.acceptedRequests {
-                                 self.acceptedRequests = acceptedReqs
+                                self.acceptedRequests = acceptedReqs
                                 print("acceptedReqs.count: ",acceptedReqs.count)
                             }
                             if let waitings = response.waitingRequests {
                                 self.waitingRequests = waitings
                                 print("waitings.count: ", waitings.count)
                             }
-                            
                             if let rejects = response.rejectedRequests {
                                 self.rejectedRequests = rejects
                                 print("rejects.count: ", rejects.count)
                             }
                             self.requestExist = response.tripExist
                             print("response.tripExist: ", response.tripExist)
-                            
                             self.delegate?.loadData()
                         }
                     }
@@ -81,6 +72,5 @@ class HitchhikerTripRequestsDataSource {
             }
             uploadTask.resume()
         }
-        
     }
 }

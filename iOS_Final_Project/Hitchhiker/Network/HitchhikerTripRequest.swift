@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 struct HitchhikerTripRequest: Codable {
-    //var profileImage: UIImage?
     var from: String
     var to: String
     var startTime: String

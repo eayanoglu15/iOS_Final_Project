@@ -7,7 +7,7 @@
 //
 
 import Foundation
- 
+
 protocol DriverNewTripDataSourceDelegate {
     func showAlertMsg (title: String , message :String)
     func returnToDriverHome()
@@ -16,30 +16,22 @@ protocol DriverNewTripDataSourceDelegate {
 
 class DriverNewTripDataSource {
     var driver: User?
-    
     var fromArray = [String]()
     var toArray = [String]()
-    
     var fromLocation: String?
     var toLocation: String?
-
     var delegate: DriverNewTripDataSourceDelegate?
     
     func getFromTo() {
         let session = URLSession.shared
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
-        
-        if let url = URL(string: "\(baseURL)trip/getFromToLocations") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/getFromToLocations") {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
             let dataTask = session.dataTask(with: request) { (data, response, error) in
                 //print("HERE Other Data: \(String.init(data: data!, encoding: .utf8))")
-                
                 let decoder = JSONDecoder()
                 let response = try! decoder.decode(FromToResponse.self, from: data!)
-                
                 DispatchQueue.main.async {
                     self.fromArray = response.fromToLocationList
                     self.toArray = response.fromToLocationList
@@ -51,19 +43,14 @@ class DriverNewTripDataSource {
     }
     
     func createTrip(from: String, to: String, startTime: String, endTime: String, seatNum: Int, driverUsername: String) {
-        
         let tripRequest = NewTripRequest(from: from, to: to, startTime: startTime, endTime: endTime, totalSeatNumber: seatNum, driverUserName: driverUsername)
-        
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/createTrip") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/createTrip") {
             var request = URLRequest(url: url)
             request.httpMethod = "PUT"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(tripRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
@@ -81,7 +68,7 @@ class DriverNewTripDataSource {
                         }
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
+                        print("data: \(dataString)")
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         if (response.success){
@@ -100,10 +87,5 @@ class DriverNewTripDataSource {
             }
             uploadTask.resume()
         }
-        
-        
-        
-        
     }
-    
 }

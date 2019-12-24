@@ -19,10 +19,8 @@ class DriverNewTripHelper {
     var startTimePicker = UIDatePicker()
     var endTimePicker = UIDatePicker()
     var dateFormatter = DateFormatter()
-    
     var minSeat = "1"
     var currentTime: String = ""
-    
     var startTime = ""
     var endTime = ""
     

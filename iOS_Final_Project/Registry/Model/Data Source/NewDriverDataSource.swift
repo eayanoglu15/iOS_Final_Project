@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-
 protocol NewDriverDataSourceDelegate {
     func showAlertMsg (title: String , message :String)
     func goToHome()
+    func removeSpinner()
 }
 
 class NewDriverDataSource: BaseDataSource {
@@ -31,19 +31,18 @@ class NewDriverDataSource: BaseDataSource {
                       carModel: String,
                       plaque: String,
                       gender: String) {
-        
+        let session = URLSession.shared
         let createDriverRequest = CreateDriverRequest(image: profileImageStr, username: username, password: password, firstName: name, surname: surname, driver: true, email: email, phone: phonenumber, age: age, carModel: carModel, plaque: plaque, sex: gender)
-        
-        if let url = URL(string: "\(String(describing: baseURL))users/newUser") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)users/newUser") {
             var request = URLRequest(url: url)
             request.httpMethod = "PUT"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
             let uploadData = try! encoder.encode(createDriverRequest)
-            
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
+                        self.delegate?.removeSpinner()
                         self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
                     }
                 } else {
@@ -52,6 +51,7 @@ class NewDriverDataSource: BaseDataSource {
                         print("statusCode: \(statusCode)")
                         if statusCode == 500 {
                             DispatchQueue.main.async {
+                                self.delegate?.removeSpinner()
                                 self.delegate?.showAlertMsg(title:"Sorry",message:"Please give us time we will fix it. ")
                             }
                             return
@@ -73,6 +73,7 @@ class NewDriverDataSource: BaseDataSource {
                             }
                         }else{
                             DispatchQueue.main.async {
+                                self.delegate?.removeSpinner()
                                 self.delegate?.showAlertMsg(title:"Sorry",message:response.message  )
                             }
                             return

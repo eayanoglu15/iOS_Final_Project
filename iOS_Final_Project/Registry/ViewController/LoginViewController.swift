@@ -34,8 +34,6 @@ class LoginViewController: BaseScrollViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let defaults = UserDefaults.standard
-        defaults.set("http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/users/", forKey: "baseURL")
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         title = "Welcome"
@@ -58,22 +56,20 @@ class LoginViewController: BaseScrollViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "toHitchhikerHomeFromLogin" {
-           let destinationVc = segue.destination as! HitchhikerHomeViewController
-           destinationVc.hitchhikerHomeDataSource.hitchhiker = loginDataSource.user
-       }
+        if segue.identifier == "toHitchhikerHomeFromLogin" {
+            let destinationVc = segue.destination as! HitchhikerHomeViewController
+            destinationVc.hitchhikerHomeDataSource.hitchhiker = loginDataSource.user
+        }
         if segue.identifier == "toDriverHomeFromLogin" {
             let destinationVc = segue.destination as! DriverHomeViewController
             destinationVc.driverHomeDataSource.driver = loginDataSource.user
-           
+            
         }
     }
 }
 
 //MARK: - UITextFieldDelegate
-
 extension LoginViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -84,11 +80,11 @@ extension LoginViewController: UITextFieldDelegate {
     @objc
     func textFieldDidChange(textField: UITextField) {
         /*
-        if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
-            loginButton.isEnabled = true
-        } else {
-            loginButton.isEnabled = false
-        }
-        */
+         if model.isUsernameValid(username: username.text ?? "") && model.isPasswordValid(password: password.text ?? "") {
+         loginButton.isEnabled = true
+         } else {
+         loginButton.isEnabled = false
+         }
+         */
     }
 }
