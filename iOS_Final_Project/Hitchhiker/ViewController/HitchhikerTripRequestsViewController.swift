@@ -11,6 +11,7 @@ import UIKit
 extension HitchhikerTripRequestsViewController: AWSS3ManagerDelegate {
     func setImageForCell(cell: UITableViewCell, img: UIImage) {
         (cell as! HitchhikerTripRequestTableViewCell).profileImageView.image = img
+        self.removeSpinner()
     }
 }
 
@@ -157,10 +158,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                
                 let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
                 awsManager.downloadFileForCell(cell: cell, key: fileName)
-                
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -171,9 +170,7 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
             if !hitchhikerTripRequestsDataSource.waitingRequests.isEmpty {
                 var trip = hitchhikerTripRequestsDataSource.waitingRequests[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TripRequestCell", for: indexPath) as! HitchhikerTripRequestTableViewCell
-                
                 let ratingImageNamesArray = hitchhikerTripRequestsHelper.getRatingImageArray(rating: trip.rating)
-                
                 cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
                 cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
                 cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
@@ -187,10 +184,8 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
                 cell.toLabel.text = trip.to
                 cell.minDepartureTimeLabel.text = trip.startTime.convertUtcToDisplay()
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
-                
                 let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
                 awsManager.downloadFileForCell(cell: cell, key: fileName)
-                
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as! MessageTableViewCell
@@ -201,16 +196,13 @@ extension HitchhikerTripRequestsViewController: UITableViewDataSource {
             if !hitchhikerTripRequestsDataSource.rejectedRequests.isEmpty {
                 var trip = hitchhikerTripRequestsDataSource.rejectedRequests[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "TripRequestCell", for: indexPath) as! HitchhikerTripRequestTableViewCell
-                
                 let ratingImageNamesArray = hitchhikerTripRequestsHelper.getRatingImageArray(rating: trip.rating)
-                
                 cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
                 cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
                 cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
                 cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
                 cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
                 cell.usernameLabel.text = trip.driverUserName
-                //cell.carModelLabel.text = trip.carModel
                 cell.carModelLabel.text = trip.carModel
                 cell.statusLabel.text = "Rejected"
                 cell.fromLabel.text = trip.from

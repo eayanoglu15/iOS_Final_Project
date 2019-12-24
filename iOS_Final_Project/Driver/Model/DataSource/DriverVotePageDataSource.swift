@@ -12,7 +12,7 @@ protocol DriverVotePageDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func loadVotePageData()
     func reloadTableView()
-    //func deleteRow(indexPath: IndexPath)
+    func reloadTableViewAfterVoting()
 }
 
 enum VotePageStatus {
@@ -142,7 +142,7 @@ class DriverVotePageDataSource {
                         
                         if response.success {
                             DispatchQueue.main.async {
-                                 self.delegate?.reloadTableView()
+                                 self.delegate?.reloadTableViewAfterVoting()
                             }
                         }
                     }

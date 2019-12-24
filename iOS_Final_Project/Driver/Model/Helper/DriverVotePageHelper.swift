@@ -19,16 +19,14 @@ class DriverVotePageHelper {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-        if rating >= 1 {
-            for _ in 1...numberOfFilledStars {
-                ratingImageArray.append(Constant.filledStarName)
-            }
+        for _ in 0..<numberOfFilledStars {
+            ratingImageArray.append(Constant.filledStarName)
         }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }
         let remaining = Constant.starNum - ratingImageArray.count
-        for _ in 1...remaining {
+        for _ in 0..<remaining {
             ratingImageArray.append(Constant.emptyStarName)
         }
         return ratingImageArray

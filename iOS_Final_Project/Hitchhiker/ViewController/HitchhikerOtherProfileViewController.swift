@@ -10,40 +10,6 @@ import UIKit
 
 extension HitchhikerOtherProfileViewController : HitchhikerOtherProfileDataSourceDelegate{
     func otherUserLoaded() {
-        if let otherUser = hitchhikerOtherProfileDataSource.otherUser {
-            hitchhikerOtherProfileHelper.getInfoArray(user: otherUser)
-            profileImageView.image=otherUser.profileImage
-        }
-        infoTableView.reloadData()
-        
-    }
-}
-
-class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegate {
-    @IBOutlet weak var profileImageView: UIImageView!
-    
-    @IBOutlet weak var starOneImageView: UIImageView!
-    @IBOutlet weak var starTwoImageView: UIImageView!
-    @IBOutlet weak var starThreeImageView: UIImageView!
-    @IBOutlet weak var starFourImageView: UIImageView!
-    @IBOutlet weak var starFiveImageView: UIImageView!
-    
-    @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var votesLabel: UILabel!
-    
-    @IBOutlet weak var infoTableView: UITableView!
-    
-    var hitchhikerOtherProfileHelper = HitchhikerOtherProfileHelper()
-    var hitchhikerOtherProfileDataSource = HitchhikerOtherProfileDataSource()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        hitchhikerOtherProfileDataSource.delegate = self
-        infoTableView.delegate = self
-        infoTableView.dataSource = self
-        hitchhikerOtherProfileDataSource.getOtherUser()
-        title = hitchhikerOtherProfileDataSource.otherUser?.username
-        // Do any additional setup after loading the view.
         if let user = hitchhikerOtherProfileDataSource.otherUser {
             hitchhikerOtherProfileHelper.getInfoArray(user: user)
             let ratingImageNamesArray = hitchhikerOtherProfileHelper.getRatingImageArray(rating: user.rating)
@@ -54,24 +20,44 @@ class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegat
             starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
             ratingLabel.text = "\(user.rating) / 5"
             votesLabel.text = "\(user.voteNumber) vote"
+            profileImageView.image = user.profileImage
         }
+        infoTableView.reloadData()
+        removeSpinner()
     }
     
+    func showAlertMsg(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+    }
+}
+
+class HitchhikerOtherProfileViewController: UIViewController, UITableViewDelegate {
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var starOneImageView: UIImageView!
+    @IBOutlet weak var starTwoImageView: UIImageView!
+    @IBOutlet weak var starThreeImageView: UIImageView!
+    @IBOutlet weak var starFourImageView: UIImageView!
+    @IBOutlet weak var starFiveImageView: UIImageView!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var votesLabel: UILabel!
+    @IBOutlet weak var infoTableView: UITableView!
     
-   /*   override func viewWillAppear(_ animated: Bool) {
+    var hitchhikerOtherProfileHelper = HitchhikerOtherProfileHelper()
+    var hitchhikerOtherProfileDataSource = HitchhikerOtherProfileDataSource()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        hitchhikerOtherProfileDataSource.delegate = self
+        infoTableView.delegate = self
+        infoTableView.dataSource = self
+        title = hitchhikerOtherProfileDataSource.otherUsername
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showSpinner()
         hitchhikerOtherProfileDataSource.getOtherUser()
-      }
-*/
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
 }
 
 extension HitchhikerOtherProfileViewController: UITableViewDataSource {

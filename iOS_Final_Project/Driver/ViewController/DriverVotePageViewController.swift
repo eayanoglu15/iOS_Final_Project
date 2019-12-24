@@ -15,6 +15,13 @@ extension DriverVotePageViewController: AWSS3ManagerDelegate {
 }
 
 extension DriverVotePageViewController: DriverVotePageDataSourceDelegate {
+    func reloadTableViewAfterVoting() {
+        if let user = driverVotePageDataSource.driver {
+            self.showSpinner()
+            driverVotePageDataSource.getVotePageData(username: user.username)
+        }
+    }
+    
     func reloadTableView() {
         voteTableView.reloadData()
     }

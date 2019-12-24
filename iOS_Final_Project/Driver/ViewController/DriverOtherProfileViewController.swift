@@ -10,9 +10,6 @@ import UIKit
 
 extension DriverOtherProfileViewController : DriverOtherProfileDataSourceDelegate{
     func otherUserLoaded() {
-        if let otherUser = driverOtherProfileDataSource.otherUser {
-            driverOtherProfileHelper.getInfoArray(user: otherUser)
-        }
         if let user = driverOtherProfileDataSource.otherUser {
             driverOtherProfileHelper.getInfoArray(user: user)
             let ratingImageNamesArray = driverOtherProfileHelper.getRatingImageArray(rating: user.rating)
@@ -24,23 +21,29 @@ extension DriverOtherProfileViewController : DriverOtherProfileDataSourceDelegat
             ratingLabel.text = "\(user.rating) / 5"
             votesLabel.text = "\(user.voteNumber) vote"
             profileImageView.image = user.profileImage
+            infoTableView.reloadData()
+            removeSpinner()
+        } else {
+            showAlertMsg(title: "Something goes wrong", message: "Couldn't find other user")
+            removeSpinner()
         }
-        infoTableView.reloadData()
+    }
+    
+    func showAlertMsg(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
     }
 }
 
 class DriverOtherProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
-    
     @IBOutlet weak var starOneImageView: UIImageView!
     @IBOutlet weak var starTwoImageView: UIImageView!
     @IBOutlet weak var starThreeImageView: UIImageView!
     @IBOutlet weak var starFourImageView: UIImageView!
     @IBOutlet weak var starFiveImageView: UIImageView!
-    
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var votesLabel: UILabel!
-    
     @IBOutlet weak var infoTableView: UITableView!
     
     var driverOtherProfileDataSource = DriverOtherProfileDataSource()
@@ -51,23 +54,13 @@ class DriverOtherProfileViewController: UIViewController, UITableViewDelegate {
         driverOtherProfileDataSource.delegate = self
         infoTableView.delegate = self
         infoTableView.dataSource = self
-        driverOtherProfileDataSource.getOtherUser()
         title = driverOtherProfileDataSource.otherUsername
-        // Do any additional setup after loading the view.
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        showSpinner()
+        driverOtherProfileDataSource.getOtherUser()
     }
-    */
-
 }
 
 extension DriverOtherProfileViewController: UITableViewDataSource {

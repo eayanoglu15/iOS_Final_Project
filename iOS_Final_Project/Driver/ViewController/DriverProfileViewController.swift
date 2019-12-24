@@ -8,6 +8,33 @@
 
 import UIKit
 
+extension DriverProfileViewController: DriverProfileDataSourceDelegate {
+    func userLoaded() {
+        if let user = driverProfileDataSource.driver {
+            driverProfileHelper.getInfoArray(user: user)
+            let ratingImageNamesArray = driverProfileHelper.getRatingImageArray(rating: user.rating)
+            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+            profileImageView.image = driverProfileDataSource.driver?.profileImage
+            ratingLabel.text = "\(user.rating) / 5"
+            votesLabel.text = "\(user.voteNumber) vote"
+            infoTableView.reloadData()
+            removeSpinner()
+        } else {
+            showAlertMsg(title: "Something goes wrong", message: "Couldn't find other user")
+            removeSpinner()
+        }
+    }
+    
+    func showAlertMsg(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+    }
+}
+
 class DriverProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -26,24 +53,16 @@ class DriverProfileViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         infoTableView.delegate = self
         infoTableView.dataSource = self
-        
+        driverProfileDataSource.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButtonTapped))
-        
-        if let driver = driverProfileDataSource.driver {
-            print("Profile Name: ", driver.username)
-            driverProfileHelper.getInfoArray(driver: driver)
-            title = driver.username
-            let ratingImageNamesArray = driverProfileHelper.getRatingImageArray(rating: driver.rating)
-            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
-            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
-            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
-            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
-            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            profileImageView.image=driverProfileDataSource.driver?.profileImage
-            ratingLabel.text = "\(driver.rating) / 5"
-            votesLabel.text = "\(driver.voteNumber) vote"
-            print(driver.username, " rating: ", driver.rating)
-            //dismiss(animated: false, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            title = username
+            self.showSpinner()
+            driverProfileDataSource.getUser(username: username)
         }
     }
     
@@ -53,10 +72,8 @@ class DriverProfileViewController: UIViewController, UITableViewDelegate {
         userDefaults.setValue(false, forKey: "userIsDriver")
         userDefaults.removeObject(forKey: "username")
         let rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-        print("NV count: ", navigationController?.viewControllers.count)
         navigationController?.viewControllers = [rootVC]
         navigationController?.pushViewController(rootVC, animated: false)
-        print("NV count: ", navigationController?.viewControllers.count)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,7 +82,6 @@ class DriverProfileViewController: UIViewController, UITableViewDelegate {
             destinationVc.driverEditProfileDataSource.driver = driverProfileDataSource.driver
         }
     }
-    
 }
 
 extension DriverProfileViewController: UITableViewDataSource {
@@ -74,12 +90,12 @@ extension DriverProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return driverProfileHelper.driverInfoArray.count
+        return driverProfileHelper.userInfoArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! InfoTableViewCell
-        let info = driverProfileHelper.driverInfoArray[indexPath.row]
+        let info = driverProfileHelper.userInfoArray[indexPath.row]
         cell.variableLabel.text = info.0
         cell.valueLabel.text = info.1
         return cell

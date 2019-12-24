@@ -16,7 +16,6 @@ extension DriverHomeViewController: AWSS3ManagerDelegate {
 
 extension DriverHomeViewController: DriverHomeDataSourceDelegate {
     func deleteRow(indexPath: IndexPath) {
-        //requestTableView.deleteRows(at: [indexPath], with: .automatic)
         if let driver = driverHomeDataSource.driver {
             driverHomeDataSource.getHomePageData(driverName: driver.username)
         }
@@ -48,20 +47,22 @@ class DriverHomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         requestTableView.delegate = self
         requestTableView.dataSource = self
+        driverHomeDataSource.delegate = self
         awsManager.delegate = self
-        let userDefaults = UserDefaults.standard
-        if let username = userDefaults.string(forKey: "username") {
-            self.showSpinner()
-            driverHomeDataSource.getUser(username: username)
-            driverHomeDataSource.getHomePageData(driverName: username)
-        }
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(profileButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote Trips", style: .plain, target: self, action: #selector(voteTripButtonTapped))
-        driverHomeDataSource.delegate = self
         
         refreshControl.addTarget(self, action:  #selector(reloadData), for: .valueChanged)
         requestTableView.refreshControl = refreshControl
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            self.showSpinner()
+            driverHomeDataSource.getHomePageData(driverName: username)
+        }
     }
     
     @objc func voteTripButtonTapped() {
@@ -87,16 +88,9 @@ class DriverHomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toDriverProfile" {
-            let destinationVc = segue.destination as! DriverProfileViewController
-            destinationVc.driverProfileDataSource.driver = driverHomeDataSource.driver
-        }
-        
         if segue.identifier == "toNewTrip" {
             let destinationVc = segue.destination as! DriverNewTripViewController
             destinationVc.driverNewTripDataSource.driver = driverHomeDataSource.driver
-            destinationVc.driverNewTripDataSource.getFromTo()
-            
         }
         
         if segue.identifier == "toDriverVotePage" {
@@ -113,7 +107,6 @@ class DriverHomeViewController: UIViewController {
 
 
 extension DriverHomeViewController: UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         switch driverHomeDataSource.status {
         case Status.noTrip:

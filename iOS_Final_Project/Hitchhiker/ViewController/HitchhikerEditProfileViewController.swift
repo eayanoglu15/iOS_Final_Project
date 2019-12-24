@@ -9,12 +9,16 @@
 import UIKit
 
 extension HitchhikerEditProfileViewController: HitchhikerEditProfileDataSourceDelegate {
-    func showAlertMsg(title: String, message: String) {
+    func goToProfile() {
+        self.removeSpinner()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
     }
-    
 }
 
 class HitchhikerEditProfileViewController: BaseScrollViewController, UITextFieldDelegate {
@@ -33,8 +37,6 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Edit Profile"
-        // Do any additional setup after loading the view.
-        // Assign Text Field Delegates
         hitchhikerEditProfileDataSource.delegate = self
         usernameTextField.delegate = self
         passwordTextField.delegate = self
@@ -43,22 +45,19 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
         emailTextField.delegate = self
         phoneNumberTextField.delegate = self
         ageTextField.delegate = self
-        
-        //registerButton.isEnabled = false
         passwordTextField.isSecureTextEntry = true
         ageTextField.keyboardType = .numberPad
         phoneNumberTextField.keyboardType = .phonePad
-        
         hitchhikerEditProfileHelper.genderPicker.delegate = self
         hitchhikerEditProfileHelper.genderPicker.dataSource = self
         genderTextField.inputView = hitchhikerEditProfileHelper.genderPicker
-        
         if let user = hitchhikerEditProfileDataSource.hitchhiker {
             showUserInfo(user: user)
         }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        self.showSpinner()
         guard let username = usernameTextField.text, !username.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
             let name = nameTextField.text, !name.isEmpty,
@@ -88,22 +87,14 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
         guard let gender = genderTextField.text else {
             showAlert(title: "Invalid Gender", message: "Please enter a gender")
             return
-             }
-        
-        let userImageString = "Invalid Age" //Change both of them
-        
+        }
         var id = 0
         if let hitchhiker = hitchhikerEditProfileDataSource.hitchhiker {
-        id = hitchhiker.id
+            id = hitchhiker.id
         }
         print("id: ", id)
         hitchhikerEditProfileDataSource.updateHitchihiker(id: id, username: username, password: password, name: name, surname: surname, email: email,
-        phonenumber: phone, age: age, gender: gender)
-        
-        let userDefaults = UserDefaults.standard
-        userDefaults.setValue(username, forKeyPath: "username")
-        
-        self.navigationController?.popViewController(animated: true)
+                                                          phonenumber: phone, age: age, gender: gender)
     }
     
     func showUserInfo(user: User) {
@@ -116,22 +107,6 @@ class HitchhikerEditProfileViewController: BaseScrollViewController, UITextField
         ageTextField.text = String(user.age)
         genderTextField.text = user.sex
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if segue.identifier == "toProfileFromEdit" {
-            let destinationVc = segue.destination as! HitchhikerProfileViewController
-            destinationVc.hitchhikerProfileHelper.hitchhiker = hitchhikerEditProfileHelper.hitchhiker
-        }
-         */
-    }
-    
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
-    
 }
 
 extension HitchhikerEditProfileViewController: UIPickerViewDataSource {
@@ -140,20 +115,20 @@ extension HitchhikerEditProfileViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            return hitchhikerEditProfileHelper.genderPickerData.count
+        return hitchhikerEditProfileHelper.genderPickerData.count
     }
 }
 
 extension HitchhikerEditProfileViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView,
-     titleForRow row: Int,
-     forComponent component: Int) -> String? {
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
         return hitchhikerEditProfileHelper.genderPickerData[row]
     }
     
     func pickerView(_ pickerView: UIPickerView,
-    didSelectRow row: Int,
-    inComponent component: Int) {
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
         genderTextField.text = hitchhikerEditProfileHelper.genderPickerData[row]
         self.view.endEditing(false)
     }

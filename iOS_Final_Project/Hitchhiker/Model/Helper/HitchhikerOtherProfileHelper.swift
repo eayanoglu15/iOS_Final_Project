@@ -12,18 +12,18 @@ class HitchhikerOtherProfileHelper {
     var otherUserInfoArray = [(String, String)]()
     
     func getInfoArray(user: User) {
-        let name = user.firstName
-        let surname = user.surname
-        otherUserInfoArray.append(("Name", "\(name) \(surname)"))
-        
-        let email = user.email
-        otherUserInfoArray.append(("Email", email))
-        
-        let phone = user.phoneNumber
-        otherUserInfoArray.append(("Phone Number", phone))
-        
-        let age = user.age
-        otherUserInfoArray.append(("Age", "\(age)"))
+        otherUserInfoArray = [(String, String)]()
+        if let carModel = user.carModel {
+            otherUserInfoArray.append(("Car Model", carModel))
+        }
+        if let carPlaque = user.plaque {
+            otherUserInfoArray.append(("Car Plaque", carPlaque))
+        }
+        otherUserInfoArray.append(("Name", "\(user.firstName) \(user.surname)"))
+        otherUserInfoArray.append(("Email", user.email))
+        otherUserInfoArray.append(("Phone Number", user.phoneNumber))
+        otherUserInfoArray.append(("Gender", user.sex))
+        otherUserInfoArray.append(("Age", "\(user.age)"))
     }
     
     private enum Constant {
@@ -36,16 +36,14 @@ class HitchhikerOtherProfileHelper {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-        if rating >= 1 {
-            for _ in 1...numberOfFilledStars {
+            for _ in 0..<numberOfFilledStars {
                 ratingImageArray.append(Constant.filledStarName)
             }
-        }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }
         let remaining = Constant.starNum - ratingImageArray.count
-        for _ in 1...remaining {
+        for _ in 0..<remaining {
             ratingImageArray.append(Constant.emptyStarName)
         }
         return ratingImageArray

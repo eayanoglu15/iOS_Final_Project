@@ -12,18 +12,18 @@ class HitchhikerProfileHelper {
     var hitchhikerInfoArray = [(String, String)]()
     
     func getInfoArray(hitchhiker: User) {
-        let name = hitchhiker.firstName
-        let surname = hitchhiker.surname
-        hitchhikerInfoArray.append(("Name", "\(name) \(surname)"))
-        
-        let email = hitchhiker.email
-        hitchhikerInfoArray.append(("Email", email))
-        
-        let phone = hitchhiker.phoneNumber
-        hitchhikerInfoArray.append(("Phone Number", phone))
-        
-        let age = hitchhiker.age
-        hitchhikerInfoArray.append(("Age", "\(age)"))
+        hitchhikerInfoArray = [(String, String)]()
+        if let carModel = hitchhiker.carModel {
+            hitchhikerInfoArray.append(("Car Model", carModel))
+        }
+        if let carPlaque = hitchhiker.plaque {
+            hitchhikerInfoArray.append(("Car Plaque", carPlaque))
+        }
+        hitchhikerInfoArray.append(("Name", "\(hitchhiker.firstName) \(hitchhiker.surname)"))
+        hitchhikerInfoArray.append(("Email", hitchhiker.email))
+        hitchhikerInfoArray.append(("Phone Number", hitchhiker.phoneNumber))
+        hitchhikerInfoArray.append(("Gender", hitchhiker.sex))
+        hitchhikerInfoArray.append(("Age", "\(hitchhiker.age)"))
     }
     
     private enum Constant {
@@ -36,16 +36,14 @@ class HitchhikerProfileHelper {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-        if rating >= 1 {
-            for _ in 1...numberOfFilledStars {
+            for _ in 0..<numberOfFilledStars {
                 ratingImageArray.append(Constant.filledStarName)
             }
-        }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }
         let remaining = Constant.starNum - ratingImageArray.count
-        for _ in 1...remaining {
+        for _ in 0..<remaining {
             ratingImageArray.append(Constant.emptyStarName)
         }
         return ratingImageArray

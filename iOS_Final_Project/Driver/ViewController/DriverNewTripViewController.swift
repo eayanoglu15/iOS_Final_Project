@@ -18,6 +18,12 @@ extension DriverNewTripViewController: DriverNewTripDataSourceDelegate {
     func returnToDriverHome() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    func setFromTo() {
+        fromTextField.text = driverNewTripDataSource.fromArray.first
+        toTextField.text = driverNewTripDataSource.toArray.last
+        self.removeSpinner()
+    }
 }
 
 class DriverNewTripViewController: BaseScrollViewController {
@@ -40,10 +46,9 @@ class DriverNewTripViewController: BaseScrollViewController {
         // Do any additional setup after loading the view.
         fromPicker.delegate = self
         fromPicker.dataSource = self
-        
         toPicker.delegate = self
         toPicker.dataSource = self
-        
+
         fromTextField.inputView = fromPicker
         toTextField.inputView = toPicker
         
@@ -51,7 +56,16 @@ class DriverNewTripViewController: BaseScrollViewController {
         showStartTimePicker()
         showEndTimePicker()
         
+        startTimeTextField.text = driverNewTripHelper.currentTime
+        endTimeTextField.text = driverNewTripHelper.currentTime
+        
+        availableSeatsTextField.text = driverNewTripHelper.minSeat
         availableSeatsTextField.keyboardType = .numberPad
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.showSpinner()
+        driverNewTripDataSource.getFromTo()
     }
     
     func showStartTimePicker() {
@@ -85,39 +99,20 @@ class DriverNewTripViewController: BaseScrollViewController {
     }
     
     @objc func saveStartTimePicker(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        let strDate = dateFormatter.string(from: driverNewTripHelper.startTimePicker.date)
-        startTimeTextField.text = strDate
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = .current
-        //dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-        driverNewTripDataSource.startTime = dateFormatter.string(from: driverNewTripHelper.startTimePicker.date)
-        
-        print("Selected Date: ", driverNewTripDataSource.startTime)
+        let startText = driverNewTripHelper.saveStartTime()
+        startTimeTextField.text = startText
+        endTimeTextField.text = startText
         view.endEditing(true)
     }
     
     @objc func saveEndTimePicker(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        let strDate = dateFormatter.string(from: driverNewTripHelper.endTimePicker.date)
-        endTimeTextField.text = strDate
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = .current
-        driverNewTripDataSource.endTime = dateFormatter.string(from: driverNewTripHelper.endTimePicker.date)
-        
-        print("Selected Date: ", driverNewTripDataSource.endTime)
+        endTimeTextField.text = driverNewTripHelper.saveEndTime()
         self.view.endEditing(true)
     }
     
     @IBAction func postTripButtonTapped(_ sender: Any) {
         guard let from = fromTextField.text, !from.isEmpty,
             let to = toTextField.text, !to.isEmpty,
-            let start = driverNewTripDataSource.startTime,
-            let end = driverNewTripDataSource.endTime,
             let seats = availableSeatsTextField.text, !seats.isEmpty else {
                 showAlertMsg(title: "Missing Information", message: "Please fill all fields of the form")
                 return
@@ -126,6 +121,14 @@ class DriverNewTripViewController: BaseScrollViewController {
             showAlertMsg(title: "Invalid Seat Number", message: "Please enter number of available seats as a number")
             return
         }
+        
+        guard let start = driverNewTripHelper.startTime.localToUTC(),
+            let end = driverNewTripHelper.endTime.localToUTC() else {
+            showAlertMsg(title: "Invalid Time", message: "Select time")
+                return
+        }
+        print("Start Time: ", start)
+        print("End Time: ", end)
         if let user = driverNewTripDataSource.driver {
          driverNewTripDataSource.createTrip(from: from, to: to, startTime: start, endTime: end, seatNum: seatNum, driverUsername: user.username)
         }

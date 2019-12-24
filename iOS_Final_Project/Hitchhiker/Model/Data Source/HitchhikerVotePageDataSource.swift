@@ -12,7 +12,7 @@ protocol HitchhikerVotePageDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func loadVotePageData()
     func reloadTableView()
-    //func deleteRow(indexPath: IndexPath)
+    func reloadTableViewAfterVoting()
 }
 
 class HitchhikerVotePageDataSource {
@@ -136,7 +136,7 @@ class HitchhikerVotePageDataSource {
                         
                         if response.success {
                             DispatchQueue.main.async {
-                                 self.delegate?.reloadTableView()
+                                 self.delegate?.reloadTableViewAfterVoting()
                             }
                         }
                     }

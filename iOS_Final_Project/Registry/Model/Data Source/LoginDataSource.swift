@@ -26,6 +26,7 @@ extension LoginDataSource: AWSS3ManagerDelegate {
 protocol LoginDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func routeToHome(isDriver: Bool)
+    func removeSpinner()
 }
 
 class LoginDataSource {
@@ -60,23 +61,34 @@ class LoginDataSource {
                         print("statusCode: \(statusCode)")
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        //print("data: \(dataString)")
+                        print("data: \(dataString)")
                         let decoder = JSONDecoder()
-                        let response = try! decoder.decode(LoginResponse.self, from: data)
-                        print("success: \(response.username)")
-                        
-                        let userDefaults = UserDefaults.standard
-                        userDefaults.setValue(true, forKey: "userLoggedIn")
-                        userDefaults.setValue(response.driver, forKey: "userIsDriver")
-                        userDefaults.setValue(response.username, forKeyPath: "username")
-                        print("userLoggedIn: ", userDefaults.bool(forKey: "userLoggedIn"))
-                        print("userIsDriver: ", userDefaults.bool(forKey: "userIsDriver"))
-                        print("username: ",  userDefaults.string(forKey: "username"))
-                        
-                        self.loginResponse = response
-                        let fileName = response.image.deletingPrefix(NetworkConstants.baseS3URL)
-                        print("filename: ", fileName)
-                        self.awsManager.downloadFile(key: fileName)
+                        var response: LoginResponse?
+                        do {
+                            response = try decoder.decode(LoginResponse.self, from: data)
+                        } catch {
+                            DispatchQueue.main.async {
+                                self.delegate?.showAlertMsg(title: "Invalid User", message: "Check your username and password")
+                                self.delegate?.removeSpinner()
+                            }
+                            return
+                        }
+                        if let response = response {
+                            print("success: \(response.username)")
+                            
+                            let userDefaults = UserDefaults.standard
+                            userDefaults.setValue(true, forKey: "userLoggedIn")
+                            userDefaults.setValue(response.driver, forKey: "userIsDriver")
+                            userDefaults.setValue(response.username, forKeyPath: "username")
+                            print("userLoggedIn: ", userDefaults.bool(forKey: "userLoggedIn"))
+                            print("userIsDriver: ", userDefaults.bool(forKey: "userIsDriver"))
+                            print("username: ",  userDefaults.string(forKey: "username"))
+                            
+                            self.loginResponse = response
+                            let fileName = response.image.deletingPrefix(NetworkConstants.baseS3URL)
+                            print("filename: ", fileName)
+                            self.awsManager.downloadFile(key: fileName)
+                        }
                     }
                 }
             }

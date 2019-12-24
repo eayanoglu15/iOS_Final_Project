@@ -7,10 +7,11 @@
 //
 
 import Foundation
-
+ 
 protocol DriverNewTripDataSourceDelegate {
     func showAlertMsg (title: String , message :String)
     func returnToDriverHome()
+    func setFromTo()
 }
 
 class DriverNewTripDataSource {
@@ -21,18 +22,9 @@ class DriverNewTripDataSource {
     
     var fromLocation: String?
     var toLocation: String?
-    
-    var startTime: String?
-    var endTime: String?
-    
-    var seatNumbers: Int?
-    
+
     var delegate: DriverNewTripDataSourceDelegate?
     
-    init() {
-        self.fromArray = ["Koç", "Batı", "Sarıyer", "Hacıosman"]
-        self.toArray = ["Koç", "Batı", "Sarıyer", "Hacıosman"]
-    }
     func getFromTo() {
         let session = URLSession.shared
         let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
@@ -51,13 +43,13 @@ class DriverNewTripDataSource {
                 DispatchQueue.main.async {
                     self.fromArray = response.fromToLocationList
                     self.toArray = response.fromToLocationList
+                    self.delegate?.setFromTo()
                 }
             }
-            
             dataTask.resume()
         }
-        
     }
+    
     func createTrip(from: String, to: String, startTime: String, endTime: String, seatNum: Int, driverUsername: String) {
         
         let tripRequest = NewTripRequest(from: from, to: to, startTime: startTime, endTime: endTime, totalSeatNumber: seatNum, driverUserName: driverUsername)

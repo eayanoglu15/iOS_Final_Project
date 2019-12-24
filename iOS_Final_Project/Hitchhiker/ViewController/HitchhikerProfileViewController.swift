@@ -8,6 +8,33 @@
 
 import UIKit
 
+extension HitchhikerProfileViewController: HitchhikerProfileDataSourceDelegate {
+    func userLoaded() {
+        if let user = hitchhikerProfileDataSource.hitchhiker {
+            hitchhikerProfileHelper.getInfoArray(hitchhiker: user)
+            let ratingImageNamesArray = hitchhikerProfileHelper.getRatingImageArray(rating: user.rating)
+            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
+            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
+            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
+            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
+            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+            profileImageView.image = hitchhikerProfileDataSource.hitchhiker?.profileImage
+            ratingLabel.text = "\(user.rating) / 5"
+            votesLabel.text = "\(user.voteNumber) vote"
+            infoTableView.reloadData()
+            removeSpinner()
+        } else {
+            showAlertMsg(title: "Something goes wrong", message: "Couldn't find other user")
+            removeSpinner()
+        }
+    }
+    
+    func showAlertMsg(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+    }
+}
+
 class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -24,30 +51,18 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let hitchhiker = hitchhikerProfileDataSource.hitchhiker {
-            hitchhikerProfileHelper.getInfoArray(hitchhiker: hitchhiker)
-        }
-        if let username = hitchhikerProfileDataSource.hitchhiker?.username {
-            title = username
-        }
-        print("Profile id: ", hitchhikerProfileDataSource.hitchhiker?.id)
-        profileImageView.image = hitchhikerProfileDataSource.hitchhiker?.profileImage
         infoTableView.delegate = self
         infoTableView.dataSource = self
-        // Do any additional setup after loading the view.
+        hitchhikerProfileDataSource.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutButtonTapped))
-        
-        if let user = hitchhikerProfileDataSource.hitchhiker {
-            hitchhikerProfileHelper.getInfoArray(hitchhiker: user)
-            let ratingImageNamesArray = hitchhikerProfileHelper.getRatingImageArray(rating: user.rating)
-            starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
-            starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
-            starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
-            starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
-            starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
-            ratingLabel.text = "\(user.rating) / 5"
-            votesLabel.text = "\(user.voteNumber) vote"
-            profileImageView.image = hitchhikerProfileDataSource.hitchhiker?.profileImage
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        if let username = userDefaults.string(forKey: "username") {
+            title = username
+            self.showSpinner()
+            hitchhikerProfileDataSource.getUser(username: username)
         }
     }
     
@@ -57,10 +72,8 @@ class HitchhikerProfileViewController: UIViewController, UITableViewDelegate {
         userDefaults.setValue(false, forKey: "userIsDriver")
         userDefaults.removeObject(forKey: "username")
         let rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-        print("NV count: ", navigationController?.viewControllers.count)
         navigationController?.viewControllers = [rootVC]
         navigationController?.pushViewController(rootVC, animated: false)
-        print("NV count: ", navigationController?.viewControllers.count)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

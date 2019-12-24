@@ -10,10 +10,6 @@ import Foundation
 import UIKit
 
 extension HitchhikerHomeDataSource: AWSS3ManagerDelegate {
-    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
-        
-    }
-    
     func setImage(img: UIImage) {
         if let response = userResponse {
             setUser(image: img, response: response)
@@ -24,6 +20,8 @@ extension HitchhikerHomeDataSource: AWSS3ManagerDelegate {
 protocol HitchhikerHomeDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func hitchhikerFeedListLoaded()
+    func showSpinner()
+    func removeSpinner()
 }
 
 class HitchhikerHomeDataSource {
@@ -36,9 +34,8 @@ class HitchhikerHomeDataSource {
     var userResponse: GetUserResponse?
     
     init() {
-         awsManager.delegate = self
+        awsManager.delegate = self
     }
-    
     
     func contextualTripRequestAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
         // 1
@@ -48,6 +45,7 @@ class HitchhikerHomeDataSource {
             (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             print("Sending request...")
             if let user = self.hitchhiker {
+                self.delegate?.showSpinner()
                 self.makeTripRequest(tripRequestId: trip.id, hitchhikerName: user.username)
             }
             
@@ -93,7 +91,10 @@ class HitchhikerHomeDataSource {
                         let response = try! decoder.decode(ApiResponse.self, from: data)
                         
                         if (response.success){
-                            print("Trip Request Success")
+                            if let hitchhiker = self.hitchhiker {
+                                self.getPlannedTrips(hitchhikerName: hitchhiker.username)
+                                print("Trip Request Success")
+                            }
                             // Trip Request Done?
                             // Delete Row?
                         }
@@ -136,7 +137,7 @@ class HitchhikerHomeDataSource {
                     }
                     if let data = data, let dataString = String(data: data, encoding: .utf8) {
                         //print("data from getPlannedTrips: \(dataString)")
-                       
+                        
                         let decoder = JSONDecoder()
                         let feedList = try! decoder.decode([HitchhikerFeed].self, from: data)
                         print("feedList.count: ", feedList.count)
@@ -194,10 +195,10 @@ class HitchhikerHomeDataSource {
         }
     }
     
-func setUser(image: UIImage, response: GetUserResponse) {
-            hitchhiker = User(profileImage: image, isDriver: false, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
-            self.hitchhiker?.id = response.id
-            hitchhiker?.rating=response.point
-            hitchhiker?.voteNumber=response.numberRevieved
+    func setUser(image: UIImage, response: GetUserResponse) {
+        hitchhiker = User(profileImage: image, isDriver: false, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex)
+        self.hitchhiker?.id = response.id
+        hitchhiker?.rating=response.point
+        hitchhiker?.voteNumber=response.numberRevieved
     }
 }

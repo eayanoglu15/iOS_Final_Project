@@ -16,7 +16,14 @@ extension HitchhikerVotePageViewController: AWSS3ManagerDelegate {
 // table view extensions
 // get username from user defaults
 extension HitchhikerVotePageViewController: HitchhikerVotePageDataSourceDelegate {
+    func reloadTableViewAfterVoting() {
+        if let user = hitchhikerVotePageDataSource.hitchhiker {
+            hitchhikerVotePageDataSource.getVotePageData(username: user.username)
+        }
+    }
+    
     func reloadTableView() {
+        self.removeSpinner()
         voteTableView.reloadData()
     }
     

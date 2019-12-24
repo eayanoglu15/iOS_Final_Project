@@ -9,26 +9,22 @@
 import Foundation
 import UIKit
 
+enum DateFormat {
+    static let network: String = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    static let display: String = "HH:mm\tdd/MM/yy"
+    static let networkUTC: String = "yyyy-MM-dd'T'HH:mm:ssZ"
+}
+
 class DriverNewTripHelper {
-    
-    /* Maybe Helpful for Backend */
-    /*
-    let formatter = NSDateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-    let localDate = formatter.dateFromString(date)
-    */
-    
-    enum DateFormat {
-        static let network = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        static let display = "MM dd, HH:mm"
-    }
-    
     var startTimePicker = UIDatePicker()
     var endTimePicker = UIDatePicker()
     var dateFormatter = DateFormatter()
     
-    var startDate: String = ""
-    var endDate: String = ""
+    var minSeat = "1"
+    var currentTime: String = ""
+    
+    var startTime = ""
+    var endTime = ""
     
     func setDateFormat(type: String) {
         dateFormatter.dateFormat = type
@@ -41,8 +37,9 @@ class DriverNewTripHelper {
         setDateFormat(type: DateFormat.display)
         setDatePicker(datePicker: startTimePicker, minDate: minimumDate)
         setDatePicker(datePicker: endTimePicker, minDate: minimumDate)
-        startDate = dateFormatter.string(from: Date())
-        endDate = dateFormatter.string(from: Date())
+        currentTime = dateFormatter.string(from: minimumDate)
+        startTime = currentTime
+        endTime = currentTime
     }
     
     func setDatePicker(datePicker: UIDatePicker, minDate: Date) {
@@ -50,30 +47,24 @@ class DriverNewTripHelper {
         datePicker.minimumDate = minDate
     }
     
-    func saveSelectedDates(start: String?, end: String?) {
-        setDateFormat(type: DateFormat.display)
-        if let selectedStartDate = start {
-            let selectedDate = dateFormatter.date(from: selectedStartDate)
-            setDateFormat(type: DateFormat.network)
-            if let date = selectedDate {
-                startDate = dateFormatter.string(from: date)
-            }
-        }
-        
-        setDateFormat(type: DateFormat.display)
-        if let selectedEndDate = end {
-            let selectedDate = dateFormatter.date(from: selectedEndDate)
-            setDateFormat(type: DateFormat.network)
-            if let date = selectedDate {
-                endDate = dateFormatter.string(from: date)
-            }
-        }
-    }
-    
     func upgradeEndDatePickersForMinimumDate() {
         setDateFormat(type: DateFormat.display)
         setDatePicker(datePicker: endTimePicker, minDate: startTimePicker.date)
     }
     
+    func saveStartTime() -> String {
+        setDateFormat(type: DateFormat.display)
+        let startText = dateFormatter.string(from: startTimePicker.date)
+        startTime = startText
+        endTime = startText
+        upgradeEndDatePickersForMinimumDate()
+        return startText
+    }
     
+    func saveEndTime() -> String {
+        setDateFormat(type: DateFormat.display)
+        let endText = dateFormatter.string(from: endTimePicker.date)
+        endTime = endText
+        return endText
+    }
 }

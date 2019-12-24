@@ -33,32 +33,45 @@ extension String {
     func convertUtcToDisplay() -> String {
         let dateFormatter = DateFormatter()
         // 2019-12-15T08:27:05Z
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        
-        
+        dateFormatter.dateFormat = DateFormat.networkUTC
         guard let date = dateFormatter.date(from: self) else {
             // 2019-12-14T23:23:33.986Z
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            dateFormatter.dateFormat = DateFormat.network
             guard let date = dateFormatter.date(from: self) else {
                 return self
             }
-            dateFormatter.dateFormat = "HH:mm\tdd/MM/yy"
+            dateFormatter.dateFormat = DateFormat.display
             return dateFormatter.string(from: date)
         }
-        dateFormatter.dateFormat = "HH:mm\tdd/MM/yy"
+        dateFormatter.dateFormat = DateFormat.display
         return dateFormatter.string(from: date)
     }
     
     func UTCToLocal() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ" //Input Format
+        dateFormatter.dateFormat = DateFormat.networkUTC //Input Format
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
         let UTCDate = dateFormatter.date(from: self)
-        dateFormatter.dateFormat = "HH:mm\tdd/MM/yy" // Output Format
+        dateFormatter.dateFormat = DateFormat.display // Output Format
         dateFormatter.timeZone = TimeZone.current
         let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
         return UTCToCurrentFormat
+    }
+    
+    func localToUTC() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormat.display
+        dateFormatter.calendar = NSCalendar.current
+        dateFormatter.timeZone = TimeZone.current
+
+        let dt = dateFormatter.date(from: self)
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = DateFormat.network
+        
+        guard let date = dt else {
+           return nil
+        }
+        return dateFormatter.string(from: date)
     }
     
     func deletingPrefix(_ prefix: String) -> String {

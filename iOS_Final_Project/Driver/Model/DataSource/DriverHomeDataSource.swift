@@ -10,10 +10,6 @@ import Foundation
 import UIKit
 
 extension DriverHomeDataSource: AWSS3ManagerDelegate {
-    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
-        
-    }
-    
     func setImage(img: UIImage) {
         if let response = userResponse {
             setUser(image: img, response: response)
@@ -25,6 +21,8 @@ protocol DriverHomeDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func loadHomePageData()
     func deleteRow(indexPath: IndexPath)
+    func showSpinner()
+    func removeSpinner()
 }
 
 enum Status {
@@ -37,14 +35,12 @@ enum Status {
 
 class DriverHomeDataSource {
     var delegate: DriverHomeDataSourceDelegate?
-    var driver: User?
     var awsManager = AWSS3Manager()
+    var driver: User?
     var userResponse: GetUserResponse?
-    
     var acceptedRequests = [TripRequest]()
     var waitingRequests = [TripRequest]()
     var tripExist = false
-    
     var status = Status.noTrip
     
     func getStatus() {
@@ -66,100 +62,57 @@ class DriverHomeDataSource {
     }
     
     init() {
-         awsManager.delegate = self
+        awsManager.delegate = self
     }
     
     func contextualTripAcceptAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        // 1
         var trip = waitingRequests[indexPath.row]
-        // 2
         let action = UIContextualAction(style: .normal,
                                         title: "Accept") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-         print("Accepted")
-         self.hitchhikerAcception(isAccepted: true, tripRequestId: trip.id, indexPath: indexPath)
-         completionHandler(true)
+                                            print("Accepted")
+                                            self.hitchhikerAcception(isAccepted: true, tripRequestId: trip.id, indexPath: indexPath)
+                                            completionHandler(true)
         }
-        // 7
         action.backgroundColor = UIColor.green
         return action
     }
     
     func contextualTripDenyAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
-        // 1
         var trip = waitingRequests[indexPath.row]
-        // 2
         let action = UIContextualAction(style: .normal,
                                         title: "Deny") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-         print("Denied")
-                 // delete cell
-                                            //
-                                            
+                                            print("Denied")
                                             self.hitchhikerAcception(isAccepted: false, tripRequestId: trip.id, indexPath: indexPath)
+                                            completionHandler(true)
                                             
-                                            
-         completionHandler(true)
-            
         }
-        // 7
         action.backgroundColor = UIColor.red
         return action
     }
     
     func getUser(username: String) {
-        print("getUser")
         let session = URLSession.shared
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
-        
-        if let url = URL(string: "\(baseURL)users/\(username)") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)users/\(username)") {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
             let dataTask = session.dataTask(with: request) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
                         self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
                     }
-                    
-                    } else {
-                        if let response = response as? HTTPURLResponse {
-                            let statusCode = response.statusCode
-                            print("statusCode: \(statusCode)")
-                            if statusCode == 500 {
-                                DispatchQueue.main.async {
-                                    self.delegate?.showAlertMsg(title: "Error", message: "Status Code 500")
-                                }
-                                return
-                            }
-                        }
-                        if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                            //print("data: \(dataString)")
-                            
-                            let decoder = JSONDecoder()
-                            let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
-                            
-                            print("Image ?: ", userResponse.image)
-                            self.userResponse = userResponse
-                            let fileName = userResponse.image.deletingPrefix(NetworkConstants.baseS3URL)
-                            print("filename: ", fileName)
-                            self.awsManager.downloadFile(key: fileName)
-                            
-                        }
+                } else {
+                    if let data = data {
+                        let decoder = JSONDecoder()
+                        let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
+                        self.userResponse = userResponse
+                        let fileName = userResponse.image.deletingPrefix(NetworkConstants.baseS3URL)
+                        self.awsManager.downloadFile(key: fileName)
                     }
                 }
-                /*
-                print("HERE: \(String.init(data: data!, encoding: .utf8))")
-                
-                let decoder = JSONDecoder()
-                let userResponse = try! decoder.decode(GetUserResponse.self, from: data!)
-                
-                DispatchQueue.main.async {
-                    self.setUser(response: userResponse)
-                }
-            }*/
+            }
             dataTask.resume()
         }
-        
     }
     
     func setUser(image: UIImage, response: GetUserResponse) {
@@ -172,102 +125,63 @@ class DriverHomeDataSource {
     // removeCell
     func hitchhikerAcception(isAccepted: Bool, tripRequestId: Int, indexPath: IndexPath) {
         var str = isAccepted ? "acceptRequest" : "declineRequest"
-        
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
         let session = URLSession.shared
-        
         let acceptionRequest = TripAcceptionRequest(tripRequestId: tripRequestId)
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/\(str)") {
-                var request = URLRequest(url: url)
-                request.httpMethod = "POST"
-                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                let encoder = JSONEncoder()
-                let uploadData = try! encoder.encode(acceptionRequest)
-                
-                let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
-                    if let error = error {
-                        DispatchQueue.main.async {
-                            self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
-                        }
-                    } else {
-                        if let response = response as? HTTPURLResponse {
-                            let statusCode = response.statusCode
-                            print("statusCode: \(statusCode)")
-                            if statusCode == 500 {
-                                DispatchQueue.main.async {
-                                    self.delegate?.showAlertMsg(title: "Error", message: "Status Code 500")
-                                }
-                                return
-                            }
-                        }
-                        if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                            print("data: \(dataString)")
-                            let decoder = JSONDecoder()
-                            let response = try! decoder.decode(ApiResponse.self, from: data)
-                            
-                            DispatchQueue.main.async {
-                                self.delegate?.deleteRow(indexPath: indexPath)
-                                //self.delegate?.loadHomePageData()
-                            }
-                        }
-                    }
-                }
-                uploadTask.resume()
-            }
-            
-        }
-    
-    
-    func getHomePageData(driverName: String) {
-        print("getHomePageData")
-        let baseURL = "http://ec2-18-218-29-110.us-east-2.compute.amazonaws.com:8080/"
-        let session = URLSession.shared
-        
-        let driverRequest = DriverHomeRequest(driverUserName: driverName)
-        
-        if let url = URL(string: "\(String(describing: baseURL))trip/getAllRequestsByDriver") {
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/\(str)") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             let encoder = JSONEncoder()
-            let uploadData = try! encoder.encode(driverRequest)
-            
+            let uploadData = try! encoder.encode(acceptionRequest)
             let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
                 if let error = error {
                     DispatchQueue.main.async {
                         self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
                     }
                 } else {
-                    if let response = response as? HTTPURLResponse {
-                        let statusCode = response.statusCode
-                        print("statusCode: \(statusCode)")
-                        if statusCode == 500 {
-                            DispatchQueue.main.async {
-                                self.delegate?.showAlertMsg(title: "Error", message: "Status Code 500")
-                            }
-                            return
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        print("data: \(dataString)")
+                        let decoder = JSONDecoder()
+                        let response = try! decoder.decode(ApiResponse.self, from: data)
+                        DispatchQueue.main.async {
+                            self.delegate?.deleteRow(indexPath: indexPath)
                         }
                     }
-                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                        //print("data: \(dataString)")
+                }
+            }
+            uploadTask.resume()
+        }
+    }
+    
+    func getHomePageData(driverName: String) {
+        let session = URLSession.shared
+        let driverRequest = DriverHomeRequest(driverUserName: driverName)
+        if let url = URL(string: "\(NetworkConstants.baseURL)trip/getAllRequestsByDriver") {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            let encoder = JSONEncoder()
+            let uploadData = try! encoder.encode(driverRequest)
+            let uploadTask = session.uploadTask(with: request, from: uploadData) { (data, response, error) in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
+                    }
+                } else {
+                    if let data = data {
                         let decoder = JSONDecoder()
                         let response = try! decoder.decode(DriverHomeResponse.self, from: data)
-                        
                         DispatchQueue.main.async {
                             if let acceptedReqs = response.acceptedRequest {
-                                 self.acceptedRequests = acceptedReqs
+                                self.acceptedRequests = acceptedReqs
                                 print("acceptedRequests.count: ", acceptedReqs.count)
                             }
                             if let waitings = response.requests {
                                 self.waitingRequests = waitings
                                 print("waitingRequests.count: ", waitings.count)
                             }
-                            
                             self.tripExist = response.tripExist
-                            
                             print("tripExist: ", self.tripExist)
-                            // reload home table view
                             self.getStatus()
                             self.delegate?.loadHomePageData()
                         }
@@ -276,7 +190,6 @@ class DriverHomeDataSource {
             }
             uploadTask.resume()
         }
-        
     }
 }
 

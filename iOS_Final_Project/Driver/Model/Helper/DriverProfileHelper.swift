@@ -9,29 +9,21 @@
 import Foundation
 
 class DriverProfileHelper {
-    var driverInfoArray = [(String, String)]()
+    var userInfoArray = [(String, String)]()
     
-    func getInfoArray(driver: User) {
-        if let carModel = driver.carModel {
-            driverInfoArray.append(("Car Model", carModel))
+    func getInfoArray(user: User) {
+        userInfoArray = [(String, String)]()
+        if let carModel = user.carModel {
+            userInfoArray.append(("Car Model", carModel))
         }
-        
-        if let carPlaque = driver.plaque {
-            driverInfoArray.append(("Car Plaque", carPlaque))
+        if let carPlaque = user.plaque {
+            userInfoArray.append(("Car Plaque", carPlaque))
         }
-        
-        let name = driver.firstName
-        let surname = driver.surname
-        driverInfoArray.append(("Name", "\(name) \(surname)"))
-        
-        let email = driver.email
-        driverInfoArray.append(("Email", email))
-        
-        let phone = driver.phoneNumber
-        driverInfoArray.append(("Phone Number", phone))
-        
-        let age = driver.age
-        driverInfoArray.append(("Age", "\(age)"))
+        userInfoArray.append(("Name", "\(user.firstName) \(user.surname)"))
+        userInfoArray.append(("Email", user.email))
+        userInfoArray.append(("Phone Number", user.phoneNumber))
+        userInfoArray.append(("Gender", user.sex))
+        userInfoArray.append(("Age", "\(user.age)"))
     }
     
     private enum Constant {
@@ -44,16 +36,14 @@ class DriverProfileHelper {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-        if rating >= 1 {
-            for _ in 1...numberOfFilledStars {
-                ratingImageArray.append(Constant.filledStarName)
-            }
+        for _ in 0..<numberOfFilledStars {
+            ratingImageArray.append(Constant.filledStarName)
         }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }
         let remaining = Constant.starNum - ratingImageArray.count
-        for _ in 1...remaining {
+        for _ in 0..<remaining {
             ratingImageArray.append(Constant.emptyStarName)
         }
         return ratingImageArray
