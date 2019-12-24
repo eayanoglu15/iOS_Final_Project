@@ -34,7 +34,6 @@ class HitchhikerVoteTableViewCell: UITableViewCell {
     @IBOutlet weak var voteStarFiveImageView: UIImageView!
     
     var tripId: Int?
-    
     weak var delegate: HitchhikerVoteTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -63,8 +62,6 @@ class HitchhikerVoteTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
     @objc func oneStarTapped()
@@ -188,6 +185,14 @@ class HitchhikerVoteTableViewCell: UITableViewCell {
             ratingImageArray.append(Constant.emptyStarName)
         }
         return ratingImageArray
+    }
+    
+    func setEditableFalse() {
+        voteStarOneImageView.isUserInteractionEnabled = false
+        voteStarTwoImageView.isUserInteractionEnabled = false
+        voteStarThreeImageView.isUserInteractionEnabled = false
+        voteStarFourImageView.isUserInteractionEnabled = false
+        voteStarFiveImageView.isUserInteractionEnabled = false
     }
     
     func setVoteStars(vote: Int) {

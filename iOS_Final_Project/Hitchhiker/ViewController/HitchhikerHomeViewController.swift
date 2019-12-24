@@ -11,7 +11,6 @@ import UIKit
 extension HitchhikerHomeViewController: AWSS3ManagerDelegate {
     func setImageForCell(cell: UITableViewCell, img: UIImage) {
         (cell as! HitchhikerHomeTableViewCell).profileImageView.image = img
-        self.removeSpinner()
     }
 }
 
@@ -120,6 +119,7 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerHomeCell", for: indexPath) as! HitchhikerHomeTableViewCell
         let feed = hitchhikerHomeDataSource.feedArray[indexPath.row]
+        print("feed.rating: ", feed.rating)
         let ratingImageNamesArray = hitchhikerHomeHelper.getRatingImageArray(rating: feed.rating)
         
         cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
@@ -137,13 +137,8 @@ extension HitchhikerHomeViewController: UITableViewDataSource {
         cell.maxDepartureTimeLabel.text = feed.endTime.convertUtcToDisplay()
         
         let fileName = feed.image.deletingPrefix(NetworkConstants.baseS3URL)
-        self.showSpinner()
         awsManager.downloadFileForCell(cell: cell, key: fileName)
         
-        /*  if let profileImage = feed.profileImage {
-         cell.profileImageView.image = profileImage
-         }
-         */
         return cell
     }
 }

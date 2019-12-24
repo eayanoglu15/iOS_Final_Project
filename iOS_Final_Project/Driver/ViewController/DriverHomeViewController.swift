@@ -79,9 +79,7 @@ class DriverHomeViewController: UIViewController {
     
     @objc func reloadData() {
         let userDefaults = UserDefaults.standard
-        if let username = userDefaults.string(forKey: "username") {
-            driverHomeDataSource.getUser(username: username)
-            driverHomeDataSource.getHomePageData(driverName: username)
+        if let username = userDefaults.string(forKey: "username") { driverHomeDataSource.getHomePageData(driverName: username)
         }
         requestTableView.refreshControl?.endRefreshing()
         requestTableView.reloadData()
@@ -179,13 +177,14 @@ extension DriverHomeViewController: UITableViewDataSource {
             
             let tripRequest = driverHomeDataSource.waitingRequests[indexPath.row]
         
+            print("tripRequest.rating: ", tripRequest.rating)
             let ratingImageNamesArray = driverHomeHelper.getRatingImageArray(rating: tripRequest.rating)
-            
             cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
             cell.starTwoImageView.image = UIImage(systemName: ratingImageNamesArray[1])
             cell.starThreeImageView.image = UIImage(systemName: ratingImageNamesArray[2])
             cell.starFourImageView.image = UIImage(systemName: ratingImageNamesArray[3])
             cell.starFiveImageView.image = UIImage(systemName: ratingImageNamesArray[4])
+            
             let fileName = tripRequest.image.deletingPrefix(NetworkConstants.baseS3URL)
             awsManager.downloadFileForCell(cell: cell, key: fileName)
             cell.usernameLabel.text = tripRequest.hitchHikerUserName
@@ -206,7 +205,7 @@ extension DriverHomeViewController: UITableViewDataSource {
             } else {
                 tripRequest = driverHomeDataSource.waitingRequests[indexPath.row]
             }
-            
+            print("tripRequest.rating: ", tripRequest.rating)
             let ratingImageNamesArray = driverHomeHelper.getRatingImageArray(rating: tripRequest.rating)
             
             cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
@@ -229,7 +228,7 @@ extension DriverHomeViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HitchhikerCell", for: indexPath) as! HitchhikerTableViewCell
             
             let tripRequest = driverHomeDataSource.acceptedRequests[indexPath.row]
-            
+            print("tripRequest.rating: ", tripRequest.rating)
             let ratingImageNamesArray = driverHomeHelper.getRatingImageArray(rating: tripRequest.rating)
             
             cell.starOneImageView.image = UIImage(systemName: ratingImageNamesArray[0])
@@ -286,20 +285,14 @@ extension DriverHomeViewController: UITableViewDelegate {
         case Status.allWaiting:
             let hitchhikerRequest = driverHomeDataSource.waitingRequests[indexPath.row]
             driverHomeHelper.selectedUsername = hitchhikerRequest.hitchHikerUserName
-            print("driverHomeHelper.selectedUsername: ", driverHomeHelper.selectedUsername)
-            print("hitchhikerRequest.hitchHikerUserName: ", hitchhikerRequest.hitchHikerUserName)
             performSegue(withIdentifier: "toOtherProfileFromDriverHome", sender: nil)
         case Status.acceptedAndWaiting:
             let hitchhikerRequest = (indexPath.section == 0) ? driverHomeDataSource.acceptedRequests[indexPath.row] : driverHomeDataSource.waitingRequests[indexPath.row]
             driverHomeHelper.selectedUsername = hitchhikerRequest.hitchHikerUserName
-            print("driverHomeHelper.selectedUsername: ", driverHomeHelper.selectedUsername)
-            print("hitchhikerRequest.hitchHikerUserName: ", hitchhikerRequest.hitchHikerUserName)
             performSegue(withIdentifier: "toOtherProfileFromDriverHome", sender: nil)
         case Status.allAccepted:
             let hitchhikerRequest = driverHomeDataSource.acceptedRequests[indexPath.row]
             driverHomeHelper.selectedUsername = hitchhikerRequest.hitchHikerUserName
-            print("driverHomeHelper.selectedUsername: ", driverHomeHelper.selectedUsername)
-            print("hitchhikerRequest.hitchHikerUserName: ", hitchhikerRequest.hitchHikerUserName)
             performSegue(withIdentifier: "toOtherProfileFromDriverHome", sender: nil)
         }
     }

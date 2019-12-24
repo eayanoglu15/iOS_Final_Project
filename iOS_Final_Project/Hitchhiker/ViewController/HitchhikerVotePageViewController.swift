@@ -13,11 +13,11 @@ extension HitchhikerVotePageViewController: AWSS3ManagerDelegate {
         (cell as! HitchhikerVoteTableViewCell).profileImageView.image = img
     }
 }
-// table view extensions
-// get username from user defaults
+
 extension HitchhikerVotePageViewController: HitchhikerVotePageDataSourceDelegate {
     func reloadTableViewAfterVoting() {
         if let user = hitchhikerVotePageDataSource.hitchhiker {
+            self.showSpinner()
             hitchhikerVotePageDataSource.getVotePageData(username: user.username)
         }
     }
@@ -193,6 +193,7 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
                 cell.maxDepartureTimeLabel.text = trip.endTime.convertUtcToDisplay()
                 let fileName = trip.image.deletingPrefix(NetworkConstants.baseS3URL)
                 awsManager.downloadFileForCell(cell: cell, key: fileName)
+                cell.setEditableFalse()
                 if let vote = trip.voteGiven {
                         cell.setVoteStars(vote: vote)
                 }
@@ -221,6 +222,7 @@ extension HitchhikerVotePageViewController: UITableViewDataSource {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "hitchhikerVoteCell", for: indexPath) as! HitchhikerVoteTableViewCell
                 let trip = hitchhikerVotePageDataSource.votedTrips[indexPath.row]
+                cell.setEditableFalse()
                 cell.setRatingStars(rating: trip.rating)
                 cell.usernameLabel.text = trip.driverUserName
                 cell.fromLabel.text = trip.from

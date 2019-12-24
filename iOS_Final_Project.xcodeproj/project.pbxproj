@@ -27,6 +27,7 @@
 		85069AE7239FF4480012E3B7 /* DriverHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069AE6239FF4480012E3B7 /* DriverHomeViewController.swift */; };
 		85069AE9239FF4540012E3B7 /* DriverHomeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069AE8239FF4540012E3B7 /* DriverHomeHelper.swift */; };
 		85069AEE23A00F760012E3B7 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85069AED23A00F760012E3B7 /* LoginRequest.swift */; };
+		850CC8C823B27FE5003BF0F5 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850CC8C723B27FE5003BF0F5 /* UIColor+Additions.swift */; };
 		8516835F23B1794E006AC287 /* HitchhikerTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8516835E23B1794E006AC287 /* HitchhikerTrip.swift */; };
 		85354BCB23A02C3C00A0EE95 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85354BCA23A02C3C00A0EE95 /* LoginResponse.swift */; };
 		85354BCD23A03B4A00A0EE95 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85354BCC23A03B4A00A0EE95 /* LoginDataSource.swift */; };
@@ -127,6 +128,7 @@
 		85069AE6239FF4480012E3B7 /* DriverHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverHomeViewController.swift; sourceTree = "<group>"; };
 		85069AE8239FF4540012E3B7 /* DriverHomeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverHomeHelper.swift; sourceTree = "<group>"; };
 		85069AED23A00F760012E3B7 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		850CC8C723B27FE5003BF0F5 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		8516835E23B1794E006AC287 /* HitchhikerTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitchhikerTrip.swift; sourceTree = "<group>"; };
 		85354BCA23A02C3C00A0EE95 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		85354BCC23A03B4A00A0EE95 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				854A44E62397C8AC00AFC20D /* String+Additions.swift */,
 				85056BDB23A2629500CD1C2E /* Date+Additions.swift */,
 				9DDDD92323A83BA400A62815 /* Image+Additions.swift */,
+				850CC8C723B27FE5003BF0F5 /* UIColor+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				85A860F6239EACC9000A72EE /* HitchhikerProfileHelper.swift in Sources */,
 				8505DE7C23A158C6005ACD62 /* HitchhikerEditProfileDataSource.swift in Sources */,
 				85A860F0239E9E49000A72EE /* InfoTableViewCell.swift in Sources */,
+				850CC8C823B27FE5003BF0F5 /* UIColor+Additions.swift in Sources */,
 				8557FEC8239FDC40005AB39C /* HitchhikerTripRequest.swift in Sources */,
 				85BCA87423A7DCF3009206B1 /* DriverVoteTableViewCell.swift in Sources */,
 				8574495123A2DFAF000B0B71 /* DriverEditProfileHelper.swift in Sources */,

@@ -8,16 +8,6 @@
 
 import UIKit
 
-extension LoginViewController: AWSS3ManagerDelegate {
-    func setImageForCell(cell: HitchhikerHomeTableViewCell, img: UIImage) {
-        
-    }
-    
-    func setImage(img: UIImage) {
-        self.img.image = img
-    }
-}
-
 extension LoginViewController: LoginDataSourceDelegate {
     func showAlertMsg(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -38,11 +28,9 @@ extension LoginViewController: LoginDataSourceDelegate {
 class LoginViewController: BaseScrollViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var img: UIImageView!
     
     var loginHelper = LoginHelper()
     var loginDataSource = LoginDataSource()
-    var aws = AWSS3Manager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +41,6 @@ class LoginViewController: BaseScrollViewController {
         title = "Welcome"
         passwordTextField.isSecureTextEntry = true
         loginDataSource.delegate = self
-        aws.delegate = self
-        
-        aws.downloadFile(key: "D3825FAC-E651-461A-8F44-250A4BB9F2F9-12209-000018596ACE956D.jpeg")
-        
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {

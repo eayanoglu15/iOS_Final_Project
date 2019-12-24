@@ -23,6 +23,7 @@ extension DriverVotePageViewController: DriverVotePageDataSourceDelegate {
     }
     
     func reloadTableView() {
+        self.removeSpinner()
         voteTableView.reloadData()
     }
     

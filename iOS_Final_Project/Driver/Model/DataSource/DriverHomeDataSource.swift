@@ -9,14 +9,6 @@
 import Foundation
 import UIKit
 
-extension DriverHomeDataSource: AWSS3ManagerDelegate {
-    func setImage(img: UIImage) {
-        if let response = userResponse {
-            setUser(image: img, response: response)
-        }
-    }
-}
-
 protocol DriverHomeDataSourceDelegate {
     func showAlertMsg(title: String, message: String)
     func loadHomePageData()
@@ -35,9 +27,7 @@ enum Status {
 
 class DriverHomeDataSource {
     var delegate: DriverHomeDataSourceDelegate?
-    var awsManager = AWSS3Manager()
     var driver: User?
-    var userResponse: GetUserResponse?
     var acceptedRequests = [TripRequest]()
     var waitingRequests = [TripRequest]()
     var tripExist = false
@@ -59,10 +49,6 @@ class DriverHomeDataSource {
         } else {
             status = Status.noTrip
         }
-    }
-    
-    init() {
-        awsManager.delegate = self
     }
     
     func contextualTripAcceptAction(forRowAtIndexPath indexPath: IndexPath) -> UIContextualAction {
@@ -90,39 +76,6 @@ class DriverHomeDataSource {
         return action
     }
     
-    func getUser(username: String) {
-        let session = URLSession.shared
-        if let url = URL(string: "\(NetworkConstants.baseURL)users/\(username)") {
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            let dataTask = session.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self.delegate?.showAlertMsg(title: "Error", message: "\(error)")
-                    }
-                } else {
-                    if let data = data {
-                        let decoder = JSONDecoder()
-                        let userResponse = try! decoder.decode(GetUserResponse.self, from: data)
-                        self.userResponse = userResponse
-                        let fileName = userResponse.image.deletingPrefix(NetworkConstants.baseS3URL)
-                        self.awsManager.downloadFile(key: fileName)
-                    }
-                }
-            }
-            dataTask.resume()
-        }
-    }
-    
-    func setUser(image: UIImage, response: GetUserResponse) {
-        driver = User(profileImage: image, isDriver: true, username: response.username, password: response.password, name: response.firstName, surname: response.surname, email: response.email, phonenumber: response.phone, age: response.age, sex: response.sex, carModel: response.carModel ?? "-", plaque: response.plaque ?? "-")
-        driver?.id = response.id
-        driver?.rating=response.point
-        driver?.voteNumber=response.numberRevieved
-    }
-    
-    // removeCell
     func hitchhikerAcception(isAccepted: Bool, tripRequestId: Int, indexPath: IndexPath) {
         var str = isAccepted ? "acceptRequest" : "declineRequest"
         let session = URLSession.shared

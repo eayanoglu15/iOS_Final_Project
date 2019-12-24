@@ -12,7 +12,6 @@ protocol DriverVoteTableViewCellDelegate: AnyObject {
     func giveVote(tripId: Int, vote: Int)
 }
 
-// driverVoteCell
 class DriverVoteTableViewCell: UITableViewCell {
     @IBOutlet weak var starOneImageView: UIImageView!
     @IBOutlet weak var starTwoImageView: UIImageView!
@@ -34,7 +33,6 @@ class DriverVoteTableViewCell: UITableViewCell {
     @IBOutlet weak var voteStarFiveImageView: UIImageView!
     
     var tripId: Int?
-    
     weak var delegate: DriverVoteTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -62,16 +60,14 @@ class DriverVoteTableViewCell: UITableViewCell {
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
-           super.setSelected(selected, animated: animated)
-
-           // Configure the view for the selected state
-       }
+        super.setSelected(selected, animated: animated)
+    }
     
     @objc func oneStarTapped()
     {
         print("oneStarTapped")
         if let id = tripId {
-                    self.delegate?.giveVote(tripId: id, vote: 1)
+            self.delegate?.giveVote(tripId: id, vote: 1)
         }
         voteStarOneImageView.isUserInteractionEnabled = false
         voteStarTwoImageView.isUserInteractionEnabled = false
@@ -91,7 +87,7 @@ class DriverVoteTableViewCell: UITableViewCell {
     {
         print("twoStarTapped")
         if let id = tripId {
-                    self.delegate?.giveVote(tripId: id, vote: 2)
+            self.delegate?.giveVote(tripId: id, vote: 2)
         }
         voteStarOneImageView.isUserInteractionEnabled = false
         voteStarTwoImageView.isUserInteractionEnabled = false
@@ -111,7 +107,7 @@ class DriverVoteTableViewCell: UITableViewCell {
     {
         print("threeStarTapped")
         if let id = tripId {
-                    self.delegate?.giveVote(tripId: id, vote: 3)
+            self.delegate?.giveVote(tripId: id, vote: 3)
         }
         voteStarOneImageView.isUserInteractionEnabled = false
         voteStarTwoImageView.isUserInteractionEnabled = false
@@ -131,7 +127,7 @@ class DriverVoteTableViewCell: UITableViewCell {
     {
         print("fourStarTapped")
         if let id = tripId {
-                    self.delegate?.giveVote(tripId: id, vote: 4)
+            self.delegate?.giveVote(tripId: id, vote: 4)
         }
         voteStarOneImageView.isUserInteractionEnabled = false
         voteStarTwoImageView.isUserInteractionEnabled = false
@@ -151,7 +147,7 @@ class DriverVoteTableViewCell: UITableViewCell {
     {
         print("fiveStarTapped")
         if let id = tripId {
-                    self.delegate?.giveVote(tripId: id, vote: 5)
+            self.delegate?.giveVote(tripId: id, vote: 5)
         }
         voteStarOneImageView.isUserInteractionEnabled = false
         voteStarTwoImageView.isUserInteractionEnabled = false
@@ -177,9 +173,9 @@ class DriverVoteTableViewCell: UITableViewCell {
     func getRatingImageArray(rating: Double) -> [String] {
         var ratingImageArray = [String]()
         let numberOfFilledStars = Int(rating)
-            for _ in 0..<numberOfFilledStars {
-                ratingImageArray.append(Constant.filledStarName)
-            }
+        for _ in 0..<numberOfFilledStars {
+            ratingImageArray.append(Constant.filledStarName)
+        }
         if rating - Double(numberOfFilledStars) >= 0.5 {
             ratingImageArray.append(Constant.halfFilledStarName)
         }
